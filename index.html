@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Himanshu Jain — The teacher who ships</title>
+<meta name="description" content="Chemistry teacher turned AI product builder. 15+ shipped products, a visible thinking process, and a live lab notebook." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root[data-theme="light"]{
+  --bg:#F4F1E9;--bg-2:#EBE6D8;--surface:#FCFAF5;--ink:#191A2E;--ink-soft:#54546A;
+  --line:#CDC6B4;--line-soft:#DED8C7;--accent:#4B3FB0;--accent-deep:#352B86;
+  --teal:#1C6B62;--teal-soft:#1C6B6222;--on-accent:#FFFFFF;--shadow:rgba(25,26,46,.10);--ruled:#E4DECC;
+}
+:root[data-theme="dark"]{
+  --bg:#13131F;--bg-2:#1A1A29;--surface:#1E1E30;--ink:#F0EDE2;--ink-soft:#A6A4B8;
+  --line:#33334A;--line-soft:#2A2A3C;--accent:#9B8CFF;--accent-deep:#B3A6FF;
+  --teal:#46C7B8;--teal-soft:#46C7B822;--on-accent:#13131F;--shadow:rgba(0,0,0,.40);--ruled:#1C1C2B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;
+  background-image:repeating-linear-gradient(transparent,transparent 31px,var(--ruled) 31px,var(--ruled) 32px);background-attachment:fixed;
+  transition:background-color .35s,color .35s;}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.tag{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+
+.topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brandmark{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;letter-spacing:.08em}
+.brandmark .el{width:30px;height:30px;border-radius:4px;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:600;font-size:15px;background:var(--accent);color:var(--on-accent)}
+.nav{display:flex;gap:24px;align-items:center}
+.nav a{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.05em;color:var(--ink-soft);transition:color .2s}
+.nav a:hover{color:var(--accent)}
+@media(max-width:720px){.nav a:not(.themeBtn){display:none}}
+.themeBtn{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;background:none;cursor:pointer;display:grid;place-items:center;color:var(--ink);transition:border-color .2s,transform .3s}
+.themeBtn:hover{border-color:var(--accent);transform:rotate(15deg)}
+.themeBtn svg{width:16px;height:16px}
+
+.hero{padding:80px 0 60px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:1.5fr .9fr;gap:48px;align-items:center}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr;gap:34px}}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px var(--teal-soft)}
+.hero h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(38px,6vw,66px);line-height:1.03;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero .lede{font-size:clamp(16px,2vw,18px);color:var(--ink-soft);margin-top:20px;max-width:34em}
+.hero .lede b{color:var(--ink);font-weight:600}
+.hero-cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:13px 20px;border-radius:5px;border:1.5px solid var(--ink);display:inline-flex;align-items:center;gap:8px;transition:all .18s;cursor:pointer;background:none;color:var(--ink)}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.solid:hover{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.ghost:hover{background:var(--ink);color:var(--bg)}
+
+.portrait{position:relative;padding-top:14px;padding-left:14px}
+.portrait .frame{border:1px solid var(--line);background:var(--surface);padding:14px;border-radius:6px;box-shadow:6px 8px 0 var(--shadow)}
+.portrait img{border-radius:4px;width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--bg-2)}
+.portrait .specimen{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);display:flex;justify-content:space-between;margin-top:10px;text-transform:uppercase}
+.portrait .el-badge{position:absolute;top:0;left:0;width:52px;height:52px;background:var(--accent);color:var(--on-accent);border-radius:6px;display:grid;place-content:center;text-align:center;line-height:1;box-shadow:3px 4px 0 var(--shadow);z-index:2}
+.portrait .el-badge .num{font-family:"JetBrains Mono",monospace;font-size:9px;display:block;margin-bottom:2px}
+.portrait .el-badge .sym{font-family:"Fraunces",serif;font-weight:600;font-size:24px}
+
+.stats{display:flex;border-top:1px solid var(--line);margin-top:50px}
+.stat{flex:1;padding:18px 0;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat .n{font-family:"Fraunces",serif;font-weight:600;font-size:30px;line-height:1}
+.stat .l{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
+
+section{padding:72px 0}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:32px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.sec-head .idx{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--accent);letter-spacing:.1em}
+.sec-head h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.01em}
+.sec-head .meta{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.06em}
+@media(max-width:560px){.sec-head .meta{display:none}}
+
+.narrative{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.narrative .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:820px){.narrative .wrap{grid-template-columns:1fr;gap:26px}}
+.narrative p{font-size:17px;color:var(--ink-soft);margin-bottom:16px;max-width:40em}
+.narrative p b{color:var(--ink);font-weight:600}
+.equation{font-family:"Fraunces",serif;font-size:clamp(21px,3vw,28px);line-height:1.4}
+.equation .arrow{color:var(--accent);margin:0 8px}
+.equation .small{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--ink-soft);display:block;letter-spacing:.05em;margin-top:4px}
+
+.mech .intro{max-width:46em;font-size:17px;color:var(--ink-soft);margin-bottom:40px}
+.mech .intro b{color:var(--ink)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+@media(max-width:900px){.steps{grid-template-columns:1fr}}
+.step{position:relative;padding:24px 22px;background:var(--surface);border:1px solid var(--line);border-right:none}
+.step:last-child{border-right:1px solid var(--line)}
+@media(max-width:900px){.step{border-right:1px solid var(--line);border-bottom:none}.step:last-child{border-bottom:1px solid var(--line)}}
+.step:first-child{border-radius:8px 0 0 8px}
+.step:last-child{border-radius:0 8px 8px 0}
+@media(max-width:900px){.step:first-child{border-radius:8px 8px 0 0}.step:last-child{border-radius:0 0 8px 8px}}
+.step .ph{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.step .ph .n{width:18px;height:18px;border:1px solid var(--accent);border-radius:50%;display:grid;place-items:center;font-size:9px;color:var(--accent)}
+.step h4{font-family:"Fraunces",serif;font-weight:600;font-size:17px;margin-bottom:8px;line-height:1.2}
+.step p{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+.step p em{color:var(--ink);font-style:italic}
+.step::after{content:"";position:absolute;top:50%;right:-11px;width:22px;height:22px;z-index:3;background:var(--accent);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M13 7l6 5-6 5' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M13 7l6 5-6 5' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  transform:translateY(-50%)}
+.step:last-child::after{display:none}
+@media(max-width:900px){.step::after{top:auto;bottom:-11px;right:50%;transform:translateX(50%) rotate(90deg)}}
+
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:8px;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.04em;color:var(--ink-soft)}
+.legend .k{display:flex;align-items:center;gap:6px}
+.legend .sw{width:11px;height:11px;border-radius:2px}
+.ptable-scroll{overflow-x:auto;padding-bottom:8px}
+.ptable{display:grid;grid-template-columns:90px repeat(3,minmax(190px,1fr));gap:10px;min-width:760px;margin-top:14px}
+.col-head{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);padding:6px 4px;text-align:center;border-bottom:1px dashed var(--line)}
+.row-head{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;writing-mode:vertical-rl;transform:rotate(180deg);justify-content:center;padding:8px 0}
+.pcell{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;min-height:118px;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s,border-color .15s;overflow:hidden}
+.pcell:hover{transform:translateY(-3px);box-shadow:5px 7px 0 var(--shadow);border-color:var(--ink)}
+.pcell .cnum{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--ink-soft)}
+.pcell .csym{font-family:"Fraunces",serif;font-weight:600;font-size:22px;line-height:1.05;margin:4px 0 1px}
+.pcell .cname{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.03em;color:var(--accent);text-transform:uppercase}
+.pcell .clinks{display:flex;gap:6px;margin-top:auto;padding-top:10px;flex-wrap:wrap}
+.pcell .clink{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.04em;text-transform:uppercase;padding:4px 7px;border:1px solid var(--line);border-radius:3px;transition:all .15s}
+.pcell .clink.live{border-color:var(--teal);color:var(--teal)}
+.pcell .clink.live:hover{background:var(--teal);color:var(--on-accent)}
+.pcell .clink:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pcell::before{content:"";position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 22px 22px 0}
+.pcell[data-c="edtech"]::before{border-color:transparent var(--teal) transparent transparent}
+.pcell[data-c="career"]::before{border-color:transparent var(--accent) transparent transparent}
+.pcell[data-c="pm"]::before{border-color:transparent var(--ink) transparent transparent}
+.spacer{min-height:118px}
+
+.log{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.log-item{display:grid;grid-template-columns:120px 1fr auto;gap:20px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);transition:padding-left .16s}
+.log-item:hover{padding-left:8px}
+.log-item .date{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft)}
+.log-item .ti{font-family:"Fraunces",serif;font-size:18px;font-weight:500}
+.log-item .go{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--accent)}
+@media(max-width:680px){.log-item{grid-template-columns:1fr;gap:4px}.log-item .go{display:none}}
+.log-empty{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink-soft);padding:24px 0}
+
+.ask-card{background:var(--ink);color:var(--bg);border-radius:10px;padding:34px;box-shadow:8px 10px 0 var(--shadow)}
+.ask-card h3{font-family:"Fraunces",serif;font-weight:600;font-size:26px;margin-bottom:8px}
+.ask-card p.sub{color:color-mix(in srgb,var(--bg) 70%,var(--ink-soft));font-size:14px;margin-bottom:22px;max-width:42em}
+.ask-row{display:flex;gap:10px}
+@media(max-width:600px){.ask-row{flex-direction:column}}
+.ask-row input{flex:1;background:color-mix(in srgb,var(--ink) 88%,var(--bg));border:1px solid color-mix(in srgb,var(--ink) 70%,var(--bg));border-radius:6px;padding:14px 16px;color:var(--bg);font-family:"Inter",sans-serif;font-size:15px;outline:none}
+.ask-row input::placeholder{color:color-mix(in srgb,var(--bg) 55%,var(--ink))}
+.ask-row input:focus{border-color:var(--accent)}
+.ask-row button{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;background:var(--accent);color:var(--on-accent);border:none;border-radius:6px;padding:14px 22px;cursor:pointer;transition:background .16s}
+.ask-row button:hover{background:var(--accent-deep)}
+.ask-row button:disabled{opacity:.5;cursor:default}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{font-family:"JetBrains Mono",monospace;font-size:11px;color:color-mix(in srgb,var(--bg) 70%,var(--ink-soft));border:1px solid color-mix(in srgb,var(--ink) 70%,var(--bg));border-radius:20px;padding:6px 12px;cursor:pointer;transition:all .15s}
+.chip:hover{border-color:var(--accent);color:var(--bg)}
+.ask-out{margin-top:20px;background:color-mix(in srgb,var(--ink) 90%,var(--bg));border-radius:7px;padding:18px 20px;font-size:15px;line-height:1.6;color:color-mix(in srgb,var(--bg) 92%,var(--ink));white-space:pre-wrap;display:none}
+.ask-out.show{display:block}
+.ask-note{font-family:"JetBrains Mono",monospace;font-size:10px;color:color-mix(in srgb,var(--bg) 50%,var(--ink-soft));margin-top:12px;letter-spacing:.03em}
+
+.foot{padding:64px 0 48px;border-top:1px solid var(--line)}
+.foot .wrap{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px}
+.foot h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(28px,4vw,44px);letter-spacing:-.01em;line-height:1.05}
+.foot h2 em{font-style:italic;color:var(--accent)}
+.foot .links{display:flex;gap:8px;flex-wrap:wrap}
+.foot .links a{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:11px 16px;border:1.5px solid var(--ink);border-radius:5px;transition:all .16s}
+.foot .links a:hover{background:var(--ink);color:var(--bg)}
+.colophon{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--ink-soft);letter-spacing:.04em;margin-top:40px;border-top:1px solid var(--line);padding-top:18px}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brandmark" href="#top"><span class="el">Hj</span> HIMANSHU&nbsp;JAIN</a>
+    <nav class="nav">
+      <a href="#story">Story</a>
+      <a href="#mechanism">Mechanism</a>
+      <a href="#products">Products</a>
+      <a href="#log">Field Notes</a>
+      <a href="#ask">Ask</a>
+      <button class="themeBtn nav" id="themeBtn" aria-label="Toggle light or dark theme"></button>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="hero-eyebrow"><span class="dot"></span><span class="tag">Chemistry Faculty · AI Product Builder · Greater Noida, IN</span></div>
+      <h1>A teacher who<br><em>ships products.</em></h1>
+      <p class="lede">A decade teaching JEE Chemistry. Now I build the AI tools I always wished my students had — and I ship them live. <b>15+ deployed products</b>, not slide decks. This page shows what I build <b>and how I think while building it.</b></p>
+      <div class="hero-cta">
+        <a class="btn solid" href="#mechanism">See how I think →</a>
+        <a class="btn ghost" href="#products">The products</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n">15+</div><div class="l">Live products</div></div>
+        <div class="stat"><div class="n">10+</div><div class="l">Yrs teaching</div></div>
+        <div class="stat"><div class="n">JEE</div><div class="l">+ CBSE domain</div></div>
+        <div class="stat"><div class="n">AI</div><div class="l">native stack</div></div>
+      </div>
+    </div>
+    <div class="portrait">
+      <div class="el-badge"><span class="num">∞</span><span class="sym">Hj</span></div>
+      <div class="frame">
+        <img src="profile.png" alt="Himanshu Jain" onerror="this.src='https://placehold.co/520x520/EBE6D8/54546A?text=Add+profile.png';" />
+        <div class="specimen"><span>Specimen · HJ-01</span><span>Teacher → Builder</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a id="story"></a>
+<section class="narrative">
+  <div class="wrap">
+    <div>
+      <div class="equation">
+        Explaining a reaction mechanism
+        <span class="small">// break a hard idea into ordered, testable steps</span>
+        <span class="arrow">→</span>
+        Writing a PRD
+        <span class="small">// break a hard problem into ordered, testable steps</span>
+      </div>
+    </div>
+    <div>
+      <p><b>The classroom was my first product team.</b> Ten years at Aakash, FIITJEE, Amazon Academy — and two institutes I ran myself — taught me to find exactly where a learner gets stuck and design the smallest thing that unblocks them.</p>
+      <p>That's product work. So I started building: RAG doubt-solvers, answer-grading pipelines, voice trainers, GTM agents — on a real stack, used by real students. <b>I don't describe products. I deploy them.</b></p>
+      <p>Now I'm completing HelloPM's AI Product Management program, in public. The teacher-to-builder path isn't a gap to explain away — it's the edge.</p>
+    </div>
+  </div>
+</section>
+
+<a id="mechanism"></a>
+<section class="mech">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">01 /</span>
+      <h2>Reaction Mechanism</h2>
+      <span class="meta">How one product actually got built</span>
+    </div>
+    <p class="intro">Every portfolio shows <b>what</b> got built. Almost none show <b>how the builder thinks.</b> So here's ChemIQ — my strongest product — drawn the way I'd draw a reaction on the board: each step pushing into the next, including the step that broke.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="ph"><span class="n">1</span> Reactant</div>
+        <h4>The problem I lived</h4>
+        <p>Students stuck on Chemistry at 11pm. No teacher awake, generic chatbots hallucinate, textbooks don't answer <em>this</em> doubt. I watched it for a decade.</p>
+      </div>
+      <div class="step">
+        <div class="ph"><span class="n">2</span> Insight</div>
+        <h4>Why generic AI fails here</h4>
+        <p>JEE answers must cite the <em>syllabus</em>, not the internet. The doubt is often a photo of messy handwriting on a dark slide. Retrieval + vision, not a wrapper.</p>
+      </div>
+      <div class="step">
+        <div class="ph"><span class="n">3</span> Build</div>
+        <h4>The decision that mattered</h4>
+        <p>Hybrid BM25 + vector retrieval over my own notes, a Groq vision model to read handwritten slides, and a multi-stage grading pipeline — answers are sourced, not guessed.</p>
+      </div>
+      <div class="step">
+        <div class="ph"><span class="n">4</span> Side-reaction</div>
+        <h4>What broke</h4>
+        <p>Pure vector search returned plausible-but-wrong passages on lookalike reactions. Latency spiked on long PDFs. Both surfaced only once real students used it.</p>
+      </div>
+      <div class="step">
+        <div class="ph"><span class="n">5</span> Product</div>
+        <h4>What I learned</h4>
+        <p>Evals aren't a finishing step — they're the product. RAG failure analysis now lives in the PRD before I write a line. Domain depth is the moat, not the model.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a id="products"></a>
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">02 /</span>
+      <h2>The Periodic Table of Builds</h2>
+      <span class="meta">Position = strategy</span>
+    </div>
+    <p class="intro" style="max-width:46em;color:var(--ink-soft);font-size:15px;margin-bottom:18px">Not just a grid. <b style="color:var(--ink)">Columns are clusters</b> (where I build), <b style="color:var(--ink)">rows are maturity</b> (shipped → in progress → concept). You can read my whole product strategy in one glance.</p>
+    <div class="legend">
+      <span class="k"><span class="sw" style="background:var(--teal)"></span> Edtech &amp; Learning</span>
+      <span class="k"><span class="sw" style="background:var(--accent)"></span> Career &amp; Tools</span>
+      <span class="k"><span class="sw" style="background:var(--ink)"></span> PM Builds</span>
+      <span class="k" style="margin-left:auto">↓ rows = maturity</span>
+    </div>
+    <div class="ptable-scroll"><div class="ptable" id="ptable"></div></div>
+  </div>
+</section>
+
+<a id="log"></a>
+<section class="log">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">03 /</span>
+      <h2>Field Notes</h2>
+      <span class="meta">Live from Substack · "Chemistry with HJ"</span>
+    </div>
+    <div id="logList"><div class="log-empty">Loading latest notes…</div></div>
+  </div>
+</section>
+
+<a id="ask"></a>
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">04 /</span>
+      <h2>Ask My Portfolio</h2>
+      <span class="meta">Answers from my real work</span>
+    </div>
+    <div class="ask-card">
+      <h3>Curious about my work? Just ask.</h3>
+      <p class="sub">A recruiter, a founder, a fellow builder — ask anything about what I've built, my stack, or the teacher-to-PM story. It answers from my actual portfolio.</p>
+      <div class="ask-row">
+        <input id="askInput" type="text" placeholder="e.g. What's your strongest AI product?" />
+        <button id="askBtn">Ask →</button>
+      </div>
+      <div class="chips" id="chips">
+        <span class="chip">What's your strongest AI product?</span>
+        <span class="chip">How does teaching make you a better PM?</span>
+        <span class="chip">Tell me about ChemIQ.</span>
+        <span class="chip">What's your tech stack?</span>
+      </div>
+      <div class="ask-out" id="askOut"></div>
+      <div class="ask-note" id="askNote">Demo mode — answers from a built-in summary. Add a free Groq key on deploy to make it conversational.</div>
+    </div>
+  </div>
+</section>
+
+<a id="contact"></a>
+<footer class="foot">
+  <div class="wrap">
+    <div><h2>Building in public.<br><em>Let's talk.</em></h2></div>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/himanshu-jain-77873019" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" target="_blank" rel="noopener" data-edit="substack">Substack</a>
+      <a href="https://github.com/HimanshuJain1210" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:your@email.com" data-edit="email">Email</a>
+    </div>
+  </div>
+  <div class="wrap"><div class="colophon">Built by hand · Chemistry-lab design system · Light &amp; dark · No template · © Himanshu Jain</div></div>
+</footer>
+
+<script>
+/* ███ EDIT ZONE ███ */
+
+const CONFIG = {
+  substackUrl: "https://thejeeteacher.substack.com",
+  substackRss: "https://thejeeteacher.substack.com/feed",
+  email:       "himanshujain699@gmail.com"
+};
+
+/* PROJECTS — ADD NEW PROJECTS HERE
+   cluster: "edtech" | "career" | "pm"   (column)
+   maturity: "shipped" | "wip" | "concept"   (row)
+   repo: public github url (optional, "" hides). ChemIQ repo is PRIVATE — left blank. */
+const PROJECTS = [
+  { sym:"Ci", name:"ChemIQ", cluster:"edtech", maturity:"shipped", live:"", repo:"", prd:"", deck:"" },
+  { sym:"Sj", name:"Stereo-JEE", cluster:"edtech", maturity:"shipped", live:"https://stereo-jee.vercel.app/learn", repo:"https://github.com/HimanshuJain1210/stereo-jee", prd:"", deck:"" },
+  { sym:"Bh", name:"Board Help", cluster:"edtech", maturity:"shipped", live:"https://boardhelp.netlify.app/", repo:"", prd:"", deck:"" },
+  { sym:"Jn", name:"JEE Navigator", cluster:"edtech", maturity:"wip", live:"https://jee-ace-navigator.lovable.app", repo:"", prd:"", deck:"" },
+  { sym:"Rl", name:"Recall Loop", cluster:"edtech", maturity:"wip", live:"https://recall-loop-jee.lovable.app", repo:"", prd:"", deck:"" },
+  { sym:"R1", name:"Cl-11 Revision", cluster:"edtech", maturity:"wip", live:"https://class11revision.netlify.app/", repo:"", prd:"", deck:"" },
+  { sym:"Pp", name:"Prep Planner", cluster:"edtech", maturity:"concept", live:"https://jeeprepplanner.netlify.app/", repo:"", prd:"", deck:"" },
+  { sym:"Tc", name:"Twin Class", cluster:"edtech", maturity:"concept", live:"https://twinyourclass.lovable.app", repo:"", prd:"", deck:"" },
+
+  { sym:"Ta", name:"Tailor", cluster:"career", maturity:"shipped", live:"https://jd-resume-customiser.vercel.app/", repo:"https://github.com/HimanshuJain1210/jd-resume-customiser", prd:"", deck:"" },
+  { sym:"Fa", name:"Funded Agent", cluster:"career", maturity:"shipped", live:"https://fundedagent.vercel.app", repo:"https://github.com/HimanshuJain1210/fundedagent", prd:"", deck:"" },
+  { sym:"Rs", name:"RoleSpec Sales", cluster:"career", maturity:"wip", live:"https://rolespecsales1.netlify.app/", repo:"", prd:"", deck:"" },
+
+  { sym:"Pq", name:"PM Quest", cluster:"pm", maturity:"shipped", live:"https://pmquest-psi.vercel.app/learn", repo:"https://github.com/HimanshuJain1210/PMquest", prd:"", deck:"" },
+  { sym:"Df", name:"Discovery Funnel", cluster:"pm", maturity:"shipped", live:"https://discovery-funnel.vercel.app/", repo:"https://github.com/HimanshuJain1210/discovery-funnel", prd:"", deck:"" },
+  { sym:"Vs", name:"VoiceSkill", cluster:"pm", maturity:"shipped", live:"https://voiceskill.vercel.app/", repo:"https://github.com/HimanshuJain1210/voiceskill", prd:"", deck:"" },
+  { sym:"Td", name:"Thought Diary", cluster:"pm", maturity:"concept", live:"https://gentle-thought-diary.lovable.app", repo:"", prd:"", deck:"" }
+];
+
+const ABOUT_ME = `Himanshu Jain is a Chemistry faculty member (Aakash, ~10+ yrs teaching JEE/CBSE) transitioning into AI Product Management via HelloPM. He has shipped 15+ live products on a Next.js + Supabase + Vercel + Groq + FastAPI + ChromaDB stack. Strongest product: ChemIQ, a RAG-based JEE Chemistry assistant with hybrid BM25+vector retrieval, Groq vision for handwritten slides, and a multi-stage grading pipeline. Other builds: PM Quest, Tailor, MarksMate, Funded Agent, VoiceSkill, Discovery Funnel. His edge: real classroom domain expertise + the ability to ship working products, not just decks. He builds in public and writes on Substack ("Chemistry with HJ").`;
+
+/* ███ END EDIT ZONE ███ */
+
+const SUN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+const MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>';
+const root=document.documentElement, tbtn=document.getElementById('themeBtn');
+function setTheme(t){root.setAttribute('data-theme',t);tbtn.innerHTML=t==='dark'?SUN:MOON;}
+setTheme(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+tbtn.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+
+const COLS=[['edtech','Edtech & Learning'],['career','Career & Tools'],['pm','PM Builds']];
+const ROWS=[['shipped','Shipped'],['wip','In progress'],['concept','Concept']];
+const ptable=document.getElementById('ptable');
+function linkBtns(p){
+  let h='';
+  if(p.live) h+=`<a class="clink live" href="${p.live}" target="_blank" rel="noopener">Live ↗</a>`;
+  if(p.repo) h+=`<a class="clink" href="${p.repo}" target="_blank" rel="noopener">Code</a>`;
+  if(p.prd)  h+=`<a class="clink" href="${p.prd}" target="_blank" rel="noopener">PRD</a>`;
+  if(p.deck) h+=`<a class="clink" href="${p.deck}" target="_blank" rel="noopener">Deck</a>`;
+  return h||'<span class="clink" style="opacity:.45">soon</span>';
+}
+function buildTable(){
+  ptable.innerHTML='<div></div>';
+  COLS.forEach(c=>ptable.insertAdjacentHTML('beforeend',`<div class="col-head">${c[1]}</div>`));
+  ROWS.forEach(r=>{
+    ptable.insertAdjacentHTML('beforeend',`<div class="row-head">${r[1]}</div>`);
+    COLS.forEach(c=>{
+      const items=PROJECTS.filter(p=>p.cluster===c[0]&&p.maturity===r[0]);
+      if(!items.length){ptable.insertAdjacentHTML('beforeend','<div class="spacer"></div>');return;}
+      const inner=items.map(p=>{
+        const n=String(PROJECTS.indexOf(p)+1).padStart(2,'0');
+        return `<div class="pcell" data-c="${p.cluster}"><span class="cnum">${n}</span><span class="csym">${p.sym}</span><span class="cname">${p.name}</span><span class="clinks">${linkBtns(p)}</span></div>`;
+      }).join('');
+      ptable.insertAdjacentHTML('beforeend',`<div style="display:flex;flex-direction:column;gap:10px">${inner}</div>`);
+    });
+  });
+}
+buildTable();
+
+document.querySelectorAll('[data-edit="substack"]').forEach(a=>a.href=CONFIG.substackUrl);
+document.querySelectorAll('[data-edit="email"]').forEach(a=>a.href='mailto:'+CONFIG.email);
+
+(async function(){
+  const box=document.getElementById('logList');
+  if(CONFIG.substackRss.includes('REPLACE-ME')){box.innerHTML='<div class="log-empty">Add your Substack URL in CONFIG to pull live posts here.</div>';return;}
+  try{
+    const r=await fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(CONFIG.substackRss));
+    const d=await r.json();
+    if(!d.items||!d.items.length){box.innerHTML='<div class="log-empty">No posts found yet.</div>';return;}
+    box.innerHTML='';
+    d.items.slice(0,6).forEach(it=>{
+      const date=new Date(it.pubDate).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+      box.insertAdjacentHTML('beforeend',`<a class="log-item" href="${it.link}" target="_blank" rel="noopener"><span class="date">${date}</span><span class="ti">${it.title}</span><span class="go">read →</span></a>`);
+    });
+  }catch(e){box.innerHTML='<div class="log-empty">Could not load posts — <a href="'+CONFIG.substackUrl+'" style="color:var(--accent)">read on Substack ↗</a></div>';}
+})();
+
+const askInput=document.getElementById('askInput'),askBtn=document.getElementById('askBtn'),askOut=document.getElementById('askOut'),askNote=document.getElementById('askNote');
+function demoAnswer(q){
+  const s=q.toLowerCase();
+  if(s.includes('strongest')||s.includes('best')||s.includes('chemiq'))return "ChemIQ is the strongest. It's a RAG-based JEE Chemistry assistant with hybrid BM25 + vector retrieval, a Groq vision model that reads handwritten slides, and a multi-stage grading pipeline. It came directly out of a problem I lived for a decade — students stuck on chemistry at 11pm with no good help.";
+  if(s.includes('teach')||s.includes('pm')||s.includes('better'))return "Teaching is product work in disguise. For 10 years I found exactly where a learner got stuck and designed the smallest thing to unblock them — that's discovery, scoping, and iteration. Explaining a reaction mechanism and writing a PRD are the same move: break a hard thing into ordered, testable steps.";
+  if(s.includes('stack')||s.includes('tech'))return "My consistent stack: Next.js + Supabase + Vercel, Groq (llama-3.3-70b, Whisper, vision) for AI, and FastAPI + ChromaDB where I need custom retrieval. I ship GUI-only — GitHub web upload + Vercel dashboard, no terminal.";
+  if(s.includes('how many')||s.includes('products')||s.includes('built'))return "15+ live, deployed products — not slide decks. They span edtech, career tools, and PM builds. Every one has a real URL you can click in the periodic table above.";
+  return "Short version: I'm a Chemistry teacher of 10+ years who now ships AI products — 15+ live, on a Next.js + Supabase + Groq stack. My edge is real classroom domain depth plus the ability to actually build and deploy. Ask me about ChemIQ, my stack, or the teacher-to-PM story.";
+}
+async function ask(q){
+  if(!q.trim())return;
+  askOut.classList.add('show');askOut.textContent='Thinking…';askBtn.disabled=true;
+  try{
+    const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,context:ABOUT_ME})});
+    if(!r.ok)throw 0;
+    const d=await r.json();
+    askOut.textContent=d.answer||demoAnswer(q);
+    if(d.answer)askNote.textContent='Powered by Groq · answers from my real portfolio.';
+  }catch(e){askOut.textContent=demoAnswer(q);}
+  askBtn.disabled=false;
+}
+askBtn.addEventListener('click',()=>ask(askInput.value));
+askInput.addEventListener('keydown',e=>{if(e.key==='Enter')ask(askInput.value)});
+document.getElementById('chips').addEventListener('click',e=>{if(e.target.classList.contains('chip')){askInput.value=e.target.textContent;ask(e.target.textContent);}});
+</script>
+</body>
+</html>
