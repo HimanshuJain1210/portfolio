@@ -131,6 +131,20 @@ section{padding:72px 0}
   .bubbles{display:none}
 }
 
+/* ---- Story track: connected reaction-pathway for the prose ---- */
+.story-track{position:relative;padding-left:30px}
+.story-track::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--accent),var(--teal));opacity:.35}
+.story-step{position:relative;margin-bottom:22px;opacity:0;transform:translateX(10px);transition:opacity .55s ease,transform .55s ease}
+.story-step:last-child{margin-bottom:0}
+.story-step::before{content:"";position:absolute;left:-30px;top:7px;width:16px;height:16px;border-radius:50%;background:var(--bg-2);border:2px solid var(--accent);box-shadow:0 0 0 0 var(--accent);transition:box-shadow .5s ease}
+.narrative.lit .story-step{opacity:1;transform:none}
+.narrative.lit .story-step:nth-child(1){transition-delay:.1s}
+.narrative.lit .story-step:nth-child(2){transition-delay:.3s}
+.narrative.lit .story-step:nth-child(3){transition-delay:.5s}
+.narrative.lit .story-step::before{box-shadow:0 0 0 5px var(--teal-soft)}
+.story-step p{margin-bottom:0}
+@media(max-width:560px){.story-track{padding-left:24px}.story-step::before{left:-24px;width:13px;height:13px}}
+
 .mech .intro{max-width:46em;font-size:17px;color:var(--ink-soft);margin-bottom:40px}
 .mech .intro b{color:var(--ink)}
 .steps{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
@@ -236,7 +250,7 @@ section{padding:72px 0}
 <section class="hero">
   <div class="wrap">
     <div>
-      <div class="hero-eyebrow"><span class="dot"></span><span class="tag">Chemistry Faculty · AI Product Builder · Greater Noida, IN</span></div>
+      <div class="hero-eyebrow"><span class="dot"></span><span class="tag">Chemistry Faculty · AI Product Builder · Teacher who ships</span></div>
       <h1>A teacher who<br><em>ships products.</em></h1>
       <p class="lede">A decade teaching JEE Chemistry. Now I build the AI tools I always wished my students had — and I ship them live. <b>15+ deployed products</b>, not slide decks. This page shows what I build <b>and how I think while building it.</b></p>
       <div class="hero-cta">
@@ -289,9 +303,11 @@ section{padding:72px 0}
       </div>
     </div>
     <div>
-      <p><b>The classroom was my first product team.</b> Ten years at Aakash, FIITJEE, Amazon Academy — and two institutes I ran myself — taught me to find exactly where a learner gets stuck and design the smallest thing that unblocks them.</p>
-      <p>That's product work. So I started building: RAG doubt-solvers, answer-grading pipelines, voice trainers, GTM agents — on a real stack, used by real students. <b>I don't describe products. I deploy them.</b></p>
-      <p>Now I'm completing HelloPM's AI Product Management program, in public. The teacher-to-builder path isn't a gap to explain away — it's the edge.</p>
+    <div class="story-track">
+      <div class="story-step"><p><b>The classroom was my first product team.</b> Ten years at Aakash, FIITJEE, and Amazon Academy — plus two institutes I built from scratch — trained me to spot the exact moment a learner gets stuck and ship the smallest thing that breaks them through.</p></div>
+      <div class="story-step"><p>That instinct is product management. So I stopped waiting for permission and started building: RAG doubt-solvers, answer-grading pipelines, voice trainers, GTM agents — real stack, real students, real usage. <b>I don't write about products. I deploy them.</b></p></div>
+      <div class="story-step"><p>Today I'm finishing HelloPM's AI Product Management program. The teacher-to-builder path was never a gap to explain — it's the unfair advantage.</p></div>
+    </div>
     </div>
   </div>
 </section>
@@ -480,14 +496,18 @@ function buildTable(){
 }
 buildTable();
 
-/* ---- Story reaction: fire when scrolled into view ---- */
+/* ---- Story reaction + track: fire when scrolled into view ---- */
 (function(){
   const rx=document.getElementById('reaction');
-  if(!rx)return;
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{if(e.isIntersecting){rx.classList.add('lit');io.disconnect();}});
-  },{threshold:.4});
-  io.observe(rx);
+  if(rx){
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){rx.classList.add('lit');io.disconnect();}});},{threshold:.4});
+    io.observe(rx);
+  }
+  const nar=document.querySelector('.narrative');
+  if(nar){
+    const io2=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){nar.classList.add('lit');io2.disconnect();}});},{threshold:.25});
+    io2.observe(nar);
+  }
 })();
 
 document.querySelectorAll('[data-edit="substack"]').forEach(a=>a.href=CONFIG.substackUrl);
