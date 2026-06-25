@@ -88,6 +88,49 @@ section{padding:72px 0}
 .equation .arrow{color:var(--accent);margin:0 8px}
 .equation .small{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--ink-soft);display:block;letter-spacing:.05em;margin-top:4px}
 
+/* ---- REACTION animation (Story signature) ---- */
+.reaction{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:18px 4px;overflow:hidden}
+@media(max-width:560px){.reaction{grid-template-columns:1fr;gap:18px;text-align:center}}
+.rx-side{position:relative;z-index:2;opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reaction.lit .rx-reactant{opacity:1;transform:none;transition-delay:.05s}
+.reaction.lit .rx-product{opacity:1;transform:none;transition-delay:.9s}
+.rx-label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.rx-name{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(19px,2.4vw,25px);line-height:1.15;color:var(--ink)}
+.rx-note{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.03em;margin-top:8px;line-height:1.5}
+.rx-arrow{position:relative;z-index:2;width:120px;display:flex;flex-direction:column;align-items:center;gap:6px}
+@media(max-width:560px){.rx-arrow{transform:rotate(90deg);margin:6px 0}}
+.rx-arrow svg{width:120px;height:40px;overflow:visible}
+/* arrow draws itself */
+.rx-line{stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .7s ease .15s}
+.rx-head{stroke-dasharray:40;stroke-dashoffset:40;transition:stroke-dashoffset .35s ease .75s}
+.reaction.lit .rx-line{stroke-dashoffset:0}
+.reaction.lit .rx-head{stroke-dashoffset:0}
+/* particle travels along the arrow */
+.rx-particle{opacity:0}
+.reaction.lit .rx-particle{animation:travel 1s ease .25s forwards}
+@keyframes travel{0%{opacity:1;transform:translateX(0)}85%{opacity:1}100%{opacity:0;transform:translateX(98px)}}
+.rx-catalyst{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);opacity:0;transition:opacity .5s ease 1s}
+.reaction.lit .rx-catalyst{opacity:.7}
+@media(max-width:560px){.rx-catalyst{display:none}}
+/* catalyst hover — re-fire faster */
+.reaction:hover .rx-particle{animation:travel .6s ease forwards}
+.reaction:hover .rx-catalyst{opacity:1;color:var(--accent)}
+/* ambient bubbles */
+.bubbles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.bubbles span{position:absolute;bottom:-12px;width:8px;height:8px;border-radius:50%;border:1.5px solid var(--accent);opacity:0;animation:rise linear infinite}
+.bubbles span:nth-child(1){left:12%;width:6px;height:6px;animation-duration:7s;animation-delay:0s}
+.bubbles span:nth-child(2){left:28%;width:10px;height:10px;animation-duration:9s;animation-delay:1.5s}
+.bubbles span:nth-child(3){left:46%;width:5px;height:5px;animation-duration:6s;animation-delay:3s}
+.bubbles span:nth-child(4){left:64%;width:9px;height:9px;animation-duration:8.5s;animation-delay:.8s}
+.bubbles span:nth-child(5){left:78%;width:6px;height:6px;animation-duration:7.5s;animation-delay:2.4s}
+.bubbles span:nth-child(6){left:90%;width:11px;height:11px;animation-duration:10s;animation-delay:4s}
+@keyframes rise{0%{opacity:0;transform:translateY(0) scale(.6)}12%{opacity:.18}88%{opacity:.18}100%{opacity:0;transform:translateY(-220px) scale(1)}}
+@media(prefers-reduced-motion:reduce){
+  .rx-side{opacity:1;transform:none}
+  .rx-line,.rx-head{stroke-dashoffset:0}
+  .bubbles{display:none}
+}
+
 .mech .intro{max-width:46em;font-size:17px;color:var(--ink-soft);margin-bottom:40px}
 .mech .intro b{color:var(--ink)}
 .steps{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
@@ -221,12 +264,28 @@ section{padding:72px 0}
 <section class="narrative">
   <div class="wrap">
     <div>
-      <div class="equation">
-        Explaining a reaction mechanism
-        <span class="small">// break a hard idea into ordered, testable steps</span>
-        <span class="arrow">→</span>
-        Writing a PRD
-        <span class="small">// break a hard problem into ordered, testable steps</span>
+      <div class="reaction" id="reaction">
+        <div class="bubbles" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="rx-side rx-reactant">
+          <div class="rx-label">Reactant</div>
+          <div class="rx-name">Explaining a<br>reaction mechanism</div>
+          <div class="rx-note">// break a hard idea into ordered, testable steps</div>
+        </div>
+        <div class="rx-arrow" aria-hidden="true">
+          <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="rx-line" d="M6 20 H104" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="rx-head" d="M96 12 L108 20 L96 28" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle class="rx-particle" cx="6" cy="20" r="3.5" fill="var(--accent)"/>
+          </svg>
+          <span class="rx-catalyst">catalyst: 10 yrs teaching</span>
+        </div>
+        <div class="rx-side rx-product">
+          <div class="rx-label">Product</div>
+          <div class="rx-name">Writing a PRD</div>
+          <div class="rx-note">// break a hard problem into ordered, testable steps</div>
+        </div>
       </div>
     </div>
     <div>
@@ -345,7 +404,7 @@ section{padding:72px 0}
       <a href="mailto:your@email.com" data-edit="email">Email</a>
     </div>
   </div>
-  <div class="wrap"><div class="colophon">Built by hand · Chemistry-lab design system · Light &amp; dark · No template · © Himanshu Jain</div></div>
+  <div class="wrap"><div class="colophon">Built by hand · Chemistry-lab design system · Light &amp; dark · © Himanshu Jain</div></div>
 </footer>
 
 <script>
@@ -420,6 +479,16 @@ function buildTable(){
   });
 }
 buildTable();
+
+/* ---- Story reaction: fire when scrolled into view ---- */
+(function(){
+  const rx=document.getElementById('reaction');
+  if(!rx)return;
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){rx.classList.add('lit');io.disconnect();}});
+  },{threshold:.4});
+  io.observe(rx);
+})();
 
 document.querySelectorAll('[data-edit="substack"]').forEach(a=>a.href=CONFIG.substackUrl);
 document.querySelectorAll('[data-edit="email"]').forEach(a=>a.href='mailto:'+CONFIG.email);
