@@ -241,6 +241,30 @@ section{padding:72px 0}
 @media(max-width:680px){.log-item{grid-template-columns:1fr;gap:4px}.log-item .go{display:none}}
 .log-empty{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink-soft);padding:24px 0}
 
+/* ---- HelloPM Coursework ---- */
+.cert-card{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:34px;box-shadow:5px 7px 0 var(--shadow)}
+@media(max-width:640px){.cert-card{grid-template-columns:1fr;gap:16px}}
+.cert-card img{width:260px;max-width:100%;border-radius:6px;border:1px solid var(--line)}
+.cert-meta .badge{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.cert-meta h3{font-family:"Fraunces",serif;font-weight:600;font-size:22px;line-height:1.15;margin-bottom:8px}
+.cert-meta p{font-size:14px;color:var(--ink-soft);margin-bottom:14px;max-width:38em}
+.cert-meta .cert-id{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft)}
+.cert-link{display:inline-flex;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:9px 14px;border:1.5px solid var(--ink);border-radius:5px;transition:all .16s;margin-top:6px}
+.cert-link:hover{background:var(--ink);color:var(--bg)}
+.cw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.cw-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s,border-color .15s}
+.cw-card:hover{transform:translateY(-3px);box-shadow:5px 7px 0 var(--shadow);border-color:var(--ink)}
+.cw-card .cw-kicker{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.cw-card h4{font-family:"Fraunces",serif;font-weight:600;font-size:19px;line-height:1.15;margin-bottom:8px}
+.cw-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:14px;flex:1}
+.cw-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.cw-tag{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.03em;color:var(--ink-soft);border:1px solid var(--line-soft);border-radius:20px;padding:4px 9px}
+.cw-links{display:flex;flex-wrap:wrap;gap:6px}
+.cw-links a{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border:1px solid var(--line);border-radius:4px;transition:all .15s}
+.cw-links a:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cw-links a.primary{border-color:var(--teal);color:var(--teal)}
+.cw-links a.primary:hover{background:var(--teal);color:var(--on-accent)}
+
 .ask-card{background:var(--ink);color:var(--bg);border-radius:10px;padding:34px;box-shadow:8px 10px 0 var(--shadow)}
 .ask-card h3{font-family:"Fraunces",serif;font-weight:600;font-size:26px;margin-bottom:8px}
 .ask-card p.sub{color:color-mix(in srgb,var(--bg) 70%,var(--ink-soft));font-size:14px;margin-bottom:22px;max-width:42em}
@@ -282,6 +306,7 @@ section{padding:72px 0}
       <a href="#mechanism">Mechanism</a>
       <a href="#products">Products</a>
       <a href="#log">Field Notes</a>
+      <a href="#coursework">Coursework</a>
       <a href="#ask">Ask</a>
       <button class="themeBtn nav" id="themeBtn" aria-label="Toggle light or dark theme"></button>
     </nav>
@@ -424,11 +449,92 @@ section{padding:72px 0}
   </div>
 </section>
 
-<a id="ask"></a>
+<a id="coursework"></a>
 <section>
   <div class="wrap">
     <div class="sec-head">
       <span class="idx">04 /</span>
+      <h2>HelloPM Coursework</h2>
+      <span class="meta">Assignments &amp; artifacts from the program</span>
+    </div>
+
+    <div class="cert-card">
+      <img src="coursework/certificate.jpeg" alt="HelloPM AI Product Management Program completion certificate" onerror="this.style.display='none'" />
+      <div class="cert-meta">
+        <div class="badge">Certificate of Completion</div>
+        <h3>AI Product Management Program</h3>
+        <p>A four-month live program covering AI product strategy, PRDs, RAG systems, agentic tools, and end-to-end product thinking.</p>
+        <div class="cert-id">Issued June 2026 · HelloPM · ID 2H3Q8L</div>
+        <a class="cert-link" href="coursework/certificate.jpeg" target="_blank" rel="noopener">View certificate ↗</a>
+      </div>
+    </div>
+
+    <div class="cw-grid">
+
+      <div class="cw-card">
+        <div class="cw-kicker">Assignment 1 · Product Teardown</div>
+        <h4>redBus — Flows, Frictions &amp; Reverse-Engineering</h4>
+        <p>A full teardown of redBus: mapping every flow and friction point, reverse-engineering key features, segmenting users, and prioritising problem hypotheses — backed by real screenshots and wireframes.</p>
+        <div class="cw-tags"><span class="cw-tag">Product Analysis</span><span class="cw-tag">User Segmentation</span><span class="cw-tag">Feature Reverse-Engineering</span><span class="cw-tag">Prioritisation</span></div>
+        <div class="cw-links">
+          <a class="primary" href="coursework/Assignment%201%20-%20Phase%201%20-%20Himanshu%20C49.pdf" target="_blank" rel="noopener">Phase 1</a>
+          <a href="coursework/Assignment%201-Phase%202-Himanshu%20C49.pdf" target="_blank" rel="noopener">Phase 2</a>
+          <a href="coursework/Assignment%201%20-%20Phase%203%20-%20Himanshu%20Jain%20-%20C49.pdf" target="_blank" rel="noopener">Phase 3</a>
+          <a href="coursework/redbus_wireframes_final.html" target="_blank" rel="noopener">Wireframes</a>
+          <a href="coursework/Red%20bus.pdf" target="_blank" rel="noopener">Deck</a>
+        </div>
+      </div>
+
+      <div class="cw-card">
+        <div class="cw-kicker">Assignment 2 · PRD</div>
+        <h4>Product Requirements Document</h4>
+        <p>A complete PRD written to program spec — problem framing, goals, user stories, scope, and success metrics for a defined product build.</p>
+        <div class="cw-tags"><span class="cw-tag">PRD</span><span class="cw-tag">Product Spec</span><span class="cw-tag">Success Metrics</span></div>
+        <div class="cw-links">
+          <a class="primary" href="coursework/Assignment%202(PRD)%20-%20Himanshu%20Jain%20-%20C49.pdf" target="_blank" rel="noopener">Read PRD ↗</a>
+        </div>
+      </div>
+
+      <div class="cw-card">
+        <div class="cw-kicker">Assignment 3 · Technical PRD</div>
+        <h4>ChemIQ — RAG System PRD</h4>
+        <p>The product requirements for ChemIQ's retrieval-augmented generation system: grounding a JEE-Chemistry assistant in real lecture notes, with retrieval design and evaluation baked in.</p>
+        <div class="cw-tags"><span class="cw-tag">RAG</span><span class="cw-tag">AI Product</span><span class="cw-tag">Technical PRD</span><span class="cw-tag">Evaluation</span></div>
+        <div class="cw-links">
+          <a class="primary" href="coursework/RAG_PRD_Himanshu_Jain.pdf" target="_blank" rel="noopener">Read PRD ↗</a>
+        </div>
+      </div>
+
+      <div class="cw-card">
+        <div class="cw-kicker">Assignment · AI Adoption</div>
+        <h4>RoleSpec — From AI Curiosity to AI Usage</h4>
+        <p>An exploration of how professionals move from experimenting with AI to depending on it — and what that shift means for building tools people actually adopt.</p>
+        <div class="cw-tags"><span class="cw-tag">AI Adoption</span><span class="cw-tag">Product Thinking</span><span class="cw-tag">Go-to-Market</span></div>
+        <div class="cw-links">
+          <a class="primary" href="coursework/RoleSpec_%20From%20AI%20Curiosity%20to%20AI%20Usage.pptx.pdf" target="_blank" rel="noopener">Read ↗</a>
+        </div>
+      </div>
+
+      <div class="cw-card">
+        <div class="cw-kicker">Assignment · Agentic Product</div>
+        <h4>Vela — AI Day Planner</h4>
+        <p>An agentic day-planning concept built for the Indian context: turning intent into a structured, realistic daily plan. Presented as a full product deck.</p>
+        <div class="cw-tags"><span class="cw-tag">Agentic AI</span><span class="cw-tag">Product Design</span><span class="cw-tag">Concept</span></div>
+        <div class="cw-links">
+          <a class="primary" href="coursework/Vela.pdf" target="_blank" rel="noopener">View deck ↗</a>
+          <a href="https://vela-smart-day-planner.lovable.app/" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<a id="ask"></a>
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">05 /</span>
       <h2>Ask My Portfolio</h2>
       <span class="meta">Answers from my real work</span>
     </div>
