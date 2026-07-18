@@ -225,6 +225,8 @@ section{padding:72px 0}
 .pcell .clink{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.04em;text-transform:uppercase;padding:4px 7px;border:1px solid var(--line);border-radius:3px;transition:all .15s}
 .pcell .clink.live{border-color:var(--teal);color:var(--teal)}
 .pcell .clink.live:hover{background:var(--teal);color:var(--on-accent)}
+.pcell .clink.study{border-color:var(--accent);color:var(--accent)}
+.pcell .clink.study:hover{background:var(--accent);color:var(--on-accent)}
 .pcell .clink:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .pcell::before{content:"";position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 22px 22px 0}
 .pcell[data-c="edtech"]::before{border-color:transparent var(--teal) transparent transparent}
@@ -477,7 +479,8 @@ section{padding:72px 0}
         <p>A full teardown of redBus: mapping every flow and friction point, reverse-engineering key features, segmenting users, and prioritising problem hypotheses — backed by real screenshots and wireframes.</p>
         <div class="cw-tags"><span class="cw-tag">Product Analysis</span><span class="cw-tag">User Segmentation</span><span class="cw-tag">Feature Reverse-Engineering</span><span class="cw-tag">Prioritisation</span></div>
         <div class="cw-links">
-          <a class="primary" href="coursework/Assignment%201%20-%20Phase%201%20-%20Himanshu%20C49.pdf" target="_blank" rel="noopener">Phase 1</a>
+          <a class="primary" href="teardown-redbus.html">Read the teardown →</a>
+          <a href="coursework/Assignment%201%20-%20Phase%201%20-%20Himanshu%20C49.pdf" target="_blank" rel="noopener">Phase 1</a>
           <a href="coursework/Assignment%201-Phase%202-Himanshu%20C49.pdf" target="_blank" rel="noopener">Phase 2</a>
           <a href="coursework/Assignment%201%20-%20Phase%203%20-%20Himanshu%20Jain%20-%20C49.pdf" target="_blank" rel="noopener">Phase 3</a>
           <a href="coursework/redbus_wireframes_final.html" target="_blank" rel="noopener">Wireframes</a>
@@ -501,7 +504,8 @@ section{padding:72px 0}
         <p>The product requirements for ChemIQ's retrieval-augmented generation system: grounding a JEE-Chemistry assistant in real lecture notes, with retrieval design and evaluation baked in.</p>
         <div class="cw-tags"><span class="cw-tag">RAG</span><span class="cw-tag">AI Product</span><span class="cw-tag">Technical PRD</span><span class="cw-tag">Evaluation</span></div>
         <div class="cw-links">
-          <a class="primary" href="coursework/RAG_PRD_Himanshu_Jain.pdf" target="_blank" rel="noopener">Read PRD ↗</a>
+          <a class="primary" href="casestudy-chemiq.html">Read the case study →</a>
+          <a href="coursework/RAG_PRD_Himanshu_Jain.pdf" target="_blank" rel="noopener">Read PRD ↗</a>
         </div>
       </div>
 
@@ -585,7 +589,7 @@ const CONFIG = {
    maturity: "shipped" | "wip" | "concept"   (row)
    repo: public github url (optional, "" hides). ChemIQ repo is PRIVATE — left blank. */
 const PROJECTS = [
-  { sym:"Ci", name:"ChemIQ", cluster:"edtech", maturity:"shipped", live:"", repo:"", prd:"", deck:"" },
+  { sym:"Ci", name:"ChemIQ", cluster:"edtech", maturity:"shipped", live:"", repo:"", prd:"", deck:"", study:"casestudy-chemiq.html" },
   { sym:"Sj", name:"Stereo-JEE", cluster:"edtech", maturity:"shipped", live:"https://stereo-jee.vercel.app/learn", repo:"https://github.com/HimanshuJain1210/stereo-jee", prd:"", deck:"" },
   { sym:"Bh", name:"Board Help", cluster:"edtech", maturity:"shipped", live:"https://boardhelp.netlify.app/", repo:"", prd:"", deck:"" },
   { sym:"Jn", name:"JEE Navigator", cluster:"edtech", maturity:"wip", live:"https://jee-ace-navigator.lovable.app", repo:"", prd:"", deck:"" },
@@ -621,6 +625,7 @@ const ptable=document.getElementById('ptable');
 function linkBtns(p){
   let h='';
   if(p.live) h+=`<a class="clink live" href="${p.live}" target="_blank" rel="noopener">Live ↗</a>`;
+  if(p.study) h+=`<a class="clink study" href="${p.study}">Case study →</a>`;
   if(p.repo) h+=`<a class="clink" href="${p.repo}" target="_blank" rel="noopener">Code</a>`;
   if(p.prd)  h+=`<a class="clink" href="${p.prd}" target="_blank" rel="noopener">PRD</a>`;
   if(p.deck) h+=`<a class="clink" href="${p.deck}" target="_blank" rel="noopener">Deck</a>`;

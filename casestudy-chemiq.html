@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ChemIQ — Case Study · Himanshu Jain</title>
+<meta name="description" content="ChemIQ case study by Himanshu Jain: a RAG-based JEE Chemistry assistant grounded in a teacher's own lecture notes. Dual-pipeline retrieval, a 9-failure analysis, a <3s latency budget, and evaluation-first product thinking." />
+<link rel="canonical" href="https://himanshujainbuilds.vercel.app/casestudy-chemiq.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="ChemIQ — Case Study · Himanshu Jain" />
+<meta property="og:description" content="A grounded JEE-Chemistry RAG assistant — dual-pipeline retrieval, 9-failure analysis, <3s SLA, and evaluation-first thinking." />
+<meta property="og:url" content="https://himanshujainbuilds.vercel.app/casestudy-chemiq.html" />
+<meta property="og:image" content="https://himanshujainbuilds.vercel.app/profile.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root[data-theme="light"]{
+  --bg:#F4F1E9;--bg-2:#EBE6D8;--surface:#FCFAF5;--ink:#191A2E;--ink-soft:#54546A;
+  --line:#CDC6B4;--line-soft:#DED8C7;--accent:#4B3FB0;--accent-deep:#352B86;
+  --teal:#1C6B62;--teal-soft:#1C6B6222;--on-accent:#FFFFFF;--shadow:rgba(25,26,46,.10);--ruled:#E4DECC;
+}
+:root[data-theme="dark"]{
+  --bg:#13131F;--bg-2:#1A1A29;--surface:#1E1E30;--ink:#F0EDE2;--ink-soft:#A6A4B8;
+  --line:#33334A;--line-soft:#2A2A3C;--accent:#9B8CFF;--accent-deep:#B3A6FF;
+  --teal:#46C7B8;--teal-soft:#46C7B822;--on-accent:#13131F;--shadow:rgba(0,0,0,.40);--ruled:#1C1C2B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;
+  background-image:repeating-linear-gradient(transparent,transparent 31px,var(--ruled) 31px,var(--ruled) 32px);background-attachment:fixed;
+  transition:background-color .35s,color .35s;}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+
+.topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.topbar .wrap{max-width:1180px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.brandmark{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;letter-spacing:.08em}
+.brandmark .el{width:30px;height:30px;border-radius:4px;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:600;font-size:15px;background:var(--accent);color:var(--on-accent)}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.05em;color:var(--ink-soft);transition:color .2s}
+.nav a:hover{color:var(--accent)}
+.themeBtn{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;background:none;cursor:pointer;display:grid;place-items:center;color:var(--ink);transition:border-color .2s,transform .3s}
+.themeBtn:hover{border-color:var(--accent);transform:rotate(15deg)}
+.themeBtn svg{width:16px;height:16px}
+@media(max-width:600px){.nav a:not(.themeBtn){display:none}}
+
+.head{padding:56px 0 30px;border-bottom:1px solid var(--line)}
+.back{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);display:inline-flex;gap:6px;margin-bottom:24px;transition:color .2s}
+.back:hover{color:var(--accent)}
+.kick{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(34px,6vw,54px);line-height:1.04;letter-spacing:-.02em;margin-bottom:16px}
+.sub{font-size:18px;color:var(--ink-soft);max-width:42em}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.chip{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line-soft);border-radius:20px;padding:5px 11px}
+.meta-row{display:flex;flex-wrap:wrap;gap:26px;margin-top:26px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
+.meta-row b{color:var(--ink);display:block;font-family:"Inter",sans-serif;font-size:14px;font-weight:600;margin-top:2px}
+
+article{padding:20px 0 40px}
+h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(22px,3.4vw,30px);letter-spacing:-.01em;margin:46px 0 6px;padding-top:20px;display:flex;align-items:baseline;gap:12px}
+h2 .n{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--accent);letter-spacing:.08em}
+h3{font-family:"Fraunces",serif;font-weight:600;font-size:19px;margin:26px 0 8px}
+p{margin:12px 0;color:var(--ink)}
+.lead{font-size:17px}
+strong{font-weight:600}em{color:var(--ink-soft);font-style:italic}
+
+.callout{background:var(--bg-2);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:18px 22px;margin:22px 0}
+.callout .lab{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.callout p{margin:4px 0}
+
+.quote{font-family:"Fraunces",serif;font-style:italic;font-size:19px;line-height:1.5;color:var(--ink);border-left:3px solid var(--teal);padding:6px 0 6px 20px;margin:20px 0}
+.quote .who{display:block;font-family:"JetBrains Mono",monospace;font-style:normal;font-size:11px;letter-spacing:.05em;color:var(--ink-soft);text-transform:uppercase;margin-top:10px}
+
+ul{margin:12px 0 12px 4px;list-style:none}
+ul li{position:relative;padding-left:22px;margin:9px 0;color:var(--ink)}
+ul li::before{content:"";position:absolute;left:2px;top:10px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+ul li b{font-weight:600}
+
+.mech{display:grid;grid-template-columns:repeat(5,1fr);margin:24px 0}
+@media(max-width:760px){.mech{grid-template-columns:1fr}}
+.step{position:relative;padding:18px 16px;background:var(--surface);border:1px solid var(--line);border-right:none}
+.step:last-child{border-right:1px solid var(--line)}
+@media(max-width:760px){.step{border-right:1px solid var(--line);border-bottom:none}.step:last-child{border-bottom:1px solid var(--line)}}
+.step:first-child{border-radius:8px 0 0 8px}.step:last-child{border-radius:0 8px 8px 0}
+@media(max-width:760px){.step:first-child{border-radius:8px 8px 0 0}.step:last-child{border-radius:0 0 8px 8px}}
+.step .ph{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.step h4{font-family:"Fraunces",serif;font-weight:600;font-size:15px;margin-bottom:6px;line-height:1.2}
+.step p{font-size:12.5px;color:var(--ink-soft);margin:0;line-height:1.5}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:22px 0}
+.stat-box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px}
+.stat-box .n{font-family:"Fraunces",serif;font-weight:600;font-size:28px;line-height:1;color:var(--accent)}
+.stat-box .l{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.04em;color:var(--ink-soft);margin-top:8px;line-height:1.4;text-transform:uppercase}
+
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}
+.stack-box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:15px}
+.stack-box .l{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.stack-box .v{font-size:13px;color:var(--ink);line-height:1.45}
+
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13.5px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
+td{color:var(--ink)}
+td b{font-weight:600}
+
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.docs a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:9px 14px;border:1.5px solid var(--ink);border-radius:5px;transition:all .16s}
+.docs a:hover{background:var(--ink);color:var(--bg)}
+.docs a.primary{border-color:var(--teal);color:var(--teal)}
+.docs a.primary:hover{background:var(--teal);color:var(--on-accent)}
+
+.foot{border-top:1px solid var(--line);padding:34px 0 60px;margin-top:40px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.04em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.foot a{color:var(--accent)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brandmark" href="index.html"><span class="el">Hj</span> HIMANSHU&nbsp;JAIN</a>
+    <nav class="nav">
+      <a href="index.html#products">Products</a>
+      <a href="index.html#coursework">Coursework</a>
+      <a href="index.html#ask">Ask</a>
+      <button class="themeBtn nav" id="themeBtn" aria-label="Toggle theme"></button>
+    </nav>
+  </div>
+</header>
+
+<div class="head">
+  <div class="wrap">
+    <a class="back" href="index.html#products">← Back to portfolio</a>
+    <div class="kick">Case Study · Product I built</div>
+    <h1>ChemIQ</h1>
+    <p class="sub">A JEE-Chemistry study assistant that answers <em>only</em> from a teacher's own lecture notes — engineered so a student stuck at 11 PM gets a trustworthy, cited answer in under three seconds, and an honest "not in the repository" when it shouldn't guess.</p>
+    <div class="chips">
+      <span class="chip">RAG</span>
+      <span class="chip">Dual-Pipeline Retrieval</span>
+      <span class="chip">Evaluation-First</span>
+      <span class="chip">Latency Budget</span>
+      <span class="chip">Moat &amp; Monetisation</span>
+    </div>
+    <div class="meta-row">
+      <div>Role<b>PM + builder, end-to-end</b></div>
+      <div>Artifact<b>Full PRD · HelloPM Assignment 3</b></div>
+      <div>Origin<b>10 years teaching this exact subject</b></div>
+    </div>
+  </div>
+</div>
+
+<article>
+  <div class="wrap">
+
+    <h2><span class="n">01</span> The user, and the 11 PM problem</h2>
+    <p class="lead">Meet Riya — 17, Class 12 in Jaipur, targeting JEE. She studies 5–6 hours a day, and Chemistry is her weakest subject. Not from lack of effort — from lack of on-demand help.</p>
+    <p>When she gets stuck at 11 PM, she has two bad options: Google (which returns NCERT-level or random coaching blogs, in the wrong style for her syllabus) or WhatsApp (a 12–24 hour wait for a batchmate). Both break her study flow at exactly the moment she needs to keep going. I watched this exact pattern for a decade of teaching — ChemIQ is built for that moment.</p>
+
+    <div class="callout">
+      <div class="lab">Why RAG — not prompting, not fine-tuning</div>
+      <p>26 chapters can't fit in a context window, and a bare LLM hallucinates facts that aren't in the notes. Fine-tuning would need re-running every week as the notes grow. RAG retrieves from the latest knowledge base at query time and grounds every answer in the teacher's actual content — the only approach that fits the problem.</p>
+    </div>
+
+    <h2><span class="n">02</span> The P0s: trust is the feature</h2>
+    <p>The launch-blocking user stories weren't about answering questions — plenty of tools do that. They were about being <em>trustworthy enough to rely on</em>:</p>
+    <ul>
+      <li><b>Step-by-step answers, any time</b> — the core value: unblock self-study at 11 PM.</li>
+      <li><b>A source citation on every answer</b> — chapter + section, visible below the response, no exceptions. A missing citation is logged as a system failure.</li>
+      <li><b>An honest "not in the repository"</b> — if retrieval similarity is below 0.50, the system must <em>refuse to answer from base LLM knowledge</em>. This hard guardrail is what stops a plausible hallucination from being taken as fact by a student who can't check it.</li>
+    </ul>
+
+    <h2><span class="n">03</span> How it's built — a dual pipeline</h2>
+    <p>Two pipelines share one vector store: an offline <strong>ingestion</strong> pipeline (notes → chunks → embeddings) that runs on each chapter update, and a live <strong>query</strong> pipeline that must return a grounded answer in under three seconds.</p>
+    <div class="mech">
+      <div class="step"><div class="ph">1 · Classify</div><h4>Intent + topic</h4><p>Query is classified to Chemistry-only and tagged to a chapter namespace before any retrieval runs.</p></div>
+      <div class="step"><div class="ph">2 · Retrieve</div><h4>Hybrid search</h4><p>BM25 + vector (RRF fusion) over box-level chunks, so exact terms and concepts both match.</p></div>
+      <div class="step"><div class="ph">3 · Re-rank</div><h4>Quality gate</h4><p>Cohere Rerank cuts top-10 to top-3 — the critical step that keeps near-miss chapters out.</p></div>
+      <div class="step"><div class="ph">4 · Ground</div><h4>Cited answer</h4><p>LLM answers only from retrieved chunks, in a fixed format, with a source-citation card.</p></div>
+      <div class="step"><div class="ph">5 · Observe</div><h4>Trace + learn</h4><p>Every query logged to Arize: chunks, faithfulness score, feedback — feeding the improvement loop.</p></div>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-box"><div class="l">Retrieval</div><div class="v">Hybrid BM25 + vector · Pinecone · Cohere Rerank</div></div>
+      <div class="stack-box"><div class="l">Models</div><div class="v">GPT-4o-mini (chat) · GPT-4o (MCQ only), routed by intent</div></div>
+      <div class="stack-box"><div class="l">Ingestion</div><div class="v">.docx via python-docx · box-level chunks (150–300 tok)</div></div>
+      <div class="stack-box"><div class="l">Observability</div><div class="v">Arize — full query trace + faithfulness scoring</div></div>
+    </div>
+
+    <h3>The &lt;3-second latency budget</h3>
+    <p>The SLA is a hard product requirement — a student on mobile at 11 PM has zero tolerance for lag. Every component has an explicit time budget, and the P95 target lands at ~2.25s with 750ms of headroom. Two PM calls made that real: <strong>streaming</strong> is mandatory (1.8s of generation <em>feels</em> instant when the answer writes itself out), and a <strong>reranker-timeout fallback</strong> drops to raw top-3 if Cohere exceeds 300ms — because a slightly weaker answer in time beats a perfect one that breaks the SLA.</p>
+
+    <h2><span class="n">04</span> What breaks — a 9-failure analysis</h2>
+    <p>The heart of the PRD isn't the happy path — it's cataloguing how RAG fails on real chemistry, how each failure is detected in Arize, and the PM decision it forces. A few that shaped the build:</p>
+    <table>
+      <thead><tr><th>Failure</th><th>What breaks</th><th>PM decision it forced</th></tr></thead>
+      <tbody>
+        <tr><td><b>Chunking</b></td><td>A solved problem spans 8 steps across 3 paragraphs; paragraph chunking splits the answer</td><td>Box-level chunking — each colour-coded box is one atomic chunk</td></tr>
+        <tr><td><b>Embedding</b></td><td>"Fe²⁺ is oxidised" and "iron loses electrons" score low despite identical meaning</td><td>Add BM25 hybrid; budget for a larger embedding model only if recall gains &gt;15%</td></tr>
+        <tr><td><b>Wrong chapter</b></td><td>"EAN rule?" returns Redox chunks because they share the word "electrons"</td><td>Metadata topic-filtering — one query classifier that also fixes re-ranking</td></tr>
+        <tr><td><b>Prompt bloat</b></td><td>Oversized context makes the LLM lose focus; faithfulness drops</td><td>Faithfulness guardrail as a product gate — visible yellow warning below 0.75</td></tr>
+        <tr><td><b>Model cost</b></td><td>GPT-4o costs 10× mini with no factual-quality gain</td><td>Two-model routing; never use a costlier model than the task needs</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:14px;color:var(--ink-soft)"><em>Four more failures — OCR quality, re-ranking mismatch, data drift, and user-behaviour (single-word queries) — are handled the same way in the full PRD.</em></p>
+
+    <h2><span class="n">05</span> Proving it works</h2>
+    <p>For a trust-critical tool, "how do we know the answer is right?" <em>is</em> the product. So evaluation is fixed, not vibes:</p>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="n">≥0.85</div><div class="l">faithfulness score (LLM-as-judge); &lt;0.75 auto-disclaims</div></div>
+      <div class="stat-box"><div class="n">≥0.80</div><div class="l">Precision@3 on retrieval, audited weekly</div></div>
+      <div class="stat-box"><div class="n">&lt;5%</div><div class="l">hallucination rate, human spot-checked</div></div>
+      <div class="stat-box"><div class="n">50</div><div class="l">-question fixed offline eval set to catch regressions</div></div>
+    </div>
+    <p>Every thumbs-down becomes a labelled signal, sorted into three buckets (retrieval wrong / explanation confusing / missing content) and reviewed every Monday. The month's top-20 failures graduate into the offline eval set — so <strong>each failure makes the system harder to break the same way twice.</strong> That closed loop is the real engine.</p>
+
+    <h2><span class="n">06</span> Why it defends and how it pays</h2>
+    <p>The PRD doesn't stop at the build. The <strong>moat</strong> is four compounding layers — a proprietary data set of the teacher's own notes, switching cost from personalised study history, a data-and-social network effect through JEE peer groups, and ultimately a multi-teacher ecosystem with supply-side lock-in.</p>
+    <p>Monetisation is sequenced deliberately: <strong>Free</strong> (validate PMF) → <strong>Student freemium</strong> (₹99/mo, paywall triggered at the exact 11 PM moment of highest need) → <strong>Teacher SaaS &amp; B2B coaching</strong> (a single institute deal worth 250+ individual subscriptions). The teacher — me — is both the first customer and the proof of concept.</p>
+
+    <h2><span class="n">07</span> What building this taught me</h2>
+    <ul>
+      <li><b>Evaluation is the product, not a finishing step.</b> RAG failure analysis now goes into the PRD before a line of code — because for a tool students trust, correctness <em>is</em> the feature.</li>
+      <li><b>Domain depth is the moat, not the model.</b> Anyone can call an LLM. Almost no one has ten years of structured, grounded chemistry notes and knows exactly where students get stuck.</li>
+      <li><b>Latency and cost are product decisions, not engineering afterthoughts.</b> The streaming call, the reranker fallback, the two-model routing — each was a PM tradeoff about what the student actually feels.</li>
+    </ul>
+
+    <h3>The artifacts</h3>
+    <div class="docs">
+      <a class="primary" href="coursework/RAG_PRD_Himanshu_Jain.pdf" target="_blank" rel="noopener">Read the full RAG PRD ↗</a>
+      <a href="index.html#mechanism">See the reaction-mechanism view</a>
+    </div>
+    <p style="font-size:13px;color:var(--ink-soft)"><em>ChemIQ is an ongoing personal build; the live demo is kept private while the notes corpus is expanded chapter by chapter.</em></p>
+
+  </div>
+</article>
+
+<div class="foot wrap">
+  <span>Case study · ChemIQ · Himanshu Jain</span>
+  <span><a href="index.html#products">← Back to all work</a></span>
+</div>
+
+<script>
+const SUN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+const MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>';
+const root=document.documentElement,tbtn=document.getElementById('themeBtn');
+function setTheme(t){root.setAttribute('data-theme',t);tbtn.innerHTML=t==='dark'?SUN:MOON;}
+setTheme(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+tbtn.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+</script>
+</body>
+</html>

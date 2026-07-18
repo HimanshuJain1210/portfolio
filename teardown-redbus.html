@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>redBus — Product Teardown · Himanshu Jain</title>
+<meta name="description" content="A product teardown of redBus by Himanshu Jain: flows and frictions, user research (3 interviews + 29 surveys), SWOT, PIF prioritisation, and the P0 problem — last-minute operator cancellations." />
+<link rel="canonical" href="https://himanshujainbuilds.vercel.app/teardown-redbus.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="redBus — Product Teardown · Himanshu Jain" />
+<meta property="og:description" content="Flows & frictions, user research, SWOT, PIF prioritisation, and the P0 problem behind redBus." />
+<meta property="og:url" content="https://himanshujainbuilds.vercel.app/teardown-redbus.html" />
+<meta property="og:image" content="https://himanshujainbuilds.vercel.app/profile.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root[data-theme="light"]{
+  --bg:#F4F1E9;--bg-2:#EBE6D8;--surface:#FCFAF5;--ink:#191A2E;--ink-soft:#54546A;
+  --line:#CDC6B4;--line-soft:#DED8C7;--accent:#4B3FB0;--accent-deep:#352B86;
+  --teal:#1C6B62;--teal-soft:#1C6B6222;--on-accent:#FFFFFF;--shadow:rgba(25,26,46,.10);--ruled:#E4DECC;
+}
+:root[data-theme="dark"]{
+  --bg:#13131F;--bg-2:#1A1A29;--surface:#1E1E30;--ink:#F0EDE2;--ink-soft:#A6A4B8;
+  --line:#33334A;--line-soft:#2A2A3C;--accent:#9B8CFF;--accent-deep:#B3A6FF;
+  --teal:#46C7B8;--teal-soft:#46C7B822;--on-accent:#13131F;--shadow:rgba(0,0,0,.40);--ruled:#1C1C2B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;
+  background-image:repeating-linear-gradient(transparent,transparent 31px,var(--ruled) 31px,var(--ruled) 32px);background-attachment:fixed;
+  transition:background-color .35s,color .35s;}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+
+.topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.topbar .wrap{max-width:1180px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.brandmark{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;letter-spacing:.08em}
+.brandmark .el{width:30px;height:30px;border-radius:4px;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:600;font-size:15px;background:var(--accent);color:var(--on-accent)}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.05em;color:var(--ink-soft);transition:color .2s}
+.nav a:hover{color:var(--accent)}
+.themeBtn{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;background:none;cursor:pointer;display:grid;place-items:center;color:var(--ink);transition:border-color .2s,transform .3s}
+.themeBtn:hover{border-color:var(--accent);transform:rotate(15deg)}
+.themeBtn svg{width:16px;height:16px}
+@media(max-width:600px){.nav a:not(.themeBtn){display:none}}
+
+.head{padding:56px 0 30px;border-bottom:1px solid var(--line)}
+.back{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);display:inline-flex;gap:6px;margin-bottom:24px;transition:color .2s}
+.back:hover{color:var(--accent)}
+.kick{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(34px,6vw,54px);line-height:1.04;letter-spacing:-.02em;margin-bottom:16px}
+.sub{font-size:18px;color:var(--ink-soft);max-width:42em}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.chip{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line-soft);border-radius:20px;padding:5px 11px}
+.meta-row{display:flex;flex-wrap:wrap;gap:26px;margin-top:26px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
+.meta-row b{color:var(--ink);display:block;font-family:"Inter",sans-serif;font-size:14px;font-weight:600;margin-top:2px}
+
+article{padding:20px 0 40px}
+h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(22px,3.4vw,30px);letter-spacing:-.01em;margin:46px 0 6px;padding-top:20px;display:flex;align-items:baseline;gap:12px}
+h2 .n{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--accent);letter-spacing:.08em}
+h3{font-family:"Fraunces",serif;font-weight:600;font-size:19px;margin:26px 0 8px}
+p{margin:12px 0;color:var(--ink)}
+.lead{font-size:17px}
+strong{font-weight:600}
+em{color:var(--ink-soft);font-style:italic}
+
+.callout{background:var(--bg-2);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:18px 22px;margin:22px 0}
+.callout .lab{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.callout p{margin:4px 0}
+
+.quote{font-family:"Fraunces",serif;font-style:italic;font-size:19px;line-height:1.5;color:var(--ink);border-left:3px solid var(--teal);padding:6px 0 6px 20px;margin:20px 0}
+.quote .who{display:block;font-family:"JetBrains Mono",monospace;font-style:normal;font-size:11px;letter-spacing:.05em;color:var(--ink-soft);text-transform:uppercase;margin-top:10px}
+
+ul{margin:12px 0 12px 4px;list-style:none}
+ul li{position:relative;padding-left:22px;margin:9px 0;color:var(--ink)}
+ul li::before{content:"";position:absolute;left:2px;top:10px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+ul li b{font-weight:600}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:22px 0}
+.stat-box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px}
+.stat-box .n{font-family:"Fraunces",serif;font-weight:600;font-size:30px;line-height:1;color:var(--accent)}
+.stat-box .l{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.04em;color:var(--ink-soft);margin-top:8px;line-height:1.4;text-transform:uppercase}
+
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+th{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
+td{color:var(--ink)}
+tr td:last-child,tr th:last-child{text-align:center}
+.p0-row{background:var(--teal-soft)}
+.p0-row td{font-weight:600}
+
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}
+@media(max-width:600px){.swot{grid-template-columns:1fr}}
+.swot-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
+.swot-card h4{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.swot-card.s h4{color:var(--teal)}.swot-card.w h4{color:var(--accent-deep)}
+.swot-card.o h4{color:var(--teal)}.swot-card.t h4{color:var(--accent-deep)}
+.swot-card ul li{font-size:13px;margin:6px 0}
+.swot-card ul li::before{top:8px;width:5px;height:5px}
+
+.persona{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px;margin:14px 0}
+.persona .pname{font-family:"Fraunces",serif;font-weight:600;font-size:18px}
+.persona .prole{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.04em;margin:3px 0 12px}
+
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.docs a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:9px 14px;border:1.5px solid var(--ink);border-radius:5px;transition:all .16s}
+.docs a:hover{background:var(--ink);color:var(--bg)}
+.docs a.primary{border-color:var(--teal);color:var(--teal)}
+.docs a.primary:hover{background:var(--teal);color:var(--on-accent)}
+
+.foot{border-top:1px solid var(--line);padding:34px 0 60px;margin-top:40px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.04em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.foot a{color:var(--accent)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brandmark" href="index.html"><span class="el">Hj</span> HIMANSHU&nbsp;JAIN</a>
+    <nav class="nav">
+      <a href="index.html#products">Products</a>
+      <a href="index.html#coursework">Coursework</a>
+      <a href="index.html#ask">Ask</a>
+      <button class="themeBtn nav" id="themeBtn" aria-label="Toggle theme"></button>
+    </nav>
+  </div>
+</header>
+
+<div class="head">
+  <div class="wrap">
+    <a class="back" href="index.html#products">← Back to portfolio</a>
+    <div class="kick">Product Teardown → Solution PRD · HelloPM Assignment 1</div>
+    <h1>redBus</h1>
+    <p class="sub">Where does India's largest bus-ticketing platform lose the trust of its own users — and what would I actually build to fix it? A full arc: from flows and frictions, through user research, to a prioritised P0 and a shippable solution PRD.</p>
+    <div class="chips">
+      <span class="chip">Product Analysis</span>
+      <span class="chip">User Research</span>
+      <span class="chip">SWOT</span>
+      <span class="chip">PIF Prioritisation</span>
+      <span class="chip">RICE</span>
+      <span class="chip">Solution PRD</span>
+    </div>
+    <div class="meta-row">
+      <div>Method<b>3 interviews · 29 surveys</b></div>
+      <div>Focus<b>Trust &amp; retention</b></div>
+      <div>Output<b>P0 → "redBus Guarantee" PRD</b></div>
+    </div>
+  </div>
+</div>
+
+<article>
+  <div class="wrap">
+
+    <h2><span class="n">01</span> Executive summary</h2>
+    <p class="lead">redBus is India's leading bus-ticketing platform, and its problems aren't about discovery or checkout — those work well. The damage happens <strong>after</strong> booking, where operator behaviour the platform doesn't control quietly erodes the trust redBus depends on.</p>
+    <p>Across three interviews and twenty-nine survey responses, one pattern kept surfacing: users don't distrust redBus the app, they distrust the <em>operators</em> redBus lists — and when something goes wrong, they feel the platform doesn't have their back. The sharpest failure of all is the <strong>last-minute operator cancellation</strong>: it strands travellers, forces rebooking at inflated prices, and sends them to competitors or direct-operator sites for good.</p>
+
+    <div class="callout">
+      <div class="lab">The P0, in one line</div>
+      <p>Users face last-minute cancellations by operators with no alternative arranged — because operators carry no accountability and redBus lacks quality enforcement. The result: severe disruption, forced rebooking at 3–4× price, platform abandonment, and broken retention.</p>
+    </div>
+
+    <h2><span class="n">02</span> Flows &amp; frictions</h2>
+    <p>Mapping the core journey, the front half is strong and the back half is where trust leaks:</p>
+    <table>
+      <thead><tr><th>Touchpoint</th><th>Works well</th><th>Friction</th></tr></thead>
+      <tbody>
+        <tr><td>Search → bus list</td><td>Fast, many options, rich filters</td><td>Hard to judge reliability; photos show new buses, reality is older</td></tr>
+        <tr><td>Seat selection</td><td>Visual layout, gender indicators</td><td>Seat map sometimes mismatches the real bus</td></tr>
+        <tr><td>Payment → confirm</td><td>Many payment options, quick</td><td>Delayed confirmation; operator may cancel after</td></tr>
+        <tr><td>Cancellation → refund</td><td>Clear cancel CTA, visible status</td><td>Refund timelines unclear; 10–15 days; opaque GST</td></tr>
+        <tr><td>Tracking &amp; boarding</td><td>GPS reduces anxiety</td><td>Inaccurate tracking; "boarding point" is really a distant collection point</td></tr>
+      </tbody>
+    </table>
+
+    <h2><span class="n">03</span> What users actually said</h2>
+    <p>The survey sized the problems; the interviews explained why they hurt.</p>
+
+    <div class="stat-grid">
+      <div class="stat-box"><div class="n">44.8%</div><div class="l">cite operator-quality uncertainty as their #1 frustration</div></div>
+      <div class="stat-box"><div class="n">37.9%</div><div class="l">got a bus worse than the photos showed</div></div>
+      <div class="stat-box"><div class="n">69%</div><div class="l">hit at least one major problem</div></div>
+      <div class="stat-box"><div class="n">34.5%</div><div class="l">now book directly from operators</div></div>
+    </div>
+
+    <div class="quote">Ticket prices were around ₹4,800 in January, but after Feb 2nd they dropped to ₹1,100. That feels like a scam.
+      <span class="who">Tejashvi · Leisure traveller</span></div>
+    <div class="quote">That operator is still operating on the same route. redBus took no action on our complaint.
+      <span class="who">Tejashvi · after a 1-hour-before cancellation and 4-hour delay</span></div>
+    <div class="quote">I'm afraid my daughter can't travel alone — drivers are rude, untrained with women, and platforms don't take action.
+      <span class="who">Sushil · Family traveller</span></div>
+
+    <p>A telling detail: trust in ratings averaged just <strong>3.5/5</strong>. Only 55% trust reviews moderately or more — so the very mechanism meant to reduce uncertainty isn't doing the job.</p>
+
+    <h2><span class="n">04</span> SWOT</h2>
+    <div class="swot">
+      <div class="swot-card s"><h4>Strengths</h4><ul>
+        <li>Market leader — 58.6% of respondents use redBus</li>
+        <li>Deepest operator network &amp; integrations</li>
+        <li>Loved visual, gender-aware seat selection</li>
+        <li>Bus-specialist depth vs full OTAs</li>
+      </ul></div>
+      <div class="swot-card w"><h4>Weaknesses</h4><ul>
+        <li>No operator accountability / quality control</li>
+        <li>Marketing-vs-reality bus quality gap</li>
+        <li>Slow, opaque refunds (10–15 days)</li>
+        <li>Weak support; price parity leaks to direct booking</li>
+      </ul></div>
+      <div class="swot-card o"><h4>Opportunities</h4><ul>
+        <li>Operator tiering &amp; quality certification</li>
+        <li>Loyalty / subscription for frequent travellers</li>
+        <li>Cancellation protection &amp; auto-rebooking</li>
+        <li>Uber-grade tracking; family-safety features</li>
+      </ul></div>
+      <div class="swot-card t"><h4>Threats</h4><ul>
+        <li>Direct-operator disintermediation (34.5%)</li>
+        <li>Full-service OTAs (MakeMyTrip, Paytm)</li>
+        <li>Trust erosion from repeated quality issues</li>
+        <li>Flights &amp; intercity cabs for higher-income users</li>
+      </ul></div>
+    </div>
+
+    <h2><span class="n">05</span> Who we're solving for</h2>
+    <div class="persona">
+      <div class="pname">Priya — the anxious leisure traveller</div>
+      <div class="prole">28–35 · working professional · 3–6 trips/year</div>
+      <p>Researches obsessively, compares platforms, monitors daily price swings, and increasingly books direct after being burned. Wants reality to match the listing and operators held to a standard.</p>
+    </div>
+    <div class="persona">
+      <div class="pname">Rajesh — the regular commuter seeking reliability</div>
+      <div class="prole">35–50 · frequent intercity travel · monthly on some routes</div>
+      <p>Books the same routes repeatedly for family, prioritises reliability over small savings, and feels unrewarded for loyalty while paying triple during festivals. Wants accountability and recognition.</p>
+    </div>
+
+    <h2><span class="n">06</span> Prioritisation (PIF)</h2>
+    <p>Every problem scored on Population, Intensity and Frequency (1–5). Two rose to the top; the tiebreak went to the one most tied to retention and most within redBus's control.</p>
+    <table>
+      <thead><tr><th>Problem</th><th>Pop</th><th>Int</th><th>Freq</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Operator quality uncertainty</td><td>5</td><td>4</td><td>4</td><td>13</td></tr>
+        <tr class="p0-row"><td>Last-minute cancellations (P0)</td><td>4</td><td>5</td><td>3</td><td>12</td></tr>
+        <tr><td>Poor customer support</td><td>4</td><td>4</td><td>3</td><td>11</td></tr>
+        <tr><td>Slow / unclear refunds</td><td>3</td><td>4</td><td>3</td><td>10</td></tr>
+        <tr><td>Price differences across platforms</td><td>3</td><td>3</td><td>4</td><td>10</td></tr>
+        <tr><td>Inaccurate tracking / boarding</td><td>3</td><td>3</td><td>3</td><td>9</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Why cancellations won P0 over the higher-scoring quality problem:</strong> every interview raised it, its intensity is maximal (stranded passengers, trip failure), and — unlike weather or traffic — operator behaviour is squarely within redBus's control via agreements, penalties, tiers, and alternative-bus guarantees. Solving it proves the platform is worth more than aggregation.</p>
+
+    <div class="callout">
+      <div class="lab">Goal it maps to</div>
+      <p>Improve 3-month retention by 15% over 6 months for leisure and regular-commuter segments, by closing the last-minute-cancellation and operator-accountability gaps.</p>
+    </div>
+
+    <h2><span class="n">07</span> The solution: "redBus Guarantee"</h2>
+    <p>Prioritisation is only half the job — the other half is building the fix. I wrote a full PRD turning the P0 into a three-pillar system that makes a journey complete <em>even when an operator fails</em>.</p>
+
+    <div class="swot" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="swot-card s"><h4>1 · Prevention</h4><ul>
+        <li>Reliability score (90-day cancel rate) on every search result</li>
+        <li>"Guaranteed Journey" badge for &lt;1% operators</li>
+        <li>Sort &amp; filter by reliability</li>
+      </ul></div>
+      <div class="swot-card w"><h4>2 · Deterrence</h4><ul>
+        <li>Financial penalties scaled to cancellation timing</li>
+        <li>Progressive suspension (warn → 7d → 30d → ban)</li>
+        <li>Reason verification to stop abuse</li>
+      </ul></div>
+      <div class="swot-card o"><h4>3 · Protection</h4><ul>
+        <li>Alternative-bus guarantee within 2 hours, price diff covered</li>
+        <li>Instant auto-refund, no ticket raised</li>
+        <li>Compensation + meal/hotel vouchers on long waits</li>
+      </ul></div>
+    </div>
+
+    <div class="callout">
+      <div class="lab">Target outcomes (OKRs)</div>
+      <p>Lift 3-month retention 45% → 52%, halve operator cancellations 8% → 4%, and secure an alternative within 2 hours for 85% of affected users — all inside guardrails that keep operator churn under 10%.</p>
+    </div>
+
+    <p>The build is sequenced by <strong>RICE</strong>, not ambition: Reliability Score + Badge ships first (RICE 27, lowest effort, highest reach), then penalties and auto-refund, with the harder Alternative-Bus Guarantee phased in last. A phased rollout on high-density routes de-risks the operator-churn and supply-coverage unknowns before going wide.</p>
+
+    <h3>What this teardown taught me</h3>
+    <ul>
+      <li><b>Accountability is the product, not a policy.</b> The root of the distrust is operators facing no consequences — so the solution centres on changing operator incentives, not just softening the user's refund screen.</li>
+      <li><b>Score the problem, then score the solution.</b> PIF found the right problem; RICE sequenced the fix so the cheapest high-reach lever ships first.</li>
+      <li><b>Retention is the honest metric.</b> Conversion looks healthy; the leak is repeat usage — so every pillar is tied back to the retention north star.</li>
+    </ul>
+
+    <h3>Read the full analysis</h3>
+    <div class="docs">
+      <a class="primary" href="coursework/Assignment%201%20-%20Phase%201%20-%20Himanshu%20C49.pdf" target="_blank" rel="noopener">Phase 1 — Flows &amp; Frictions</a>
+      <a href="coursework/Assignment%201-Phase%202-Himanshu%20C49.pdf" target="_blank" rel="noopener">Phase 2 — Research &amp; PIF</a>
+      <a href="coursework/Assignment%201%20-%20Phase%203%20-%20Himanshu%20Jain%20-%20C49.pdf" target="_blank" rel="noopener">Phase 3 — Solution PRD</a>
+      <a href="coursework/redbus_wireframes_final.html" target="_blank" rel="noopener">Wireframes</a>
+      <a href="coursework/Red%20bus.pdf" target="_blank" rel="noopener">Presentation deck</a>
+    </div>
+
+  </div>
+</article>
+
+<div class="foot wrap">
+  <span>Product teardown · redBus · Himanshu Jain</span>
+  <span><a href="index.html#products">← Back to all work</a></span>
+</div>
+
+<script>
+const SUN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+const MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>';
+const root=document.documentElement,tbtn=document.getElementById('themeBtn');
+function setTheme(t){root.setAttribute('data-theme',t);tbtn.innerHTML=t==='dark'?SUN:MOON;}
+setTheme(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+tbtn.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+</script>
+</body>
+</html>
