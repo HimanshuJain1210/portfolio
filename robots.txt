@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://himanshujainbuilds.vercel.app/sitemap.xml
+Sitemap: https://thejeeteacher.com/sitemap.xml
