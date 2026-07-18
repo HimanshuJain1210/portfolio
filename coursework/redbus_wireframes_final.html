@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>redBus Wireframes — Developer Handoff</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+  :root {
+    --canvas:  #DCDCDC;
+    --s50:     #FAFAFA;
+    --s100:    #F5F5F5;
+    --s200:    #EBEBEB;
+    --s300:    #DEDEDE;
+    --s400:    #C8C8C8;
+    --s500:    #AAAAAA;
+    --s600:    #777777;
+    --s700:    #4A4A4A;
+    --s800:    #2E2E2E;
+    --s900:    #1A1A1A;
+    --white:   #FFFFFF;
+
+    --phone-w: 300px;
+    --phone-h: 620px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--canvas);
+    padding: 40px 36px 64px;
+    color: var(--s900);
+  }
+
+  /* ── DOC HEADER ───────────────────────────────── */
+  .doc-header {
+    margin-bottom: 52px;
+  }
+  .doc-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--s900);
+  }
+  .doc-header p {
+    font-size: 13px;
+    color: var(--s600);
+    margin-top: 5px;
+  }
+  .doc-header .meta {
+    display: flex;
+    gap: 28px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--s400);
+    flex-wrap: wrap;
+  }
+  .doc-header .meta-item label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--s500);
+    display: block;
+  }
+  .doc-header .meta-item span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--s700);
+  }
+
+  /* ── FLOW SECTION ─────────────────────────────── */
+  .flow-section { margin-bottom: 64px; }
+  .flow-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid var(--s400);
+  }
+  .flow-letter {
+    width: 32px; height: 32px;
+    background: var(--s800);
+    color: var(--white);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .flow-heading h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--s900);
+  }
+  .flow-heading p {
+    font-size: 12px;
+    color: var(--s600);
+    margin-top: 2px;
+  }
+  .screens-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  /* ── PHONE WRAPPER ────────────────────────────── */
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .screen-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--s600);
+    padding-left: 2px;
+  }
+
+  /* ── PHONE SHELL ──────────────────────────────── */
+  .phone {
+    width: var(--phone-w);
+    background: var(--white);
+    border-radius: 28px;
+    border: 2px solid var(--s500);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    min-height: var(--phone-h);
+  }
+
+  /* Status bar */
+  .status-bar {
+    height: 30px;
+    background: var(--s100);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--s300);
+  }
+  .sb-time { font-size: 11px; font-weight: 700; color: var(--s700); }
+  .sb-right { font-size: 10px; color: var(--s500); }
+
+  /* App top bar */
+  .app-bar {
+    background: var(--s100);
+    border-bottom: 1px solid var(--s300);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .app-bar .back-btn {
+    width: 28px; height: 28px;
+    background: var(--s200);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .app-bar .bar-title {
+    font-size: 13px; font-weight: 700;
+    color: var(--s900); flex: 1;
+  }
+  .app-bar .bar-sub {
+    font-size: 10px;
+    color: var(--s600);
+  }
+
+  /* Screen body */
+  .screen-body {
+    flex: 1;
+    padding: 14px 14px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    overflow: hidden;
+  }
+
+  /* Bottom nav */
+  .bottom-nav {
+    height: 52px;
+    background: var(--white);
+    border-top: 1px solid var(--s300);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-shrink: 0;
+  }
+  .bn-tab {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    flex: 1;
+  }
+  .bn-icon { font-size: 16px; }
+  .bn-label { font-size: 9px; color: var(--s500); font-weight: 500; }
+  .bn-label.active { color: var(--s800); font-weight: 700; }
+  .bn-active-bar {
+    width: 20px; height: 2px;
+    background: var(--s800);
+    border-radius: 2px;
+  }
+
+  /* ── COMPONENTS ───────────────────────────────── */
+
+  /* Section label */
+  .sec-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--s500);
+    margin-bottom: -4px;
+  }
+
+  /* Input field */
+  .input-field {
+    height: 40px;
+    background: var(--s100);
+    border: 1.5px solid var(--s300);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 8px;
+  }
+  .input-field.active {
+    border-color: var(--s700);
+    background: var(--white);
+  }
+  .input-icon { font-size: 14px; flex-shrink: 0; color: var(--s500); }
+  .input-text { font-size: 12px; font-weight: 500; color: var(--s800); }
+  .input-placeholder { font-size: 12px; color: var(--s500); }
+
+  /* Button */
+  .btn {
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 6px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .btn-primary   { background: var(--s800); color: var(--white); }
+  .btn-secondary { background: var(--s100); border: 1.5px solid var(--s400); color: var(--s800); }
+  .btn-ghost     { background: transparent; border: 1.5px dashed var(--s400); color: var(--s600); font-size: 12px; }
+  .btn-sm { height: 32px; font-size: 11px; border-radius: 8px; }
+
+  /* Card */
+  .card {
+    background: var(--white);
+    border: 1.5px solid var(--s300);
+    border-radius: 12px;
+    padding: 12px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .card.filled  { background: var(--s100); }
+  .card.dark-outline { border-color: var(--s700); border-width: 2px; background: var(--s100); }
+  .card.selected { border-color: var(--s800); border-width: 2px; background: var(--s50); }
+  .card.success { background: var(--s100); border-color: var(--s600); }
+
+  /* Badge / chip */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-dark    { background: var(--s800); color: var(--white); }
+  .badge-outline { background: transparent; border: 1.5px solid var(--s500); color: var(--s700); }
+  .badge-filled  { background: var(--s200); color: var(--s700); border: 1px solid var(--s400); }
+  .badge-strong  { background: var(--s700); color: var(--white); }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    background: var(--s200);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .tab {
+    flex: 1;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--s600);
+    border-radius: 8px;
+  }
+  .tab.active {
+    background: var(--s800);
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  /* Row helpers */
+  .row       { display: flex; align-items: center; gap: 8px; }
+  .row-top   { display: flex; align-items: flex-start; gap: 8px; }
+  .row-btw   { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .col       { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .spacer    { flex: 1; }
+
+  /* Typography helpers */
+  .t-title  { font-size: 14px; font-weight: 700; color: var(--s900); }
+  .t-body   { font-size: 12px; color: var(--s700); line-height: 1.4; }
+  .t-small  { font-size: 11px; color: var(--s600); }
+  .t-xs     { font-size: 10px; color: var(--s500); }
+  .t-price  { font-size: 14px; font-weight: 700; color: var(--s900); }
+  .t-strong { font-size: 12px; font-weight: 700; color: var(--s800); }
+  .t-muted  { font-size: 12px; color: var(--s500); text-decoration: line-through; }
+  .t-label  { font-size: 10px; font-weight: 600; color: var(--s500); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Divider */
+  .divider { height: 1px; background: var(--s300); width: 100%; }
+
+  /* Progress bar */
+  .progress-track { height: 6px; background: var(--s300); border-radius: 3px; overflow: hidden; }
+  .progress-fill  { height: 100%; background: var(--s700); border-radius: 3px; }
+
+  /* Stat block */
+  .stat-block { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .stat-num   { font-size: 18px; font-weight: 700; color: var(--s900); }
+  .stat-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--s500); }
+
+  /* Chart placeholder */
+  .chart-box {
+    height: 48px;
+    background: var(--s100);
+    border-radius: 8px;
+    border-bottom: 2px solid var(--s500);
+    position: relative;
+    overflow: hidden;
+  }
+  .chart-box::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 30px;
+    background: linear-gradient(180deg, transparent, var(--s300));
+  }
+  .chart-box::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 0; right: 0;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--s600) 0, var(--s600) 5px, transparent 5px, transparent 12px);
+  }
+
+  /* Seat map */
+  .seat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+  .seat { height: 20px; border-radius: 4px; background: var(--s200); border: 1px solid var(--s300); display: flex; align-items: center; justify-content: center; font-size: 8px; color: var(--s500); }
+  .seat.taken    { background: var(--s400); color: var(--s600); border-color: var(--s500); }
+  .seat.selected { background: var(--s800); color: var(--white); border-color: var(--s800); }
+
+  /* Notification */
+  .notif-card {
+    background: var(--s800);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .notif-app   { font-size: 10px; color: var(--s400); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .notif-title { font-size: 12px; font-weight: 700; color: var(--white); line-height: 1.35; }
+  .notif-body  { font-size: 11px; color: var(--s400); line-height: 1.4; }
+
+  /* Alert banner */
+  .alert-banner {
+    background: var(--s800);
+    border-radius: 12px;
+    padding: 11px 13px;
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .alert-text { font-size: 11px; color: var(--s300); line-height: 1.45; }
+  .alert-title { font-size: 12px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+
+  /* Warning banner */
+  .warn-banner {
+    background: var(--s200);
+    border: 2px solid var(--s700);
+    border-radius: 12px;
+    padding: 11px 13px;
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+  }
+  .warn-title { font-size: 12px; font-weight: 700; color: var(--s900); margin-bottom: 3px; }
+  .warn-text  { font-size: 11px; color: var(--s700); line-height: 1.45; }
+
+  /* List item */
+  .list-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--s200);
+  }
+  .list-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .list-num {
+    width: 20px; height: 20px;
+    background: var(--s200);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: var(--s700);
+    flex-shrink: 0;
+  }
+
+  /* Route visual */
+  .route-row { display: flex; align-items: center; gap: 6px; }
+  .route-node { width: 8px; height: 8px; border-radius: 50%; background: var(--s500); flex-shrink: 0; }
+  .route-line { flex: 1; height: 1px; background: var(--s400); }
+  .route-arr  { font-size: 10px; color: var(--s500); flex-shrink: 0; }
+
+  /* Stars */
+  .stars { display: flex; gap: 2px; }
+  .star  { font-size: 10px; }
+
+  /* Emoji feedback row */
+  .emoji-row { display: flex; justify-content: space-between; }
+  .emoji-btn { width: 36px; height: 36px; background: var(--s200); border: 1.5px solid var(--s300); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .emoji-btn.active { background: var(--s400); border-color: var(--s700); }
+
+  /* Step indicator */
+  .step-row { display: flex; gap: 6px; align-items: center; justify-content: center; margin-bottom: 2px; }
+  .step-pip { width: 8px; height: 8px; border-radius: 50%; background: var(--s300); }
+  .step-pip.done { background: var(--s700); }
+  .step-pip.active { width: 20px; border-radius: 4px; background: var(--s800); }
+
+  /* Grid 2-col */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+  @media (max-width: 760px) {
+    body { padding: 20px 12px 48px; }
+    .screens-row { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- DOC HEADER -->
+<div class="doc-header">
+  <h1>redBus — Mobile Wireframes</h1>
+  <p>Operator-End Cancellation Flows · Grey-scale · Developer Handoff</p>
+  <div class="meta">
+    <div class="meta-item"><label>Prepared by</label><span>Himanshu C49</span></div>
+    <div class="meta-item"><label>Product</label><span>redBus Mobile App</span></div>
+    <div class="meta-item"><label>Flows</label><span>A · B · C</span></div>
+    <div class="meta-item"><label>Total Screens</label><span>12</span></div>
+    <div class="meta-item"><label>Goal</label><span>3-month retention 45% → 52%</span></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     FLOW A — SEARCH & BOOKING
+══════════════════════════════════════════════════ -->
+<div class="flow-section">
+  <div class="flow-heading">
+    <div class="flow-letter">A</div>
+    <div>
+      <h2>Search &amp; Booking with Reliability Score</h2>
+      <p>Prevention layer — users see operator reliability before booking · A1 → A2 → A3 → A4</p>
+    </div>
+  </div>
+
+  <div class="screens-row">
+
+    <!-- A1: HOME SEARCH -->
+    <div class="phone-wrap">
+      <div class="screen-label">A1 · Home Search</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">9:41</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="screen-body">
+          <div class="row-btw">
+            <span class="t-title">Book a Bus</span>
+            <div class="row" style="gap:6px;">
+              <span style="font-size:20px;">🔔</span>
+              <div style="width:30px;height:30px;background:var(--s200);border-radius:50%;"></div>
+            </div>
+          </div>
+
+          <div class="tabs">
+            <div class="tab active">🚌 Bus</div>
+            <div class="tab">🚆 Train</div>
+            <div class="tab">🚗 Cab</div>
+          </div>
+
+          <div class="sec-label">From</div>
+          <div class="input-field active">
+            <span class="input-icon">📍</span>
+            <span class="input-text">Delhi</span>
+          </div>
+
+          <div class="row" style="justify-content:center;">
+            <div style="width:32px;height:32px;background:var(--s200);border-radius:50%;border:1.5px solid var(--s400);display:flex;align-items:center;justify-content:center;font-size:14px;">⇅</div>
+          </div>
+
+          <div class="sec-label">To</div>
+          <div class="input-field active">
+            <span class="input-icon">🏁</span>
+            <span class="input-text">Jaipur</span>
+          </div>
+
+          <div class="sec-label">Date of Journey</div>
+          <div class="input-field active">
+            <span class="input-icon">📅</span>
+            <span class="input-text">Wed, 18 Feb 2026</span>
+          </div>
+
+          <div class="sec-label">Passengers</div>
+          <div class="input-field">
+            <span class="input-icon">👤</span>
+            <span class="input-placeholder">1 Adult</span>
+          </div>
+
+          <div class="btn btn-primary">Search Buses</div>
+
+          <div class="card filled" style="padding:9px 12px;">
+            <div class="t-xs">RECENT SEARCH</div>
+            <div class="row-btw">
+              <span class="t-strong">Delhi → Jaipur</span>
+              <span class="t-xs">Feb 18 · 1 seat</span>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="bn-tab"><span class="bn-icon">🏠</span><span class="bn-label active">Home</span><div class="bn-active-bar"></div></div>
+          <div class="bn-tab"><span class="bn-icon">🎫</span><span class="bn-label">Trips</span></div>
+          <div class="bn-tab"><span class="bn-icon">🎁</span><span class="bn-label">Offers</span></div>
+          <div class="bn-tab"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2: SEARCH RESULTS -->
+    <div class="phone-wrap">
+      <div class="screen-label">A2 · Results + Reliability Badge</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">9:43</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="app-bar">
+          <div class="back-btn">←</div>
+          <div class="col" style="gap:1px;">
+            <div class="bar-title">Delhi → Jaipur</div>
+            <div class="bar-sub">18 Feb · 1 Adult · 24 buses found</div>
+          </div>
+          <div class="badge badge-outline">Filter</div>
+        </div>
+        <div class="screen-body">
+          <div class="tabs">
+            <div class="tab">Price ↑</div>
+            <div class="tab active">Reliable ↑</div>
+            <div class="tab">Earliest</div>
+          </div>
+
+          <!-- Bus 1 — Guaranteed -->
+          <div class="card selected">
+            <div class="row-btw">
+              <span class="t-strong">Patel Travels</span>
+              <div class="badge badge-dark">🛡 Guaranteed</div>
+            </div>
+            <div class="route-row">
+              <div style="text-align:left;">
+                <div class="t-title" style="font-size:15px;">06:00</div>
+                <div class="t-xs">New Delhi BS</div>
+              </div>
+              <div class="route-node"></div>
+              <div class="route-line"></div>
+              <div class="t-xs">5h 30m</div>
+              <div class="route-line"></div>
+              <div class="route-arr">▶</div>
+              <div style="text-align:right;">
+                <div class="t-title" style="font-size:15px;">11:30</div>
+                <div class="t-xs">Jaipur Sindhi</div>
+              </div>
+            </div>
+            <div class="row-btw">
+              <div class="row" style="gap:5px;">
+                <div class="badge badge-filled">AC Sleeper</div>
+                <span class="t-small" style="color:var(--s700);font-weight:600;">✓ 99% reliable</span>
+              </div>
+              <span class="t-price">₹650</span>
+            </div>
+          </div>
+
+          <!-- Bus 2 -->
+          <div class="card">
+            <div class="row-btw">
+              <span class="t-strong">Royal Express</span>
+              <div class="badge badge-outline">⚠ 94% reliable</div>
+            </div>
+            <div class="route-row">
+              <div style="text-align:left;">
+                <div class="t-title" style="font-size:15px;">07:15</div>
+                <div class="t-xs">Kashmere Gate</div>
+              </div>
+              <div class="route-node"></div>
+              <div class="route-line"></div>
+              <div class="t-xs">6h</div>
+              <div class="route-line"></div>
+              <div class="route-arr">▶</div>
+              <div style="text-align:right;">
+                <div class="t-title" style="font-size:15px;">13:15</div>
+                <div class="t-xs">Jaipur Sindhi</div>
+              </div>
+            </div>
+            <div class="row-btw">
+              <div class="badge badge-filled">Seater</div>
+              <span class="t-price">₹520</span>
+            </div>
+          </div>
+
+          <!-- Bus 3 -->
+          <div class="card">
+            <div class="row-btw">
+              <span class="t-strong">Capital Roadways</span>
+              <div class="badge badge-outline" style="border-color:var(--s600);color:var(--s700);">⚠ 88% reliable</div>
+            </div>
+            <div class="route-row">
+              <div>
+                <div class="t-title" style="font-size:15px;">08:30</div>
+                <div class="t-xs">ISBT Sarai Kale</div>
+              </div>
+              <div class="route-node"></div>
+              <div class="route-line"></div>
+              <div class="route-arr">▶</div>
+              <div style="text-align:right;">
+                <div class="t-title" style="font-size:15px;">14:30</div>
+                <div class="t-xs">Jaipur Sindhi</div>
+              </div>
+              <span class="t-price" style="margin-left:auto;">₹480</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="bottom-nav">
+          <div class="bn-tab"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+          <div class="bn-tab"><span class="bn-icon">🔍</span><span class="bn-label active">Search</span><div class="bn-active-bar"></div></div>
+          <div class="bn-tab"><span class="bn-icon">🎫</span><span class="bn-label">Trips</span></div>
+          <div class="bn-tab"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A3: BUS DETAILS -->
+    <div class="phone-wrap">
+      <div class="screen-label">A3 · Bus Details</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">9:46</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="app-bar">
+          <div class="back-btn">←</div>
+          <div class="col" style="gap:1px;">
+            <div class="bar-title">Patel Travels</div>
+            <div class="bar-sub">06:00 · Delhi → Jaipur</div>
+          </div>
+          <div class="badge badge-dark">🛡 Guaranteed</div>
+        </div>
+        <div class="screen-body">
+          <!-- Guarantee banner -->
+          <div class="alert-banner">
+            <div class="alert-icon">🛡</div>
+            <div>
+              <div class="alert-title">redBus Guarantee</div>
+              <div class="alert-text">If cancelled, we find another bus within 2 hrs — or refund + ₹1,000 compensation</div>
+            </div>
+          </div>
+          <!-- Stats -->
+          <div class="grid4">
+            <div class="stat-block"><span class="stat-num">99%</span><span class="stat-label">Reliable</span></div>
+            <div class="stat-block"><span class="stat-num">450</span><span class="stat-label">Trips</span></div>
+            <div class="stat-block"><span class="stat-num">4.8★</span><span class="stat-label">Rating</span></div>
+            <div class="stat-block"><span class="stat-num">3</span><span class="stat-label">Cancels/90d</span></div>
+          </div>
+          <!-- Chart -->
+          <div>
+            <div class="t-label" style="margin-bottom:5px;">Cancellation Rate — Last 6 Months</div>
+            <div class="chart-box"></div>
+            <div class="row-btw" style="margin-top:4px;">
+              <span class="t-xs">Aug</span><span class="t-xs">Sep</span><span class="t-xs">Oct</span>
+              <span class="t-xs">Nov</span><span class="t-xs">Dec</span><span class="t-xs">Feb</span>
+            </div>
+          </div>
+          <!-- Amenities -->
+          <div>
+            <div class="t-label" style="margin-bottom:5px;">Amenities</div>
+            <div class="row" style="flex-wrap:wrap;gap:5px;">
+              <div class="badge badge-filled">❄ AC</div>
+              <div class="badge badge-filled">💺 Sleeper</div>
+              <div class="badge badge-filled">⚡ Charging</div>
+              <div class="badge badge-filled">📺 TV</div>
+            </div>
+          </div>
+          <!-- Review -->
+          <div class="card filled" style="padding:9px 12px;gap:5px;">
+            <div class="row-btw">
+              <div class="row" style="gap:5px;">
+                <div style="width:22px;height:22px;background:var(--s300);border-radius:50%;"></div>
+                <span class="t-small">Meena S.</span>
+                <div class="badge badge-filled" style="font-size:9px;">Never Cancelled</div>
+              </div>
+              <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+            </div>
+            <span class="t-small">"Perfectly on time, great service."</span>
+          </div>
+          <!-- Seat picker -->
+          <div class="t-label">Select Seat</div>
+          <div class="seat-grid">
+            <div class="seat">A1</div><div class="seat taken">A2</div><div class="seat">A3</div><div class="seat taken">A4</div><div class="seat">A5</div>
+            <div class="seat taken">B1</div><div class="seat">B2</div><div class="seat selected">B3</div><div class="seat">B4</div><div class="seat taken">B5</div>
+          </div>
+          <div class="btn btn-primary" style="margin-top:2px;">Select Seat — ₹650</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A4: BOOKING CONFIRMATION -->
+    <div class="phone-wrap">
+      <div class="screen-label">A4 · Booking Confirmed</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">9:52</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="screen-body">
+          <div style="text-align:center;padding:16px 0 8px;">
+            <div style="width:56px;height:56px;background:var(--s200);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 10px;">✅</div>
+            <div class="t-title" style="font-size:16px;">Booking Confirmed!</div>
+            <div class="t-small" style="margin-top:3px;">PNR: RBDJ20260218A</div>
+          </div>
+
+          <div class="alert-banner">
+            <div class="alert-icon">🛡</div>
+            <div>
+              <div class="alert-title">Guaranteed by redBus</div>
+              <div class="alert-text">We've got your back. If cancelled, we find another bus within 2 hrs.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="t-strong">Journey Details</div>
+            <div class="divider"></div>
+            <div class="row-btw">
+              <div class="col" style="gap:2px;">
+                <div class="t-label">From</div>
+                <div class="t-strong">Delhi</div>
+                <div class="t-xs">New Delhi BS</div>
+              </div>
+              <span style="font-size:18px;color:var(--s500);">→</span>
+              <div class="col" style="gap:2px;align-items:flex-end;text-align:right;">
+                <div class="t-label">To</div>
+                <div class="t-strong">Jaipur</div>
+                <div class="t-xs">Jaipur Sindhi Camp</div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row-btw">
+              <div class="col" style="gap:2px;"><div class="t-label">Departure</div><div class="t-strong">06:00 AM</div></div>
+              <div class="col" style="gap:2px;align-items:center;"><div class="t-label">Seat</div><div class="t-strong">B3</div></div>
+              <div class="col" style="gap:2px;align-items:flex-end;"><div class="t-label">Fare Paid</div><div class="t-price">₹650</div></div>
+            </div>
+          </div>
+
+          <div class="btn btn-secondary">📅 Add to Calendar</div>
+          <div class="btn btn-ghost">📤 Share Ticket</div>
+
+          <div class="card filled" style="padding:8px 13px;">
+            <div class="t-small">24×7 Support: <strong>1800-102-0055</strong></div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="bn-tab"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></div>
+          <div class="bn-tab"><span class="bn-icon">🎫</span><span class="bn-label active">Trips</span><div class="bn-active-bar"></div></div>
+          <div class="bn-tab"><span class="bn-icon">🎁</span><span class="bn-label">Offers</span></div>
+          <div class="bn-tab"><span class="bn-icon">👤</span><span class="bn-label">Profile</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     FLOW B — CANCELLATION RESCUE
+══════════════════════════════════════════════════ -->
+<div class="flow-section">
+  <div class="flow-heading">
+    <div class="flow-letter">B</div>
+    <div>
+      <h2>Cancellation Rescue</h2>
+      <p>Alert → Alternatives → Confirmation · B1 → B2 → B3 → B4 → B5</p>
+    </div>
+  </div>
+
+  <div class="screens-row">
+
+    <!-- B1: PUSH NOTIFICATION -->
+    <div class="phone-wrap">
+      <div class="screen-label">B1 · Push Notification</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">5:30 AM</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="screen-body" style="background:var(--s200);">
+          <div style="text-align:center;margin-bottom:8px;">
+            <div class="t-xs" style="margin-bottom:6px;">LOCK SCREEN</div>
+            <div style="font-size:32px;font-weight:300;color:var(--s800);">5:30</div>
+            <div class="t-small">Wednesday, 18 February</div>
+          </div>
+
+          <div class="notif-card">
+            <div class="row" style="gap:7px;">
+              <span style="font-size:16px;">🚌</span>
+              <div class="notif-app">redBus · Just Now</div>
+            </div>
+            <div class="notif-title">Your bus was cancelled — but we've found alternatives</div>
+            <div class="notif-body">Capital Roadways 06:00 Delhi→Jaipur is cancelled. 3 options found. You'll get ₹1,000 + full refund.</div>
+            <div class="row" style="gap:8px;margin-top:4px;">
+              <div class="btn btn-primary btn-sm" style="flex:1;background:var(--s600);">View Options Now</div>
+              <div class="btn btn-ghost btn-sm" style="width:80px;border-color:var(--s600);color:var(--s400);">Dismiss</div>
+            </div>
+          </div>
+
+          <div class="card" style="background:var(--s100);">
+            <div class="row-btw">
+              <span class="t-small" style="font-weight:600;">⏱ Alternatives held for</span>
+              <span class="t-strong">18 min left</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width:80%;"></div>
+            </div>
+            <div class="t-xs">Options reserved · Tap to rebook instantly</div>
+          </div>
+
+          <div class="card filled" style="padding:9px 12px;">
+            <div class="t-xs" style="font-weight:600;">DESIGN NOTE</div>
+            <div class="t-xs" style="margin-top:3px;">Headline leads with solution, not bad news. Compensation shown upfront to reduce panic.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B2: CANCELLATION STATUS -->
+    <div class="phone-wrap">
+      <div class="screen-label">B2 · Cancellation Status</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">5:31 AM</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="app-bar">
+          <div class="back-btn">←</div>
+          <div class="bar-title">Trip Update</div>
+        </div>
+        <div class="screen-body">
+          <div class="warn-banner">
+            <div class="alert-icon">🚫</div>
+            <div>
+              <div class="warn-title">Trip Cancelled by Operator</div>
+              <div class="warn-text">Capital Roadways cancelled your journey due to vehicle breakdown.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="t-strong">Your Original Booking</div>
+            <div class="divider"></div>
+            <div class="t-body">Delhi → Jaipur · 18 Feb</div>
+            <div class="row-btw">
+              <div class="col" style="gap:2px;">
+                <div class="t-label">Departure</div>
+                <div class="t-muted">06:00 AM</div>
+              </div>
+              <div class="col" style="gap:2px;align-items:flex-end;">
+                <div class="t-label">Amount Paid</div>
+                <div class="t-strong">₹480</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert-banner">
+            <div class="alert-icon">✅</div>
+            <div>
+              <div class="alert-title">What happens next</div>
+              <div class="alert-text">
+                • Full refund ₹480 → redBus Wallet<br>
+                • Compensation ₹1,000 + 1,000 pts<br>
+                • Free rebooking — no price difference
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px;">
+            <div class="btn btn-primary">See My Alternatives →</div>
+            <div class="btn btn-secondary">💬 Talk to Support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B3: ALTERNATIVE OPTIONS -->
+    <div class="phone-wrap">
+      <div class="screen-label">B3 · 3 Alternatives</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">5:33 AM</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="app-bar">
+          <div class="back-btn">←</div>
+          <div class="col" style="gap:1px;">
+            <div class="bar-title">Choose an Alternative</div>
+            <div class="bar-sub">redBus covers any price difference</div>
+          </div>
+          <div class="badge badge-dark">No extra cost</div>
+        </div>
+        <div class="screen-body">
+
+          <!-- Alt 1 — Best Match -->
+          <div class="card selected">
+            <div class="row-btw">
+              <div class="badge badge-strong">⭐ Best Match</div>
+              <div class="badge badge-filled">Same fare</div>
+            </div>
+            <div class="row-btw">
+              <div class="col" style="gap:2px;">
+                <div class="t-strong">Patel Travels</div>
+                <div class="t-title" style="font-size:15px;">06:30 → 12:00</div>
+                <div class="t-xs">AC Sleeper · 99% reliable</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="t-muted">₹650</div>
+                <div class="t-strong" style="color:var(--s800);">₹0 extra</div>
+              </div>
+            </div>
+            <div class="btn btn-primary btn-sm">Book This Bus →</div>
+          </div>
+
+          <!-- Alt 2 -->
+          <div class="card">
+            <div class="badge badge-filled" style="width:fit-content;">⚡ Earliest Departure</div>
+            <div class="row-btw">
+              <div class="col" style="gap:2px;">
+                <div class="t-strong">Sky Express</div>
+                <div class="t-title" style="font-size:15px;">06:15 → 12:45</div>
+                <div class="t-xs">Seater · 97% reliable</div>
+              </div>
+              <div class="badge badge-outline">redBus covers ₹120</div>
+            </div>
+          </div>
+
+          <!-- Alt 3 -->
+          <div class="card">
+            <div class="badge badge-filled" style="width:fit-content;">⭐ Highest Rated</div>
+            <div class="row-btw">
+              <div class="col" style="gap:2px;">
+                <div class="t-strong">Greenline VIP</div>
+                <div class="t-title" style="font-size:15px;">07:00 → 12:00</div>
+                <div class="t-xs">Volvo AC · 4.9★ · 98% reliable</div>
+              </div>
+              <div class="badge badge-outline">redBus covers ₹200</div>
+            </div>
+          </div>
+
+          <div class="btn btn-ghost" style="margin-top:auto;">💬 Need help choosing?</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B4: REBOOKED -->
+    <div class="phone-wrap">
+      <div class="screen-label">B4 · Rebooked ✓</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">5:36 AM</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="screen-body">
+          <div style="text-align:center;padding:14px 0 8px;">
+            <div style="width:56px;height:56px;background:var(--s200);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 10px;">🎉</div>
+            <div class="t-title" style="font-size:16px;">You're Rebooked!</div>
+            <div class="t-small" style="margin-top:3px;">New PNR: RBDJ20260218B</div>
+          </div>
+
+          <div class="card success">
+            <div class="row-btw">
+              <div class="col" style="gap:2px;">
+                <div class="t-label">New Departure</div>
+                <div class="t-strong">06:30 AM · Patel Travels</div>
+              </div>
+              <div class="badge badge-dark">Confirmed</div>
+            </div>
+            <div class="divider"></div>
+            <div class="row-btw"><span class="t-small">Original fare</span><span class="t-muted">₹480</span></div>
+            <div class="row-btw"><span class="t-small">New fare</span><span class="t-body">₹650</span></div>
+            <div class="row-btw"><span class="t-small">Covered by redBus</span><span class="t-strong">−₹170</span></div>
+            <div class="divider"></div>
+            <div class="row-btw"><span class="t-strong">You pay</span><span class="t-price">₹0</span></div>
+          </div>
+
+          <div class="card">
+            <div class="t-small" style="font-weight:700;color:var(--s700);">Compensation (arriving now)</div>
+            <div class="row-btw"><span class="t-small">Cash compensation</span><span class="t-strong">+₹1,000</span></div>
+            <div class="row-btw"><span class="t-small">Loyalty points</span><span class="t-strong">+1,000 pts</span></div>
+            <div class="t-xs" style="margin-top:2px;">Available immediately in redBus Wallet</div>
+          </div>
+
+          <div class="btn btn-primary" style="margin-top:auto;">📅 Update My Calendar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B5: REFUND + FEEDBACK -->
+    <div class="phone-wrap">
+      <div class="screen-label">B5 · Refund + Feedback</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">5:40 AM</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="screen-body">
+          <div class="card filled">
+            <div class="t-strong">💸 Compensation Summary</div>
+            <div class="divider"></div>
+            <div class="row-btw"><span class="t-small">Original amount</span><span class="t-body">₹480</span></div>
+            <div class="row-btw"><span class="t-small">Refunded to wallet</span><span class="t-strong">₹480</span></div>
+            <div class="row-btw"><span class="t-small">Compensation</span><span class="t-strong">₹1,000</span></div>
+            <div class="row-btw"><span class="t-small">Loyalty pts added</span><span class="t-strong">1,000 pts</span></div>
+            <div class="divider"></div>
+            <div class="row-btw"><span class="t-strong">Wallet balance now</span><span class="t-price">₹1,480</span></div>
+          </div>
+
+          <div class="badge badge-dark" style="align-self:flex-start;padding:5px 12px;">✅ Available immediately — No 10-day wait</div>
+
+          <div class="card">
+            <div class="t-strong">How did we handle this?</div>
+            <div class="t-xs" style="margin-bottom:4px;">Your feedback helps us improve</div>
+            <div class="emoji-row">
+              <div class="emoji-btn">😞</div>
+              <div class="emoji-btn">😐</div>
+              <div class="emoji-btn">😊</div>
+              <div class="emoji-btn active">😄</div>
+              <div class="emoji-btn">🤩</div>
+            </div>
+            <div style="background:var(--s100);border:1.5px solid var(--s300);border-radius:8px;padding:10px;height:50px;">
+              <span class="t-xs">Tell us more... (optional)</span>
+            </div>
+          </div>
+
+          <div class="btn btn-primary" style="margin-top:auto;">Submit Feedback</div>
+          <div class="btn btn-ghost">Skip for now</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     FLOW C — OPERATOR DASHBOARD
+══════════════════════════════════════════════════ -->
+<div class="flow-section">
+  <div class="flow-heading">
+    <div class="flow-letter">C</div>
+    <div>
+      <h2>Operator Dashboard — Deterrence System</h2>
+      <p>Operator mobile view · Performance visibility + warnings + suspension · C1 → C2 → C3</p>
+    </div>
+  </div>
+
+  <div class="screens-row">
+
+    <!-- C1: PERFORMANCE DASHBOARD -->
+    <div class="phone-wrap">
+      <div class="screen-label">C1 · Performance Dashboard</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">10:00</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="app-bar">
+          <div class="back-btn">☰</div>
+          <div class="col" style="gap:1px;">
+            <div class="bar-title">My Performance</div>
+            <div class="bar-sub">Patel Travels · Last 90 days</div>
+          </div>
+          <div class="badge badge-dark">🥇 Gold Tier</div>
+        </div>
+        <div class="screen-body">
+          <!-- 4 stat cards -->
+          <div class="grid2">
+            <div class="card filled" style="padding:10px;align-items:center;gap:4px;">
+              <div class="stat-num" style="color:var(--s800);">1.2%</div>
+              <div class="stat-label">Cancellation Rate</div>
+              <div class="badge badge-filled" style="font-size:9px;">Goal &lt;3% ✓</div>
+            </div>
+            <div class="card filled" style="padding:10px;align-items:center;gap:4px;">
+              <div class="stat-num">98.8%</div>
+              <div class="stat-label">Reliability</div>
+              <div class="badge badge-dark" style="font-size:9px;">🛡 Guaranteed</div>
+            </div>
+            <div class="card filled" style="padding:10px;align-items:center;gap:4px;">
+              <div class="stat-num">4.8 ★</div>
+              <div class="stat-label">Avg Rating</div>
+            </div>
+            <div class="card filled" style="padding:10px;align-items:center;gap:4px;">
+              <div class="stat-num">+18%</div>
+              <div class="stat-label">Booking Lift</div>
+              <div class="t-xs" style="color:var(--s700);">vs last month</div>
+            </div>
+          </div>
+
+          <!-- Chart -->
+          <div class="card">
+            <div class="row-btw">
+              <span class="t-strong">90-Day Trend</span>
+              <div class="badge badge-filled">Below avg ✓</div>
+            </div>
+            <div class="chart-box"></div>
+            <div class="row-btw" style="margin-top:3px;">
+              <span class="t-xs">Dec</span><span class="t-xs">Jan</span><span class="t-xs">Feb</span>
+              <span class="t-xs" style="color:var(--s600);">— Route avg: 2.8%</span>
+            </div>
+          </div>
+
+          <!-- Tier progress -->
+          <div class="card">
+            <div class="t-strong">Tier Progress</div>
+            <div class="row" style="gap:4px;justify-content:space-between;">
+              <div class="badge badge-filled">Bronze</div>
+              <span class="t-xs">→</span>
+              <div class="badge badge-filled">Silver</div>
+              <span class="t-xs">→</span>
+              <div class="badge badge-dark">Gold ✓</div>
+              <span class="t-xs">→</span>
+              <div class="badge badge-outline">Platinum</div>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width:72%;"></div>
+            </div>
+            <div class="row-btw">
+              <span class="t-xs">72% to Platinum</span>
+              <span class="t-xs">+15% bookings on upgrade</span>
+            </div>
+          </div>
+
+          <div class="card filled" style="padding:9px 12px;">
+            <div class="t-small" style="font-weight:600;color:var(--s700);">"Reaching Platinum could add est. +₹82,000/month in bookings"</div>
+          </div>
+        </div>
+        <div class="bottom-nav">
+          <div class="bn-tab"><span class="bn-icon">📊</span><span class="bn-label active">Dashboard</span><div class="bn-active-bar"></div></div>
+          <div class="bn-tab"><span class="bn-icon">🎫</span><span class="bn-label">Bookings</span></div>
+          <div class="bn-tab"><span class="bn-icon">📅</span><span class="bn-label">Schedule</span></div>
+          <div class="bn-tab"><span class="bn-icon">💰</span><span class="bn-label">Earnings</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C2: WARNING ALERT -->
+    <div class="phone-wrap">
+      <div class="screen-label">C2 · Warning Alert (5% threshold)</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">10:05</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="app-bar">
+          <div class="back-btn">←</div>
+          <div class="bar-title">⚠️ Performance Warning</div>
+        </div>
+        <div class="screen-body">
+
+          <div class="warn-banner">
+            <div class="alert-icon">⚠️</div>
+            <div>
+              <div class="warn-title">Approaching Suspension Threshold</div>
+              <div class="warn-text">Your cancellation rate is 5.2% — above the 5% warning level. 3 more cancellations triggers a 7-day suspension.</div>
+            </div>
+          </div>
+
+          <!-- 3 stats -->
+          <div class="grid3">
+            <div class="card filled" style="padding:9px 6px;align-items:center;gap:3px;">
+              <div class="stat-num" style="font-size:16px;color:var(--s800);">5.2%</div>
+              <div class="stat-label">Your Rate</div>
+            </div>
+            <div class="card filled" style="padding:9px 6px;align-items:center;gap:3px;">
+              <div class="stat-num" style="font-size:16px;">2.8%</div>
+              <div class="stat-label">Route Avg</div>
+            </div>
+            <div class="card dark-outline" style="padding:9px 6px;align-items:center;gap:3px;">
+              <div class="stat-num" style="font-size:16px;">3</div>
+              <div class="stat-label" style="text-align:center;">Cancels to Suspend</div>
+            </div>
+          </div>
+
+          <!-- Chart -->
+          <div class="card">
+            <div class="t-strong">Your Rate vs Route Average</div>
+            <div class="chart-box"></div>
+          </div>
+
+          <!-- Improve actions -->
+          <div class="card">
+            <div class="t-strong">✅ Reduce Cancellations By</div>
+            <div class="list-row">
+              <div class="list-num">1</div>
+              <span class="t-small">Better fleet maintenance scheduling</span>
+              <div class="badge badge-outline">Guide →</div>
+            </div>
+            <div class="list-row">
+              <div class="list-num">2</div>
+              <span class="t-small">Register standby driver network</span>
+              <div class="badge badge-outline">Setup →</div>
+            </div>
+            <div class="list-row">
+              <div class="list-num">3</div>
+              <span class="t-small">Give 24h+ advance notice when possible</span>
+              <div class="badge badge-outline">Tips →</div>
+            </div>
+          </div>
+
+          <div class="btn btn-primary">View Improvement Resources</div>
+          <div class="btn btn-secondary">Contact My Manager</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C3: SUSPENSION NOTICE -->
+    <div class="phone-wrap">
+      <div class="screen-label">C3 · Suspension Notice</div>
+      <div class="phone">
+        <div class="status-bar">
+          <span class="sb-time">10:10</span>
+          <span class="sb-right">📶 🔋</span>
+        </div>
+        <div class="app-bar">
+          <div class="back-btn">←</div>
+          <div class="bar-title">🚫 Account Suspended</div>
+        </div>
+        <div class="screen-body">
+
+          <div class="card dark-outline">
+            <div class="t-strong">Account Suspended — 7 Days</div>
+            <div class="t-body">New bookings paused: 18 Feb – 25 Feb 2026. Cancellation rate exceeded 7% threshold.</div>
+          </div>
+
+          <!-- Penalty + Timeline -->
+          <div class="grid2">
+            <div class="card dark-outline" style="gap:5px;">
+              <div class="t-label">Financial Penalties</div>
+              <div class="divider"></div>
+              <div class="row-btw"><span class="t-xs">5 cancellations</span><span class="t-small">₹45,000</span></div>
+              <div class="row-btw"><span class="t-xs">Compensations</span><span class="t-small">₹12,000</span></div>
+              <div class="divider"></div>
+              <div class="row-btw"><span class="t-xs" style="font-weight:700;">Total deducted</span><span class="t-strong">₹57,000</span></div>
+            </div>
+            <div class="card" style="gap:5px;">
+              <div class="t-label">Suspension</div>
+              <div class="progress-track"><div class="progress-fill" style="width:14%;"></div></div>
+              <div class="t-xs">Day 1 of 7</div>
+              <div class="divider"></div>
+              <div class="t-xs" style="font-weight:700;">Reinstated on</div>
+              <div class="t-strong">25 Feb 2026</div>
+            </div>
+          </div>
+
+          <!-- Reinstatement steps -->
+          <div class="card">
+            <div class="t-strong">📋 Reinstatement Steps</div>
+            <div class="list-row">
+              <div class="list-num">1</div>
+              <span class="t-small">Complete Quality Training module (~45 min)</span>
+              <div class="btn btn-primary btn-sm" style="width:52px;flex-shrink:0;font-size:10px;">Start</div>
+            </div>
+            <div class="list-row">
+              <div class="list-num">2</div>
+              <span class="t-small">Submit 30-day Improvement Action Plan</span>
+              <div class="btn btn-secondary btn-sm" style="width:60px;flex-shrink:0;font-size:10px;">Upload</div>
+            </div>
+            <div class="list-row">
+              <div class="list-num">3</div>
+              <span class="t-small">7-day cool-off (auto, ends 25 Feb)</span>
+              <div class="badge badge-filled" style="font-size:9px;flex-shrink:0;">Auto ✓</div>
+            </div>
+          </div>
+
+          <!-- Appeal -->
+          <div class="card filled" style="padding:9px 12px;gap:5px;">
+            <div class="t-small" style="font-weight:700;">🔍 Extraordinary Circumstances?</div>
+            <div class="t-xs">If cancellations were due to natural disaster or govt. restriction, upload documentation to request penalty waiver.</div>
+            <div class="btn btn-secondary btn-sm">Submit Appeal with Proof</div>
+          </div>
+
+        </div>
+        <div class="bottom-nav">
+          <div class="bn-tab"><span class="bn-icon">📊</span><span class="bn-label active">Dashboard</span><div class="bn-active-bar"></div></div>
+          <div class="bn-tab"><span class="bn-icon">📋</span><span class="bn-label">Appeal</span></div>
+          <div class="bn-tab"><span class="bn-icon">💰</span><span class="bn-label">Penalties</span></div>
+          <div class="bn-tab"><span class="bn-icon">📞</span><span class="bn-label">Support</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
