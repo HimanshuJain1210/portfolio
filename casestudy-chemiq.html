@@ -100,7 +100,8 @@ ul li b{font-weight:600}
 .stack-box .l{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
 .stack-box .v{font-size:13px;color:var(--ink);line-height:1.45}
 
-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13.5px}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13.5px;display:block;overflow-x:auto}
+@media(max-width:560px){th,td{min-width:90px}}
 th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
 td{color:var(--ink)}

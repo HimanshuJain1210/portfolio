@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VoiceSkill — Case Study · Himanshu Jain</title>
+<meta name="description" content="PM Quest case study by Himanshu Jain: a voice-profile trainer that captures how you speak and turns it into a reusable style guide for AI tools — built by a teacher who knows how people actually learn." />
+<link rel="canonical" href="https://thejeeteacher.com/casestudy-voiceskill.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="VoiceSkill — Case Study · Himanshu Jain" />
+<meta property="og:description" content="Capture your voice once, reuse it everywhere — a trainer that turns speech into a reusable AI style profile." />
+<meta property="og:url" content="https://thejeeteacher.com/casestudy-voiceskill.html" />
+<meta property="og:image" content="https://thejeeteacher.com/profile.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root[data-theme="light"]{--bg:#F4F1E9;--bg-2:#EBE6D8;--surface:#FCFAF5;--ink:#191A2E;--ink-soft:#54546A;--line:#CDC6B4;--line-soft:#DED8C7;--accent:#4B3FB0;--accent-deep:#352B86;--teal:#1C6B62;--teal-soft:#1C6B6222;--on-accent:#FFFFFF;--shadow:rgba(25,26,46,.10);--ruled:#E4DECC;}
+:root[data-theme="dark"]{--bg:#13131F;--bg-2:#1A1A29;--surface:#1E1E30;--ink:#F0EDE2;--ink-soft:#A6A4B8;--line:#33334A;--line-soft:#2A2A3C;--accent:#9B8CFF;--accent-deep:#B3A6FF;--teal:#46C7B8;--teal-soft:#46C7B822;--on-accent:#13131F;--shadow:rgba(0,0,0,.40);--ruled:#1C1C2B;}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;background-image:repeating-linear-gradient(transparent,transparent 31px,var(--ruled) 31px,var(--ruled) 32px);background-attachment:fixed;transition:background-color .35s,color .35s;}
+a{color:inherit;text-decoration:none}.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+.topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.topbar .wrap{max-width:1180px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.brandmark{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;letter-spacing:.08em}
+.brandmark .el{width:30px;height:30px;border-radius:4px;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:600;font-size:15px;background:var(--accent);color:var(--on-accent)}
+.nav{display:flex;gap:22px;align-items:center}.nav a{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.05em;color:var(--ink-soft);transition:color .2s}.nav a:hover{color:var(--accent)}
+.themeBtn{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;background:none;cursor:pointer;display:grid;place-items:center;color:var(--ink);transition:border-color .2s,transform .3s}.themeBtn:hover{border-color:var(--accent);transform:rotate(15deg)}.themeBtn svg{width:16px;height:16px}
+@media(max-width:600px){.nav a:not(.themeBtn){display:none}}
+.head{padding:56px 0 30px;border-bottom:1px solid var(--line)}
+.back{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);display:inline-flex;gap:6px;margin-bottom:24px;transition:color .2s}.back:hover{color:var(--accent)}
+.kick{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(34px,6vw,54px);line-height:1.04;letter-spacing:-.02em;margin-bottom:16px}
+.sub{font-size:18px;color:var(--ink-soft);max-width:42em}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.chip{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line-soft);border-radius:20px;padding:5px 11px}
+.meta-row{display:flex;flex-wrap:wrap;gap:26px;margin-top:26px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
+.meta-row b{color:var(--ink);display:block;font-family:"Inter",sans-serif;font-size:14px;font-weight:600;margin-top:2px}
+article{padding:20px 0 40px}
+h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(22px,3.4vw,30px);letter-spacing:-.01em;margin:46px 0 6px;padding-top:20px;display:flex;align-items:baseline;gap:12px}
+h2 .n{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--accent);letter-spacing:.08em}
+h3{font-family:"Fraunces",serif;font-weight:600;font-size:19px;margin:26px 0 8px}
+p{margin:12px 0;color:var(--ink)}.lead{font-size:17px}strong{font-weight:600}em{color:var(--ink-soft);font-style:italic}
+.callout{background:var(--bg-2);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:18px 22px;margin:22px 0}
+.callout .lab{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}.callout p{margin:4px 0}
+.quote{font-family:"Fraunces",serif;font-style:italic;font-size:20px;line-height:1.45;color:var(--ink);border-left:3px solid var(--teal);padding:6px 0 6px 20px;margin:20px 0}
+ul{margin:12px 0 12px 4px;list-style:none}ul li{position:relative;padding-left:22px;margin:9px 0;color:var(--ink)}
+ul li::before{content:"";position:absolute;left:2px;top:10px;width:7px;height:7px;border-radius:50%;background:var(--accent)}ul li b{font-weight:600}
+.mech{display:grid;grid-template-columns:repeat(4,1fr);margin:24px 0}
+@media(max-width:760px){.mech{grid-template-columns:1fr}}
+.step{position:relative;padding:18px 16px;background:var(--surface);border:1px solid var(--line);border-right:none}
+.step:last-child{border-right:1px solid var(--line)}
+@media(max-width:760px){.step{border-right:1px solid var(--line);border-bottom:none}.step:last-child{border-bottom:1px solid var(--line)}}
+.step:first-child{border-radius:8px 0 0 8px}.step:last-child{border-radius:0 8px 8px 0}
+@media(max-width:760px){.step:first-child{border-radius:8px 8px 0 0}.step:last-child{border-radius:0 0 8px 8px}}
+.step .ph{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.step h4{font-family:"Fraunces",serif;font-weight:600;font-size:15px;margin-bottom:6px;line-height:1.2}
+.step p{font-size:12.5px;color:var(--ink-soft);margin:0;line-height:1.5}
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.docs a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:9px 14px;border:1.5px solid var(--ink);border-radius:5px;transition:all .16s}
+.docs a:hover{background:var(--ink);color:var(--bg)}.docs a.primary{border-color:var(--teal);color:var(--teal)}.docs a.primary:hover{background:var(--teal);color:var(--on-accent)}
+.note{background:var(--bg-2);border:1px dashed var(--line);border-radius:8px;padding:16px 18px;margin:20px 0;font-size:13.5px;color:var(--ink-soft)}
+.foot{border-top:1px solid var(--line);padding:34px 0 60px;margin-top:40px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.04em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}.foot a{color:var(--accent)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brandmark" href="index.html"><span class="el">Hj</span> HIMANSHU&nbsp;JAIN</a>
+  <nav class="nav"><a href="index.html#products">Products</a><a href="index.html#coursework">Coursework</a><a href="index.html#ask">Ask</a><button class="themeBtn nav" id="themeBtn" aria-label="Toggle theme"></button></nav>
+</div></header>
+
+<div class="head"><div class="wrap">
+  <a class="back" href="index.html#products">← Back to portfolio</a>
+  <div class="kick">Case Study · Product I built</div>
+  <h1>VoiceSkill</h1>
+  <p class="sub">A trainer that captures how <em>you</em> actually speak and turns it into a reusable style profile — so the AI tools you use sound like you, not like generic AI.</p>
+  <div class="chips"><span class="chip">Voice AI</span><span class="chip">Whisper</span><span class="chip">Personalisation</span><span class="chip">Multi-User</span><span class="chip">PM Tooling</span></div>
+  <div class="meta-row"><div>Role<b>PM + builder, end-to-end</b></div><div>Stack<b>Next.js · Groq Whisper · Supabase</b></div><div>Status<b>Live</b></div></div>
+</div></div>
+
+<article><div class="wrap">
+  <h2><span class="n">01</span> The problem</h2>
+  <p class="lead">Everyone who uses AI writing tools hits the same wall eventually: the output is competent but sounds nothing like them. It's flat, generic, over-polished — recognisably "AI." Fixing that by hand, every time, defeats the point of the tool.</p>
+  <p>The usual fix is to paste a few writing samples into a prompt. But most people express themselves more naturally by <em>speaking</em> than by curating written samples — and the way you talk carries your rhythm, your phrasing, your fillers, the texture that makes a voice yours.</p>
+
+  <div class="callout"><div class="lab">The core idea</div><p>Capture voice through speech, not written samples. VoiceSkill records how you actually talk, transcribes it, and distils it into a reusable profile — a portable style guide you can hand to any AI tool so it writes in your voice from the start.</p></div>
+
+  <h2><span class="n">02</span> How it works</h2>
+  <div class="mech">
+    <div class="step"><div class="ph">1 · Speak</div><h4>Record naturally</h4><p>You talk the way you normally would — the most honest signal of your actual voice.</p></div>
+    <div class="step"><div class="ph">2 · Transcribe</div><h4>Groq Whisper</h4><p>Speech turned to text accurately, preserving your real phrasing rather than cleaning it up.</p></div>
+    <div class="step"><div class="ph">3 · Distil</div><h4>Style profile</h4><p>The transcript analysed into a reusable voice profile — tone, rhythm, characteristic patterns.</p></div>
+    <div class="step"><div class="ph">4 · Reuse</div><h4>Export &amp; library</h4><p>Export the profile as a portable spec; multiple users each keep their own in a profile library.</p></div>
+  </div>
+
+  <h2><span class="n">03</span> The design decisions</h2>
+  <ul>
+    <li><b>Voice-in, not text-in.</b> The whole premise rests on speaking being a truer signal than curated writing samples. It's the differentiator, and it's why Whisper is central rather than incidental.</li>
+    <li><b>A portable profile, not a walled garden.</b> The output is an exportable spec you can use in other tools — VoiceSkill is a capture layer, not a lock-in.</li>
+    <li><b>Multi-user from the start.</b> A profile library means teams or individuals can each maintain a distinct voice — the design assumes voice is personal and plural.</li>
+  </ul>
+
+  <h2><span class="n">04</span> What I'd watch next</h2>
+  <p>VoiceSkill is live but hasn't been validated with real users. The open questions:</p>
+  <ul>
+    <li><b>Does the profile actually capture voice?</b> The test is whether output using the profile reads as authentically "you" — if it still sounds generic, the distillation step needs work.</li>
+    <li><b>Is speaking really easier than pasting samples?</b> The core bet. If people find recording awkward, the premise needs rethinking.</li>
+    <li><b>Where does a portable profile get used?</b> Understanding which downstream tools people plug it into would shape what the export format should contain.</li>
+  </ul>
+  <div class="note">This case study is written from the product as built. Usage and quality data will be added once VoiceSkill has been through a proper round of user testing.</div>
+
+  <h2><span class="n">05</span> What building it taught me</h2>
+  <ul>
+    <li><b>Input modality is a product decision.</b> Choosing voice over text wasn't a technical afterthought — it's the entire reason the product exists, and it flows from a real observation about how people express themselves.</li>
+    <li><b>Capture layers should be portable.</b> The value grows when the profile works everywhere, not just inside my app — resisting lock-in was a deliberate call.</li>
+    <li><b>The best signal is the most natural one.</b> People reveal their real voice when they talk, not when they curate — designing for that honesty is the whole game.</li>
+  </ul>
+
+  <h3>See it</h3>
+  <div class="docs">
+    <a class="primary" href="https://voiceskill.vercel.app/" target="_blank" rel="noopener">Try VoiceSkill live ↗</a>
+    <a href="https://github.com/HimanshuJain1210/voiceskill" target="_blank" rel="noopener">Code</a>
+  </div>
+</div></article>
+
+<div class="foot wrap"><span>Case study · VoiceSkill · Himanshu Jain</span><span><a href="index.html#products">← Back to all work</a></span></div>
+<script>
+const SUN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+const MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>';
+const root=document.documentElement,tbtn=document.getElementById('themeBtn');
+function setTheme(t){root.setAttribute('data-theme',t);tbtn.innerHTML=t==='dark'?SUN:MOON;}
+setTheme(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+tbtn.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+</script>
+</body>
+</html>

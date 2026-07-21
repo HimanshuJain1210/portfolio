@@ -188,6 +188,28 @@ section{padding:72px 0}
 .story-step p{margin-bottom:0}
 @media(max-width:560px){.story-track{padding-left:24px}.story-step::before{left:-24px;width:13px;height:13px}}
 
+/* ---- Experience timeline + education ---- */
+.xp{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.xp-track{position:relative;padding-left:34px;margin-top:6px}
+.xp-track::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--accent),var(--teal));opacity:.35}
+.xp-item{position:relative;margin-bottom:24px}
+.xp-item:last-child{margin-bottom:0}
+.xp-item::before{content:"";position:absolute;left:-34px;top:5px;width:16px;height:16px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+.xp-item.now::before{background:var(--accent)}
+.xp-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.xp-role{font-family:"Fraunces",serif;font-weight:600;font-size:17px;line-height:1.2}
+.xp-role span{font-weight:400;color:var(--ink-soft);font-size:15px;font-family:"Inter",sans-serif}
+.xp-date{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.03em;white-space:nowrap}
+.xp-note{font-size:13.5px;color:var(--ink-soft);margin-top:5px;line-height:1.55;max-width:44em}
+.xp-note b{color:var(--ink);font-weight:600}
+.xp-foot{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+@media(max-width:600px){.xp-foot{grid-template-columns:1fr;gap:18px}}
+.xp-foot h3{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.xp-foot .fi{margin-bottom:10px}
+.xp-foot .fr{font-family:"Fraunces",serif;font-weight:600;font-size:15px}
+.xp-foot .fm{font-size:13px;color:var(--ink-soft)}
+.xp-foot .fd{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--ink-soft);margin-top:2px}
+
 .mech .intro{max-width:46em;font-size:17px;color:var(--ink-soft);margin-bottom:40px}
 .mech .intro b{color:var(--ink)}
 .steps{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
@@ -306,6 +328,7 @@ section{padding:72px 0}
     <a class="brandmark" href="#top"><span class="el">Hj</span> HIMANSHU&nbsp;JAIN</a>
     <nav class="nav">
       <a href="#story">Story</a>
+      <a href="#experience">Path</a>
       <a href="#mechanism">Mechanism</a>
       <a href="#products">Products</a>
       <a href="#log">Field Notes</a>
@@ -322,16 +345,17 @@ section{padding:72px 0}
     <div>
       <div class="hero-eyebrow"><span class="dot"></span><span class="tag">Chemistry Faculty · AI Product Builder · Teacher who ships</span></div>
       <h1>A teacher who<br><em>ships products.</em></h1>
-      <p class="lede">A decade teaching JEE Chemistry. These days I build the AI tools I always wished my students had — and I love getting them into people's hands. <b>15+ deployed products</b> so far. This page shares what I've built, and a little of how I think while building it.</p>
+      <p class="lede">Eleven years teaching JEE Chemistry to over 1,500 students. These days I build the AI tools I always wished my students had — and I love getting them into people's hands. <b>15+ deployed products</b> so far. This page shares what I've built, and a little of how I think while building it.</p>
       <div class="hero-cta">
         <a class="btn solid" href="#mechanism">See how I think →</a>
         <a class="btn ghost" href="#products">The products</a>
+        <a class="btn ghost" href="resume.html" target="_blank" rel="noopener">Résumé ↓</a>
       </div>
       <div class="stats">
-        <div class="stat"><div class="n">15+</div><div class="l">Live products</div></div>
-        <div class="stat"><div class="n">10+</div><div class="l">Yrs teaching</div></div>
-        <div class="stat"><div class="n">JEE</div><div class="l">+ CBSE domain</div></div>
-        <div class="stat"><div class="n">AI</div><div class="l">native stack</div></div>
+        <div class="stat"><div class="n">1,500+</div><div class="l">Students taught</div></div>
+        <div class="stat"><div class="n">13,000+</div><div class="l">Classroom hours</div></div>
+        <div class="stat"><div class="n">11 yrs</div><div class="l">Teaching JEE/CBSE</div></div>
+        <div class="stat"><div class="n">15+</div><div class="l">Products shipped</div></div>
       </div>
     </div>
     <div class="portrait">
@@ -382,11 +406,55 @@ section{padding:72px 0}
   </div>
 </section>
 
+<a id="experience"></a>
+<section class="xp">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">01 /</span>
+      <h2>The path here</h2>
+      <span class="meta">A decade in the classroom → building AI products</span>
+    </div>
+    <div class="xp-track">
+      <div class="xp-item now">
+        <div class="xp-top"><div class="xp-role">AI Product Management <span>· HelloPM</span></div><div class="xp-date">2026</div></div>
+        <div class="xp-note">Four-month live program. Shipped <b>15+ AI products</b> and a full portfolio of PRDs, teardowns, and prototypes while completing it.</div>
+      </div>
+      <div class="xp-item">
+        <div class="xp-top"><div class="xp-role">Assistant Professor, Chemistry <span>· Aakash</span></div><div class="xp-date">Feb 2025 – Present</div></div>
+        <div class="xp-note">Teaching all three verticals of Chemistry for JEE/NEET across Class 11, 12, and repeater batches.</div>
+      </div>
+      <div class="xp-item">
+        <div class="xp-top"><div class="xp-role">Associate Professor, Chemistry <span>· FIITJEE</span></div><div class="xp-date">Apr 2023 – Feb 2025</div></div>
+        <div class="xp-note">Highest-rated Chemistry faculty at <b>4.78/5</b> across six batches. Set every Mains &amp; Advanced paper; recorded <b>200+ concept videos</b>.</div>
+      </div>
+      <div class="xp-item">
+        <div class="xp-top"><div class="xp-role">Chemistry Faculty <span>· Amazon Academy</span></div><div class="xp-date">Jan 2021 – Apr 2023</div></div>
+        <div class="xp-note">Online JEE Chemistry across long-term, crash, and rank-booster courses; authored content and question banks.</div>
+      </div>
+      <div class="xp-item">
+        <div class="xp-top"><div class="xp-role">Founder &amp; Director <span>· Samarthya Classes</span></div><div class="xp-date">2015 – 2023</div></div>
+        <div class="xp-note">Built a coaching venture for Tier-2/3 cities. <b>25 of 30 students qualified JEE Advanced each year</b>; produced <b>AIR 760 (2018)</b>; led a Chhattisgarh govt JEE/NEET project for 100 underprivileged students.</div>
+      </div>
+    </div>
+    <div class="xp-foot">
+      <div>
+        <h3>Education</h3>
+        <div class="fi"><div class="fr">B.Tech, Computer Science</div><div class="fm">BIT Mesra, Ranchi · CGPA 7.61</div><div class="fd">2008 – 2012</div></div>
+      </div>
+      <div>
+        <h3>Certifications</h3>
+        <div class="fi"><div class="fr">AI Product Management</div><div class="fm">HelloPM · 4-month live program</div><div class="fd">2026 · ID 2H3Q8L</div></div>
+        <div class="fi"><div class="fr">NTSE Scholar</div><div class="fm">National Talent Search Examination</div><div class="fd">2006</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <a id="mechanism"></a>
 <section class="mech">
   <div class="wrap">
     <div class="sec-head">
-      <span class="idx">01 /</span>
+      <span class="idx">02 /</span>
       <h2>Reaction Mechanism</h2>
       <span class="meta">How one product actually got built</span>
     </div>
@@ -425,7 +493,7 @@ section{padding:72px 0}
 <section>
   <div class="wrap">
     <div class="sec-head">
-      <span class="idx">02 /</span>
+      <span class="idx">03 /</span>
       <h2>The Periodic Table of Builds</h2>
       <span class="meta">Position = strategy</span>
     </div>
@@ -444,7 +512,7 @@ section{padding:72px 0}
 <section class="log">
   <div class="wrap">
     <div class="sec-head">
-      <span class="idx">03 /</span>
+      <span class="idx">04 /</span>
       <h2>Field Notes</h2>
       <span class="meta">Live from Substack · "Chemistry with HJ"</span>
     </div>
@@ -456,7 +524,7 @@ section{padding:72px 0}
 <section>
   <div class="wrap">
     <div class="sec-head">
-      <span class="idx">04 /</span>
+      <span class="idx">05 /</span>
       <h2>HelloPM Coursework</h2>
       <span class="meta">Assignments &amp; artifacts from the program</span>
     </div>
@@ -540,7 +608,7 @@ section{padding:72px 0}
 <section>
   <div class="wrap">
     <div class="sec-head">
-      <span class="idx">05 /</span>
+      <span class="idx">06 /</span>
       <h2>Ask My Portfolio</h2>
       <span class="meta">Answers from my real work</span>
     </div>
@@ -558,7 +626,7 @@ section{padding:72px 0}
         <span class="chip">What's your tech stack?</span>
       </div>
       <div class="ask-out" id="askOut"></div>
-      <div class="ask-note" id="askNote">Demo mode — answers from a built-in summary. Add a free Groq key on deploy to make it conversational.</div>
+      <div class="ask-note" id="askNote">Answers are generated from my real portfolio.</div>
     </div>
   </div>
 </section>
@@ -595,22 +663,18 @@ const PROJECTS = [
   { sym:"Sj", name:"Stereo-JEE", cluster:"edtech", maturity:"shipped", live:"https://stereo-jee.vercel.app/learn", repo:"https://github.com/HimanshuJain1210/stereo-jee", prd:"", deck:"" },
   { sym:"Bh", name:"Board Help", cluster:"edtech", maturity:"shipped", live:"https://boardhelp.netlify.app/", repo:"", prd:"", deck:"" },
   { sym:"Jn", name:"JEE Navigator", cluster:"edtech", maturity:"wip", live:"https://jee-ace-navigator.lovable.app", repo:"", prd:"", deck:"" },
-  { sym:"Rl", name:"Recall Loop", cluster:"edtech", maturity:"wip", live:"https://recall-loop-jee.lovable.app", repo:"", prd:"", deck:"" },
   { sym:"R1", name:"Cl-11 Revision", cluster:"edtech", maturity:"wip", live:"https://class11revision.netlify.app/", repo:"", prd:"", deck:"" },
-  { sym:"Pp", name:"Prep Planner", cluster:"edtech", maturity:"concept", live:"https://jeeprepplanner.netlify.app/", repo:"", prd:"", deck:"" },
-  { sym:"Tc", name:"Twin Class", cluster:"edtech", maturity:"concept", live:"https://twinyourclass.lovable.app", repo:"", prd:"", deck:"" },
 
   { sym:"Ta", name:"Tailor", cluster:"career", maturity:"shipped", live:"https://jd-resume-customiser.vercel.app/", repo:"https://github.com/HimanshuJain1210/jd-resume-customiser", prd:"", deck:"", study:"casestudy-tailor.html" },
   { sym:"Fa", name:"Funded Agent", cluster:"career", maturity:"shipped", live:"https://fundedagent.vercel.app", repo:"https://github.com/HimanshuJain1210/fundedagent", prd:"", deck:"" },
   { sym:"Rs", name:"RoleSpec Sales", cluster:"career", maturity:"wip", live:"https://rolespecsales1.netlify.app/", repo:"", prd:"", deck:"" },
 
-  { sym:"Pq", name:"PM Quest", cluster:"pm", maturity:"shipped", live:"https://pmquest-psi.vercel.app/learn", repo:"https://github.com/HimanshuJain1210/PMquest", prd:"", deck:"" },
-  { sym:"Df", name:"Discovery Funnel", cluster:"pm", maturity:"shipped", live:"https://discovery-funnel.vercel.app/", repo:"https://github.com/HimanshuJain1210/discovery-funnel", prd:"", deck:"" },
-  { sym:"Vs", name:"VoiceSkill", cluster:"pm", maturity:"shipped", live:"https://voiceskill.vercel.app/", repo:"https://github.com/HimanshuJain1210/voiceskill", prd:"", deck:"" },
-  { sym:"Td", name:"Thought Diary", cluster:"pm", maturity:"concept", live:"https://gentle-thought-diary.lovable.app", repo:"", prd:"", deck:"" }
+  { sym:"Pq", name:"PM Quest", cluster:"pm", maturity:"shipped", live:"https://pmquest-psi.vercel.app/learn", repo:"https://github.com/HimanshuJain1210/PMquest", prd:"", deck:"", study:"casestudy-pmquest.html" },
+  { sym:"Df", name:"Discovery Funnel", cluster:"pm", maturity:"shipped", live:"https://discovery-funnel.vercel.app/", repo:"https://github.com/HimanshuJain1210/discovery-funnel", prd:"", deck:"", study:"casestudy-discovery.html" },
+  { sym:"Vs", name:"VoiceSkill", cluster:"pm", maturity:"shipped", live:"https://voiceskill.vercel.app/", repo:"https://github.com/HimanshuJain1210/voiceskill", prd:"", deck:"", study:"casestudy-voiceskill.html" },
 ];
 
-const ABOUT_ME = `Himanshu Jain is a Chemistry faculty member (Aakash, ~10+ yrs teaching JEE/CBSE) transitioning into AI Product Management via HelloPM. He has shipped 15+ live products on a Next.js + Supabase + Vercel + Groq + FastAPI + ChromaDB stack. Strongest product: ChemIQ, a RAG-based JEE Chemistry assistant with hybrid BM25+vector retrieval, Groq vision for handwritten slides, and a multi-stage grading pipeline. Other builds: PM Quest, Tailor, MarksMate, Funded Agent, VoiceSkill, Discovery Funnel. His edge: real classroom domain expertise + the ability to ship working products, not just decks. He builds in public and writes on Substack ("Chemistry with HJ").`;
+const ABOUT_ME = `Himanshu Jain is a Chemistry faculty member (Aakash, FIITJEE, Amazon Academy — 11 years teaching JEE/CBSE to 1,500+ students, 13,000+ classroom hours) transitioning into AI Product Management via HelloPM. He has shipped 15+ live products on a Next.js + Supabase + Vercel + Groq + FastAPI stack. Strongest product: ChemIQ, a RAG-based JEE Chemistry assistant with hybrid BM25+vector retrieval, Groq vision for handwritten slides, and a multi-stage grading pipeline. Other builds: PM Quest, Tailor, Funded Agent, VoiceSkill, Discovery Funnel. His edge: deep classroom domain expertise plus the ability to ship working products, not just decks. He writes on Substack ("The JEE Teacher").`;
 
 /* ███ END EDIT ZONE ███ */
 

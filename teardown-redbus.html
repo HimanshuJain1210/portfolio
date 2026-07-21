@@ -85,7 +85,9 @@ ul li b{font-weight:600}
 .stat-box .n{font-family:"Fraunces",serif;font-weight:600;font-size:30px;line-height:1;color:var(--accent)}
 .stat-box .l{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.04em;color:var(--ink-soft);margin-top:8px;line-height:1.4;text-transform:uppercase}
 
-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+table{width:100%;max-width:100%;border-collapse:collapse;margin:20px 0;font-size:14px;table-layout:fixed}
+th,td{overflow-wrap:break-word;word-break:break-word}
+@media(max-width:560px){table{font-size:12px}th,td{padding:8px 7px}}
 th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
 th{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
 td{color:var(--ink)}
@@ -95,6 +97,8 @@ tr td:last-child,tr th:last-child{text-align:center}
 
 .swot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}
 @media(max-width:600px){.swot{grid-template-columns:1fr}}
+.swot3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:700px){.swot3{grid-template-columns:1fr}}
 .swot-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
 .swot-card h4{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
 .swot-card.s h4{color:var(--teal)}.swot-card.w h4{color:var(--accent-deep)}
@@ -261,7 +265,7 @@ tr td:last-child,tr th:last-child{text-align:center}
     <h2><span class="n">07</span> The solution: "redBus Guarantee"</h2>
     <p>Prioritisation is only half the job — the other half is building the fix. I wrote a full PRD turning the P0 into a three-pillar system that makes a journey complete <em>even when an operator fails</em>.</p>
 
-    <div class="swot" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="swot swot3">
       <div class="swot-card s"><h4>1 · Prevention</h4><ul>
         <li>Reliability score (90-day cancel rate) on every search result</li>
         <li>"Guaranteed Journey" badge for &lt;1% operators</li>
