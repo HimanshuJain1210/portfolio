@@ -266,6 +266,17 @@ section{padding:72px 0}
 @media(max-width:680px){.log-item{grid-template-columns:1fr;gap:4px}.log-item .go{display:none}}
 .log-empty{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink-soft);padding:24px 0}
 
+/* ---- Subscribe CTA ---- */
+.subscribe{margin-top:34px;padding-top:30px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+@media(max-width:720px){.subscribe{grid-template-columns:1fr;gap:20px}}
+.sub-copy h3{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(20px,2.6vw,26px);letter-spacing:-.01em;margin-bottom:8px}
+.sub-copy p{font-size:14.5px;color:var(--ink-soft);max-width:34em;line-height:1.55}
+.sub-form{display:flex;flex-direction:column;gap:8px;min-width:300px}
+@media(max-width:720px){.sub-form{min-width:0}}
+.sub-form iframe{width:100%;max-width:340px;height:90px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.sub-fallback{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);align-self:flex-start}
+.sub-fallback:hover{color:var(--accent-deep)}
+
 /* ---- HelloPM Coursework ---- */
 .cert-card{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:34px;box-shadow:5px 7px 0 var(--shadow)}
 @media(max-width:640px){.cert-card{grid-template-columns:1fr;gap:16px}}
@@ -514,9 +525,20 @@ section{padding:72px 0}
     <div class="sec-head">
       <span class="idx">04 /</span>
       <h2>Field Notes</h2>
-      <span class="meta">Live from Substack · "Chemistry with HJ"</span>
+      <span class="meta">Live from Substack · "The JEE Teacher"</span>
     </div>
     <div id="logList"><div class="log-empty">Loading latest notes…</div></div>
+
+    <div class="subscribe">
+      <div class="sub-copy">
+        <h3>Field Notes lands in inboxes too.</h3>
+        <p>Chemistry teaching, build logs, and what happens at the intersection. One email a week. No spam.</p>
+      </div>
+      <div class="sub-form">
+        <iframe src="https://thejeeteacher.substack.com/embed" title="Subscribe to The JEE Teacher" loading="lazy"></iframe>
+        <a class="sub-fallback" href="https://thejeeteacher.substack.com/subscribe" target="_blank" rel="noopener">Subscribe on Substack ↗</a>
+      </div>
+    </div>
   </div>
 </section>
 
