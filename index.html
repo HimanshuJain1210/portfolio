@@ -248,6 +248,7 @@ section{padding:72px 0}
 .pcell .cnum{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--ink-soft)}
 .pcell .csym{font-family:"Fraunces",serif;font-weight:600;font-size:22px;line-height:1.05;margin:4px 0 1px}
 .pcell .cname{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.03em;color:var(--accent);text-transform:uppercase}
+.pcell .caward{font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal);border-radius:3px;padding:2px 5px;margin-top:6px;align-self:flex-start;line-height:1.3}
 .pcell .clinks{display:flex;gap:6px;margin-top:auto;padding-top:10px;flex-wrap:wrap}
 .pcell .clink{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.04em;text-transform:uppercase;padding:4px 7px;border:1px solid var(--line);border-radius:3px;transition:all .15s}
 .pcell .clink.live{border-color:var(--teal);color:var(--teal)}
@@ -464,6 +465,7 @@ section{padding:72px 0}
         <div class="fi"><div class="fr"><a href="https://hellopm.co/certificate/?certificate_id=2H3Q8L" target="_blank" rel="noopener">AI Product Management ↗</a></div><div class="fm">HelloPM · 4-month live program</div><div class="fd">2026 · ID 2H3Q8L</div></div>
         <div class="fi"><div class="fr"><a href="https://hellopm.co/certificate/?certificate_id=3VP1UL" target="_blank" rel="noopener">AI Builder Sprint 2026 ↗</a></div><div class="fm">HelloPM · 3-day builder sprint</div><div class="fd">2026 · ID 3VP1UL</div></div>
         <div class="fi"><div class="fr"><a href="https://hellopm.co/certificate/?certificate_id=YQSSWP" target="_blank" rel="noopener">AI Builder Series ↗</a></div><div class="fm">HelloPM · #BuildinPublic Challenge</div><div class="fd">Aug 2026 · ID YQSSWP · <a href="https://hellopm.co/app/application/views/g/hof/submissions/himanshu-jain/index.html" target="_blank" rel="noopener">Featured in Hall of Fame ↗</a></div></div>
+        <div class="fi"><div class="fr"><a href="https://hellopm.co/certificate/?certificate_id=ELM7NX" target="_blank" rel="noopener">AI Buildathon — 🥉 3rd Place ↗</a></div><div class="fm">HelloPM · flagship AI Buildathon · solo entry "Socho"</div><div class="fd">Aug 2026 · ID ELM7NX · <a href="https://hellopm.co/app/in/p/buildathon_submissions" target="_blank" rel="noopener">Build Index ↗</a></div></div>
         <div class="fi"><div class="fr"><a href="https://verify.skilljar.com/c/3qxmskfzo256" target="_blank" rel="noopener">AI Fluency: Framework &amp; Foundations ↗</a></div><div class="fm">Anthropic Education</div><div class="fd">May 2026</div></div>
         <div class="fi"><div class="fr"><a href="https://verify.skilljar.com/c/7ynjo2do4no8" target="_blank" rel="noopener">AI Fluency for Educators ↗</a></div><div class="fm">Anthropic Education</div><div class="fd">May 2026</div></div>
         <div class="fi"><div class="fr"><a href="https://verify.skilljar.com/c/936oqswku5au" target="_blank" rel="noopener">Claude 101 ↗</a></div><div class="fm">Anthropic Education</div><div class="fd">May 2026</div></div>
@@ -597,6 +599,19 @@ section{padding:72px 0}
       </div>
     </div>
 
+    <div class="cert-card">
+      <img src="coursework/buildathon-certificate.png" alt="HelloPM AI Buildathon certificate of achievement — Himanshu Jain" onerror="this.style.display='none'" />
+      <div class="cert-meta">
+        <div class="badge">🥉 3rd Place · Certificate of Achievement</div>
+        <h3>AI Buildathon</h3>
+        <p>HelloPM's flagship AI Buildathon. My solo entry, <b>Socho</b> — a bilingual, voice-first Socratic tutor for Class 6–8 — was picked in the Top 6, presented at the final, and <b>won 3rd place</b> among 47 submissions from 59 builders.</p>
+        <div class="cert-id">Issued August 2026 · HelloPM · ID ELM7NX</div>
+        <a class="cert-link" href="https://hellopm.co/certificate/?certificate_id=ELM7NX" target="_blank" rel="noopener">Verify certificate ↗</a>
+        <a class="cert-link" href="https://hellopm.co/app/in/p/buildathon_submissions" target="_blank" rel="noopener">Build Index ↗</a>
+        <a class="cert-link" href="casestudy-socho.html">Read the Socho case study →</a>
+      </div>
+    </div>
+
     <div class="cw-grid">
 
       <div class="cw-card">
@@ -725,7 +740,7 @@ const PROJECTS = [
   { sym:"Jn", name:"JEE Navigator", cluster:"edtech", maturity:"wip", live:"https://jee-ace-navigator.lovable.app", repo:"", prd:"", deck:"" },
   { sym:"R1", name:"Cl-11 Revision", cluster:"edtech", maturity:"wip", live:"https://class11revision.netlify.app/", repo:"", prd:"", deck:"" },
   { sym:"Mi", name:"Mentor Inbox", cluster:"edtech", maturity:"shipped", live:"https://mentor-inbox.vercel.app", repo:"", prd:"", deck:"", study:"casestudy-mentor-inbox.html" },
-  { sym:"So", name:"Socho", cluster:"edtech", maturity:"shipped", live:"https://socho.vercel.app", repo:"", prd:"", deck:"", study:"casestudy-socho.html" },
+  { sym:"So", name:"Socho", cluster:"edtech", maturity:"shipped", live:"https://socho.vercel.app", repo:"", prd:"", deck:"", study:"casestudy-socho.html", award:"🥉 3rd · HelloPM Buildathon" },
 
   { sym:"Ta", name:"Tailor", cluster:"career", maturity:"shipped", live:"https://jd-resume-customiser.vercel.app/", repo:"https://github.com/HimanshuJain1210/jd-resume-customiser", prd:"", deck:"", study:"casestudy-tailor.html" },
   { sym:"Fa", name:"Funded Agent", cluster:"career", maturity:"shipped", live:"https://fundedagent.vercel.app", repo:"https://github.com/HimanshuJain1210/fundedagent", prd:"", deck:"" },
@@ -769,7 +784,8 @@ function buildTable(){
       if(!items.length){ptable.insertAdjacentHTML('beforeend','<div class="spacer"></div>');return;}
       const inner=items.map(p=>{
         const n=String(PROJECTS.indexOf(p)+1).padStart(2,'0');
-        return `<div class="pcell" data-c="${p.cluster}"><span class="cnum">${n}</span><span class="csym">${p.sym}</span><span class="cname">${p.name}</span><span class="clinks">${linkBtns(p)}</span></div>`;
+        const award=p.award?`<span class="caward">${p.award}</span>`:'';
+        return `<div class="pcell" data-c="${p.cluster}"><span class="cnum">${n}</span><span class="csym">${p.sym}</span><span class="cname">${p.name}</span>${award}<span class="clinks">${linkBtns(p)}</span></div>`;
       }).join('');
       ptable.insertAdjacentHTML('beforeend',`<div style="display:flex;flex-direction:column;gap:10px">${inner}</div>`);
     });
