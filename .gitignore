@@ -1,0 +1,8 @@
+# Never commit secrets — GROQ_API_KEY lives only in Vercel env vars (see api/ask.js)
+.env
+.env.local
+.env*.local
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
