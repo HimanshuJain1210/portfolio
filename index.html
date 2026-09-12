@@ -6,6 +6,13 @@
 <meta name="google-site-verification" content="tgYjyF5RgOqzecGqcg1-T6MQHO7ekvKK9U9M075xxcA" />
 <meta name="google-site-verification" content="oc9PQGRNcfXejUUt5ZWy-Gkt0llKTQahlLh-XpMey4g" />
 
+<!-- No favicon existed before this — browsers were requesting /favicon.ico
+     (404) and Google Search shows a generic globe next to the listing
+     without one. Cropped from the existing profile.png, no new asset shoot
+     needed. -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
 <!-- ============ SEO ============ -->
 <title>Himanshu Jain — AI Product Manager & Chemistry Educator</title>
 <meta name="description" content="Himanshu Jain is a JEE Chemistry educator turned AI product builder. 15+ shipped AI products across edtech, career, and PM tooling. Explore the work, the process, and the writing." />
@@ -34,12 +41,24 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://thejeeteacher.com/#person",
   "name": "Himanshu Jain",
+  "alternateName": "The JEE Teacher",
   "url": "https://thejeeteacher.com/",
+  "mainEntityOfPage": "https://thejeeteacher.com/",
   "image": "https://thejeeteacher.com/profile.png",
   "jobTitle": "AI Product Manager & Chemistry Educator",
   "description": "JEE Chemistry educator transitioning into AI product management. Has shipped 15+ live AI products across edtech, career tooling, and product management.",
   "knowsAbout": ["AI Product Management", "JEE Chemistry", "Edtech", "Retrieval-Augmented Generation", "Product Discovery"],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Aakash Educational Services Limited"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Birla Institute of Technology, Mesra"
+  },
+  "award": "3rd Place, HelloPM AI Buildathon (2026)",
   "sameAs": [
     "https://www.linkedin.com/in/himanshu-jain-77873019",
     "https://thejeeteacher.substack.com",
@@ -66,6 +85,13 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+/* Accessible-hidden text: present for screen readers and search engines,
+   invisible on screen. Used once below to put "Himanshu Jain" literally
+   inside the <h1> (the page's real subject) without changing the punchy
+   visual headline — the name is already prominent in the brandmark, title
+   tag, meta description, and JSON-LD, but the H1 itself is the single
+   heading Google weighs most for what a page is "about". */
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;
   background-image:repeating-linear-gradient(transparent,transparent 31px,var(--ruled) 31px,var(--ruled) 32px);background-attachment:fixed;
   transition:background-color .35s,color .35s;}
@@ -363,7 +389,7 @@ section{padding:72px 0}
   <div class="wrap">
     <div>
       <div class="hero-eyebrow"><span class="dot"></span><span class="tag">Chemistry Faculty · AI Product Builder · Teacher who ships</span></div>
-      <h1>A teacher who<br><em>ships products.</em></h1>
+      <h1><span class="vh">Himanshu Jain — </span>A teacher who<br><em>ships products.</em></h1>
       <p class="lede">Eleven years teaching JEE Chemistry to over 1,500 students. These days I build the AI tools I always wished my students had — and I love getting them into people's hands. <b>15+ deployed products</b> so far. This page shares what I've built, and a little of how I think while building it.</p>
       <div class="hero-cta">
         <a class="btn solid" href="#mechanism">See how I think →</a>
