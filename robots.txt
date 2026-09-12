@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://thejeeteacher.com/sitemap.xml
+Sitemap: https://www.thejeeteacher.com/sitemap.xml
