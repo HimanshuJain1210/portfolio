@@ -11,7 +11,10 @@ export default async function handler(req, res) {
   if (!question) return res.status(400).json({ error: 'No question' });
 
   const key = process.env.GROQ_API_KEY;           // set this in Vercel, NOT in code
-  if (!key) return res.status(200).json({ answer: null }); // -> site falls back to demo mode
+  if (!key) {
+    console.error('[ask] no GROQ_API_KEY set — falling back to demo mode');
+    return res.status(200).json({ answer: null }); // -> site falls back to demo mode
+  }
 
   const system = `You are the portfolio assistant for Himanshu Jain. Answer questions about him
 in first person as if you are his portfolio speaking on his behalf — confident, concise, no fluff.
@@ -47,8 +50,15 @@ ${context}`;
     });
     const d = await r.json();
     const answer = d?.choices?.[0]?.message?.content?.trim() || null;
+    // Groq errors (bad key, deprecated model, rate limit) come back as a
+    // normal JSON body with no `choices` — fetch() doesn't throw on 4xx/5xx,
+    // so without this the exact same {answer:null} as "no key configured"
+    // was silently returned for every failure mode, indistinguishable from
+    // outside. Never logs the key itself.
+    if (!answer) console.error('[ask] groq call produced no answer:', r.status, JSON.stringify(d).slice(0, 500));
     return res.status(200).json({ answer });
   } catch (e) {
+    console.error('[ask] groq fetch threw:', e.message);
     return res.status(200).json({ answer: null }); // graceful fallback to demo mode
   }
 }
