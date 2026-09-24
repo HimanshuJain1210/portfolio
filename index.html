@@ -718,9 +718,9 @@ section{padding:72px 0}
         <button id="askBtn">Ask →</button>
       </div>
       <div class="chips" id="chips">
-        <span class="chip">What's your strongest AI product?</span>
+        <span class="chip">Tell me about Socho.</span>
+        <span class="chip">What certifications do you have?</span>
         <span class="chip">How does teaching make you a better PM?</span>
-        <span class="chip">Tell me about ChemIQ.</span>
         <span class="chip">What's your tech stack?</span>
       </div>
       <div class="ask-out" id="askOut"></div>
@@ -784,7 +784,15 @@ const PROJECTS = [
   { sym:"Vs", name:"VoiceSkill", cluster:"pm", maturity:"shipped", live:"https://voiceskill.vercel.app/", repo:"https://github.com/HimanshuJain1210/voiceskill", prd:"", deck:"", study:"casestudy-voiceskill.html" },
 ];
 
-const ABOUT_ME = `Himanshu Jain is a Chemistry faculty member (Aakash, FIITJEE, Amazon Academy — 11 years teaching JEE/CBSE to 1,500+ students, 13,000+ classroom hours) transitioning into AI Product Management via HelloPM. He has shipped 15+ live products on a Next.js + Supabase + Vercel + Groq + FastAPI stack. Strongest product: ChemIQ, a RAG-based JEE Chemistry assistant with hybrid BM25+vector retrieval, Groq vision for handwritten slides, and a multi-stage grading pipeline. Other builds: PM Quest, Tailor, Funded Agent, VoiceSkill, Discovery Funnel, and Socho — a bilingual, voice-first Socratic tutor for Class 6-8 that won 3rd place at the HelloPM C49 Buildathon. His edge: deep classroom domain expertise plus the ability to ship working products, not just decks. He writes on Substack ("The JEE Teacher").`;
+const ABOUT_ME = `Himanshu Jain is a Chemistry faculty member (Aakash, FIITJEE, Amazon Academy — 11 years teaching JEE/CBSE to 1,500+ students, 13,000+ classroom hours) transitioning into AI Product Management via HelloPM. He has shipped 15+ live products on a Next.js + Supabase + Vercel + Groq + FastAPI stack.
+
+Socho (chalosocho.in) is his flagship build and the one to lead with: a bilingual, voice-first Socratic tutor for Class 6-8 students in Hindi, Hinglish, and English — it responds to how a student is reasoning, not just whether their final answer is right, and it's live now with real students, not a demo. Socho was picked Top 6 and won 3rd place at the HelloPM AI Buildathon, judged against 47 submissions from 59 builders. Always mention the live link chalosocho.in when discussing it.
+
+Other strong builds: ChemIQ, a RAG-based JEE Chemistry assistant with hybrid BM25+vector retrieval, Groq vision for handwritten slides, and a multi-stage grading pipeline; plus PM Quest, Tailor, Funded Agent, VoiceSkill, and Discovery Funnel.
+
+Certifications (all verifiable, linked on the site): AI Product Management — a 4-month live program (HelloPM); AI Builder Sprint 2026, a 3-day build sprint (HelloPM); AI Builder Series #BuildinPublic Challenge, featured in the HelloPM Hall of Fame; 3rd Place, HelloPM AI Buildathon, for Socho; and AI Fluency: Framework & Foundations, AI Fluency for Educators, and Claude 101 (Anthropic Education).
+
+His edge: deep classroom domain expertise plus the ability to ship working products, not just decks. He writes on Substack ("The JEE Teacher").`;
 
 /* ███ END EDIT ZONE ███ */
 
@@ -861,11 +869,13 @@ document.querySelectorAll('[data-edit="email"]').forEach(a=>a.href='mailto:'+CON
 const askInput=document.getElementById('askInput'),askBtn=document.getElementById('askBtn'),askOut=document.getElementById('askOut'),askNote=document.getElementById('askNote');
 function demoAnswer(q){
   const s=q.toLowerCase();
-  if(s.includes('strongest')||s.includes('best')||s.includes('chemiq'))return "ChemIQ is the strongest. It's a RAG-based JEE Chemistry assistant with hybrid BM25 + vector retrieval, a Groq vision model that reads handwritten slides, and a multi-stage grading pipeline. It came directly out of a problem I lived for a decade — students stuck on chemistry at 11pm with no good help.";
+  if(s.includes('socho'))return "Socho (chalosocho.in) is my flagship build — a bilingual, voice-first Socratic tutor for Class 6-8 students in Hindi, Hinglish, and English. It responds to how a student is reasoning, not just whether the final answer is right, and it's live now with real students. It was picked Top 6 and won 3rd place at the HelloPM AI Buildathon against 47 submissions from 59 builders. Try it yourself at chalosocho.in.";
+  if(s.includes('cert')||s.includes('achieve')||s.includes('award')||s.includes('buildathon'))return "A few I'm proud of: 3rd place at the HelloPM AI Buildathon for Socho, the HelloPM AI Product Management program (a 4-month live program), the AI Builder Sprint and AI Builder Series (Hall of Fame), and Anthropic Education's AI Fluency and Claude 101 certifications. All verifiable — the links are in the Coursework section below.";
+  if(s.includes('strongest')||s.includes('best')||s.includes('chemiq'))return "ChemIQ is the deepest technical build — a RAG-based JEE Chemistry assistant with hybrid BM25 + vector retrieval, a Groq vision model that reads handwritten slides, and a multi-stage grading pipeline. But Socho (chalosocho.in) is the one I'd point you to first — it's live with real students now, and it won 3rd place at the HelloPM AI Buildathon.";
   if(s.includes('teach')||s.includes('pm')||s.includes('better'))return "Teaching is product work in disguise. For 10 years I found exactly where a learner got stuck and designed the smallest thing to unblock them — that's discovery, scoping, and iteration. Explaining a reaction mechanism and writing a PRD are the same move: break a hard thing into ordered, testable steps.";
   if(s.includes('stack')||s.includes('tech'))return "My consistent stack: Next.js + Supabase + Vercel, Groq (llama-3.3-70b, Whisper, vision) for AI, and FastAPI + ChromaDB where I need custom retrieval. I ship GUI-only — GitHub web upload + Vercel dashboard, no terminal.";
-  if(s.includes('how many')||s.includes('products')||s.includes('built'))return "15+ live, deployed products — not slide decks. They span edtech, career tools, and PM builds. Every one has a real URL you can click in the periodic table above.";
-  return "Short version: I'm a Chemistry teacher of 10+ years who now ships AI products — 15+ live, on a Next.js + Supabase + Groq stack. My edge is real classroom domain depth plus the ability to actually build and deploy. Ask me about ChemIQ, my stack, or the teacher-to-PM story.";
+  if(s.includes('how many')||s.includes('products')||s.includes('built'))return "15+ live, deployed products — not slide decks. Socho (chalosocho.in) is the flagship: live with real students, 3rd place at the HelloPM AI Buildathon. Every one has a real URL you can click in the periodic table above.";
+  return "Short version: I'm a Chemistry teacher of 10+ years who now ships AI products — 15+ live, on a Next.js + Supabase + Groq stack. My flagship build is Socho (chalosocho.in), a voice-first Socratic tutor that won 3rd place at the HelloPM AI Buildathon. Ask me about Socho, ChemIQ, my certifications, or the teacher-to-PM story.";
 }
 async function ask(q){
   if(!q.trim())return;
