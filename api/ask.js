@@ -66,16 +66,18 @@ Answer the visitor's question below using only those facts.`;
         // comment, before assuming it still holds.
         model: 'openai/gpt-oss-120b',
         temperature: 0.4,
-        // gpt-oss is a reasoning model — the Playground's own generated
-        // code uses max_completion_tokens, not the older max_tokens.
-        // Left at 300 (the value verified live and working) deliberately:
-        // reasoning models can count their internal reasoning toward this
-        // same budget, so cutting it without re-testing risks the exact
-        // failure just fixed — reasoning eating the budget, empty final
-        // content, silent fallback to demo mode. The prompt's own "2-4
-        // sentences" instruction is doing the conciseness work here;
-        // don't tighten this without a live test to back it up.
-        max_completion_tokens: 300,
+        // Confirmed the exact failure mode this comment used to warn
+        // about: a live test came back truncated mid-sentence ("...15+
+        // other products on a") at max_completion_tokens:300 — gpt-oss's
+        // internal reasoning really does eat into this budget, same as
+        // OpenAI's o-series. This task (phrase 2-4 sentences from given
+        // facts) needs none of that reasoning depth, so turning it down
+        // fixes both problems at once: less budget wasted on invisible
+        // thinking, and faster/cheaper besides. Re-verified live after
+        // this change — see chat, not just this comment — before trusting
+        // it holds.
+        reasoning_effort: 'low',
+        max_completion_tokens: 400,
         messages: [
           { role: 'system', content: system },
           { role: 'user', content: question }
