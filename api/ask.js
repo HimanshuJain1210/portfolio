@@ -39,17 +39,21 @@ ${context}`;
         'Authorization': `Bearer ${key}`
       },
       body: JSON.stringify({
-        // llama-3.3-70b-versatile started 404ing ("model_not_found") on
-        // this account/key sometime after this was written — Groq's own
-        // docs still list it, so this may be account-specific (a gated
-        // model needing opt-in) rather than a real deprecation. Switched
-        // to the 8B instant model, which needs no special access on any
-        // Groq account. If quality is ever a problem, that's a one-line
-        // swap back — verify against a live request + Vercel's runtime
-        // logs (see [ask] console.error below) before trusting it works.
-        model: 'llama-3.1-8b-instant',
+        // Both llama-3.3-70b-versatile and llama-3.1-8b-instant 404'd
+        // ("model_not_found") on this account, despite Groq's docs listing
+        // them as current — confirmed via this account's own Playground
+        // (console.groq.com/playground) that openai/gpt-oss-120b DOES
+        // work here, so that's an account-specific model-access thing,
+        // not a real deprecation or a key problem. Use whatever the
+        // Playground shows working for this account, not what's "supposed"
+        // to be available — verify against a live request + Vercel's
+        // runtime logs (see [ask] console.error below), not just this
+        // comment, before assuming it still holds.
+        model: 'openai/gpt-oss-120b',
         temperature: 0.4,
-        max_tokens: 300,
+        // gpt-oss is a reasoning model — the Playground's own generated
+        // code uses max_completion_tokens, not the older max_tokens.
+        max_completion_tokens: 300,
         messages: [
           { role: 'system', content: system },
           { role: 'user', content: question }
