@@ -734,13 +734,13 @@ section{padding:72px 0}
   <div class="wrap">
     <div><h2>Building in public.<br><em>Let's talk.</em></h2>
       <p class="foot-cta-line">If any of this resonated, let's chat — always happy to swap ideas. Happy learning, happy building.</p>
-      <a class="foot-cta-btn" href="mailto:your@email.com" data-edit="email">Get in touch →</a>
+      <a class="foot-cta-btn" href="mailto:himanshujain699@gmail.com" data-edit="email">Get in touch →</a>
     </div>
     <div class="links">
       <a href="https://www.linkedin.com/in/himanshu-jain-77873019" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#" target="_blank" rel="noopener" data-edit="substack">Substack</a>
+      <a href="https://thejeeteacher.substack.com" target="_blank" rel="noopener" data-edit="substack">Substack</a>
       <a href="https://github.com/HimanshuJain1210" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:your@email.com" data-edit="email">Email</a>
+      <a href="mailto:himanshujain699@gmail.com" data-edit="email">Email</a>
     </div>
   </div>
   <div class="wrap"><div class="colophon">Built by hand · Chemistry-lab design system · Light &amp; dark · © Himanshu Jain</div></div>
@@ -749,6 +749,13 @@ section{padding:72px 0}
 <script>
 /* ███ EDIT ZONE ███ */
 
+// The [data-edit="email"]/[data-edit="substack"] anchors in the footer HTML
+// above ALSO carry these same values as their static href — found stale
+// (a leftover "your@email.com" placeholder, live for who knows how long)
+// during a Sept 2026 audit. Keep both in sync when you change this: the JS
+// below only overwrites them after the page loads, so a crawler, a
+// no-JS/text browser, or "copy link" clicked in the instant before JS
+// finishes sees the static HTML value, not CONFIG.
 const CONFIG = {
   substackUrl: "https://thejeeteacher.substack.com",
   substackRss: "https://thejeeteacher.substack.com/feed",
