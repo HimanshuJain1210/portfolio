@@ -39,7 +39,15 @@ ${context}`;
         'Authorization': `Bearer ${key}`
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
+        // llama-3.3-70b-versatile started 404ing ("model_not_found") on
+        // this account/key sometime after this was written — Groq's own
+        // docs still list it, so this may be account-specific (a gated
+        // model needing opt-in) rather than a real deprecation. Switched
+        // to the 8B instant model, which needs no special access on any
+        // Groq account. If quality is ever a problem, that's a one-line
+        // swap back — verify against a live request + Vercel's runtime
+        // logs (see [ask] console.error below) before trusting it works.
+        model: 'llama-3.1-8b-instant',
         temperature: 0.4,
         max_tokens: 300,
         messages: [
