@@ -138,12 +138,14 @@ img{max-width:100%;display:block}
 .stats{display:flex;border-top:1px solid var(--line);margin-top:50px}
 .stat{flex:1;padding:18px 0;border-right:1px solid var(--line)}
 .stat:last-child{border-right:none}
+.stat+.stat{padding-left:16px}
+@media(max-width:560px){.stats{display:grid;grid-template-columns:1fr 1fr}.stat{padding:16px 0 16px 14px}.stat:nth-child(odd){padding-left:0}.stat:nth-child(2n){border-right:none}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 .stat .n{font-family:"Fraunces",serif;font-weight:600;font-size:30px;line-height:1}
 .stat .l{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
 
 section{padding:72px 0}
 .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:32px;border-bottom:1px solid var(--line);padding-bottom:14px}
-.sec-head .idx{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--accent);letter-spacing:.1em}
+.sec-head .idx{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--accent);letter-spacing:.1em;white-space:nowrap}
 .sec-head h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.01em}
 .sec-head .meta{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.06em}
 @media(max-width:560px){.sec-head .meta{display:none}}
@@ -167,7 +169,7 @@ section{padding:72px 0}
 .rx-name{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(19px,2.4vw,25px);line-height:1.15;color:var(--ink)}
 .rx-note{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.03em;margin-top:8px;line-height:1.5}
 .rx-arrow{position:relative;z-index:2;width:120px;display:flex;flex-direction:column;align-items:center;gap:6px}
-@media(max-width:560px){.rx-arrow{transform:rotate(90deg);margin:6px 0}}
+@media(max-width:560px){.rx-arrow{transform:rotate(90deg);margin:6px 0;justify-self:center}}
 .rx-arrow svg{width:120px;height:40px;overflow:visible}
 /* arrow draws itself */
 .rx-line{stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .7s ease .15s}
@@ -302,11 +304,10 @@ section{padding:72px 0}
 @media(max-width:720px){.subscribe{grid-template-columns:1fr;gap:20px}}
 .sub-copy h3{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(20px,2.6vw,26px);letter-spacing:-.01em;margin-bottom:8px}
 .sub-copy p{font-size:14.5px;color:var(--ink-soft);max-width:34em;line-height:1.55}
-.sub-form{display:flex;flex-direction:column;gap:8px;min-width:300px}
-@media(max-width:720px){.sub-form{min-width:0}}
-.sub-form iframe{width:100%;max-width:340px;height:90px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
-.sub-fallback{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);align-self:flex-start}
-.sub-fallback:hover{color:var(--accent-deep)}
+.sub-form{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.sub-cta{display:inline-flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:14px 22px;border-radius:5px;background:var(--accent);color:var(--on-accent);border:1.5px solid var(--accent);transition:all .18s;white-space:nowrap}
+.sub-cta:hover{background:var(--accent-deep);border-color:var(--accent-deep);transform:translateY(-1px)}
+.sub-note{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.06em;color:var(--ink-soft)}
 
 /* ---- HelloPM Coursework ---- */
 .cert-card{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:34px;box-shadow:5px 7px 0 var(--shadow)}
@@ -360,7 +361,7 @@ section{padding:72px 0}
 .foot-cta-line{font-size:15px;color:var(--ink-soft);margin-top:18px;max-width:30em;line-height:1.55}
 .foot-cta-btn{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:13px 20px;border-radius:5px;background:var(--accent);color:var(--on-accent);border:1.5px solid var(--accent);transition:all .18s}
 .foot-cta-btn:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
-.colophon{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--ink-soft);letter-spacing:.04em;margin-top:40px;border-top:1px solid var(--line);padding-top:18px}
+.colophon{width:100%;font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--ink-soft);letter-spacing:.04em;margin-top:40px;border-top:1px solid var(--line);padding-top:18px}
 
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -432,7 +433,7 @@ section{padding:72px 0}
             <path class="rx-head" d="M96 12 L108 20 L96 28" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             <circle class="rx-particle" cx="6" cy="20" r="3.5" fill="var(--accent)"/>
           </svg>
-          <span class="rx-catalyst">catalyst: 10 yrs teaching</span>
+          <span class="rx-catalyst">catalyst: 11 yrs teaching</span>
         </div>
         <div class="rx-side rx-product">
           <div class="rx-label">Product</div>
@@ -443,7 +444,7 @@ section{padding:72px 0}
     </div>
     <div>
     <div class="story-track">
-      <div class="story-step"><p><b>The classroom was my first product team.</b> Ten years at Aakash, FIITJEE, and Amazon Academy — plus two institutes I built from scratch — taught me to notice the exact moment a learner gets stuck, and to find the smallest thing that helps them through it.</p></div>
+      <div class="story-step"><p><b>The classroom was my first product team.</b> Eleven years across Aakash, FIITJEE, and Amazon Academy — and two institutes I built from scratch — taught me to notice the exact moment a learner gets stuck, and to find the smallest thing that helps them through it.</p></div>
       <div class="story-step"><p>That habit turned out to be product management. So I started building the tools I wished my students had: RAG doubt-solvers, answer-grading pipelines, voice trainers, GTM agents — on a real stack, used by real students. <b>I enjoy taking an idea all the way to something people can actually use.</b></p></div>
       <div class="story-step"><p>Today I'm finishing HelloPM's AI Product Management program. The teacher-to-builder path has been a natural one for me — and I'm grateful for where it's led.</p></div>
     </div>
@@ -574,9 +575,15 @@ section{padding:72px 0}
         <h3>Field Notes lands in inboxes too.</h3>
         <p>Chemistry teaching, build logs, and what happens at the intersection. One email a week. No spam.</p>
       </div>
+      <!-- Was Substack's iframe embed. It's a fixed ~480px-wide widget that
+           doesn't reflow: on every phone the Subscribe button and terms line
+           were clipped (with an inner scrollbar), and on desktop it was a
+           bright white box with an orange button on an indigo/teal site —
+           worst in dark mode. A themed button works at every width and in
+           both themes; subscribing takes one extra step on Substack's page. -->
       <div class="sub-form">
-        <iframe src="https://thejeeteacher.substack.com/embed" title="Subscribe to The JEE Teacher" loading="lazy"></iframe>
-        <a class="sub-fallback" href="https://thejeeteacher.substack.com/subscribe" target="_blank" rel="noopener">Subscribe on Substack ↗</a>
+        <a class="sub-cta" href="https://thejeeteacher.substack.com/subscribe" target="_blank" rel="noopener">Subscribe on Substack <span aria-hidden="true">↗</span></a>
+        <span class="sub-note">Free · unsubscribe anytime</span>
       </div>
     </div>
   </div>
@@ -714,7 +721,7 @@ section{padding:72px 0}
       <h3>Curious about my work? Just ask.</h3>
       <p class="sub">A recruiter, a founder, a fellow builder — ask anything about what I've built, my stack, or the teacher-to-PM story. It answers from my actual portfolio.</p>
       <div class="ask-row">
-        <input id="askInput" type="text" placeholder="e.g. What's your strongest AI product?" />
+        <input id="askInput" type="text" placeholder="e.g. Tell me about Socho" />
         <button id="askBtn">Ask →</button>
       </div>
       <div class="chips" id="chips">
@@ -819,6 +826,10 @@ function buildTable(){
   ptable.innerHTML='<div></div>';
   COLS.forEach(c=>ptable.insertAdjacentHTML('beforeend',`<div class="col-head">${c[1]}</div>`));
   ROWS.forEach(r=>{
+    // A maturity row with no projects at all used to render as a labeled
+    // but completely empty band (the "Concept" row, today) — read as
+    // unfinished. Skip it; it reappears on its own once a project uses it.
+    if(!PROJECTS.some(p=>p.maturity===r[0]))return;
     ptable.insertAdjacentHTML('beforeend',`<div class="row-head">${r[1]}</div>`);
     COLS.forEach(c=>{
       const items=PROJECTS.filter(p=>p.cluster===c[0]&&p.maturity===r[0]);
@@ -872,10 +883,10 @@ function demoAnswer(q){
   if(s.includes('socho'))return "Socho (chalosocho.in) is my flagship build — a bilingual, voice-first Socratic tutor for Class 6-8 students in Hindi, Hinglish, and English. It responds to how a student is reasoning, not just whether the final answer is right, and it's live now with real students. It was picked Top 6 and won 3rd place at the HelloPM AI Buildathon against 47 submissions from 59 builders. Try it yourself at chalosocho.in.";
   if(s.includes('cert')||s.includes('achieve')||s.includes('award')||s.includes('buildathon'))return "A few I'm proud of: 3rd place at the HelloPM AI Buildathon for Socho, the HelloPM AI Product Management program (a 4-month live program), the AI Builder Sprint and AI Builder Series (Hall of Fame), and Anthropic Education's AI Fluency and Claude 101 certifications. All verifiable — the links are in the Coursework section below.";
   if(s.includes('strongest')||s.includes('best')||s.includes('chemiq'))return "ChemIQ is the deepest technical build — a RAG-based JEE Chemistry assistant with hybrid BM25 + vector retrieval, a Groq vision model that reads handwritten slides, and a multi-stage grading pipeline. But Socho (chalosocho.in) is the one I'd point you to first — it's live with real students now, and it won 3rd place at the HelloPM AI Buildathon.";
-  if(s.includes('teach')||s.includes('pm')||s.includes('better'))return "Teaching is product work in disguise. For 10 years I found exactly where a learner got stuck and designed the smallest thing to unblock them — that's discovery, scoping, and iteration. Explaining a reaction mechanism and writing a PRD are the same move: break a hard thing into ordered, testable steps.";
+  if(s.includes('teach')||s.includes('pm')||s.includes('better'))return "Teaching is product work in disguise. For 11 years I found exactly where a learner got stuck and designed the smallest thing to unblock them — that's discovery, scoping, and iteration. Explaining a reaction mechanism and writing a PRD are the same move: break a hard thing into ordered, testable steps.";
   if(s.includes('stack')||s.includes('tech'))return "My consistent stack: Next.js + Supabase + Vercel, Groq (llama-3.3-70b, Whisper, vision) for AI, and FastAPI + ChromaDB where I need custom retrieval. I ship GUI-only — GitHub web upload + Vercel dashboard, no terminal.";
   if(s.includes('how many')||s.includes('products')||s.includes('built'))return "15+ live, deployed products — not slide decks. Socho (chalosocho.in) is the flagship: live with real students, 3rd place at the HelloPM AI Buildathon. Every one has a real URL you can click in the periodic table above.";
-  return "Short version: I'm a Chemistry teacher of 10+ years who now ships AI products — 15+ live, on a Next.js + Supabase + Groq stack. My flagship build is Socho (chalosocho.in), a voice-first Socratic tutor that won 3rd place at the HelloPM AI Buildathon. Ask me about Socho, ChemIQ, my certifications, or the teacher-to-PM story.";
+  return "Short version: I'm a Chemistry teacher of 11 years who now ships AI products — 15+ live, on a Next.js + Supabase + Groq stack. My flagship build is Socho (chalosocho.in), a voice-first Socratic tutor that won 3rd place at the HelloPM AI Buildathon. Ask me about Socho, ChemIQ, my certifications, or the teacher-to-PM story.";
 }
 async function ask(q){
   if(!q.trim())return;
