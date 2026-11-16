@@ -68,6 +68,17 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Socho",
+  "url": "https://www.chalosocho.in/",
+  "description": "A free critical-thinking app for kids aged 11-14, in six languages.",
+  "inLanguage": ["hi", "en", "es", "fr", "pt"],
+  "creator": { "@id": "https://www.thejeeteacher.com/#person" }
+}
+</script>
 <!-- ============ /SEO ============ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -128,6 +139,16 @@ img{max-width:100%;display:block}
 .btn.solid{background:var(--ink);color:var(--bg)}
 .btn.solid:hover{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn.ghost:hover{background:var(--ink);color:var(--bg)}
+/* Flagship card: a plain HTML link to chalosocho.in so search engines can follow it (the table below is built by JS) */
+.flagship{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:8px;padding:22px 24px;margin:0 0 30px;box-shadow:0 1px 0 var(--shadow)}
+.flagship .sym{width:64px;height:64px;border-radius:6px;background:var(--teal);color:var(--bg);display:grid;place-items:center;font-family:"Fraunces",serif;font-size:28px;font-weight:600}
+.flagship .eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.flagship h3{font-family:"Fraunces",serif;font-size:22px;font-weight:600;line-height:1.25;margin:0 0 6px;color:var(--ink)}
+.flagship h3 a{color:inherit;text-decoration:none}
+.flagship h3 a:hover{text-decoration:underline;text-decoration-color:var(--teal)}
+.flagship p{margin:0;color:var(--ink-soft);font-size:14.5px;line-height:1.55;max-width:44em}
+.flagship .acts{display:flex;flex-direction:column;gap:10px}
+@media(max-width:720px){.flagship{grid-template-columns:auto 1fr;padding:18px}.flagship .sym{width:48px;height:48px;font-size:22px}.flagship .acts{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
 
 .portrait{position:relative;padding-top:14px;padding-left:14px}
 .portrait .frame{border:1px solid var(--line);background:var(--surface);padding:14px;border-radius:6px;box-shadow:6px 8px 0 var(--shadow)}
@@ -550,6 +571,18 @@ section{padding:72px 0}
       <span class="idx">03 /</span>
       <h2>The Periodic Table of Builds</h2>
       <span class="meta">Position = strategy</span>
+    </div>
+    <div class="flagship">
+      <div class="sym" aria-hidden="true">So</div>
+      <div>
+        <div class="eyebrow">Flagship build · 🥉 3rd place, HelloPM AI Buildathon</div>
+        <h3><a href="https://www.chalosocho.in/" target="_blank" rel="noopener">Socho: a free critical-thinking app for kids, in six languages</a></h3>
+        <p>A voice-first coach for ages 11–14 that asks <em>why</em> instead of handing over the answer. 506 questions built around real misconceptions, in Hindi, Hinglish, English, Spanish, French and Portuguese. Live with real students.</p>
+      </div>
+      <div class="acts">
+        <a class="btn solid" href="https://www.chalosocho.in/" target="_blank" rel="noopener">Try Socho ↗</a>
+        <a class="btn ghost" href="casestudy-socho.html">Case study</a>
+      </div>
     </div>
     <p class="intro" style="max-width:46em;color:var(--ink-soft);font-size:15px;margin-bottom:18px">Not just a grid. <b style="color:var(--ink)">Columns are clusters</b> (where I build), <b style="color:var(--ink)">rows are maturity</b> (shipped → in progress → concept). You can read my whole product strategy in one glance.</p>
     <div class="legend">
