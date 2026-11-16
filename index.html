@@ -27,14 +27,16 @@
 <meta property="og:title" content="Himanshu Jain — AI Product Manager & Chemistry Educator" />
 <meta property="og:description" content="A JEE Chemistry educator turned AI product builder. 15+ shipped products — explore the work, the process, and the writing." />
 <meta property="og:url" content="https://www.thejeeteacher.com/" />
-<meta property="og:image" content="https://www.thejeeteacher.com/profile.png" />
+<meta property="og:image" content="https://www.thejeeteacher.com/og-card.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Himanshu Jain" />
 
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Himanshu Jain — AI Product Manager & Chemistry Educator" />
 <meta name="twitter:description" content="A JEE Chemistry educator turned AI product builder. 15+ shipped products." />
-<meta name="twitter:image" content="https://www.thejeeteacher.com/profile.png" />
+<meta name="twitter:image" content="https://www.thejeeteacher.com/og-card.jpg" />
 
 <!-- Structured data: tells Google this page is about the person Himanshu Jain -->
 <script type="application/ld+json">
@@ -46,7 +48,7 @@
   "alternateName": "The JEE Teacher",
   "url": "https://www.thejeeteacher.com/",
   "mainEntityOfPage": "https://www.thejeeteacher.com/",
-  "image": "https://www.thejeeteacher.com/profile.png",
+  "image": "https://www.thejeeteacher.com/profile.jpg",
   "jobTitle": "AI Product Manager & Chemistry Educator",
   "description": "JEE Chemistry educator transitioning into AI product management. Has shipped 15+ live AI products across edtech, career tooling, and product management.",
   "knowsAbout": ["AI Product Management", "JEE Chemistry", "Edtech", "Retrieval-Augmented Generation", "Product Discovery"],
@@ -407,7 +409,7 @@ section{padding:72px 0}
     <div class="portrait">
       <div class="el-badge"><span class="num">∞</span><span class="sym">Hj</span></div>
       <div class="frame">
-        <img src="profile.png" alt="Himanshu Jain" onerror="this.src='https://placehold.co/520x520/EBE6D8/54546A?text=Add+profile.png';" />
+        <img src="profile.jpg" width="800" height="800" alt="Himanshu Jain" fetchpriority="high" />
         <div class="specimen"><span>Specimen · HJ-01</span><span>Teacher → Builder</span></div>
       </div>
     </div>
@@ -793,7 +795,7 @@ const PROJECTS = [
 
 const ABOUT_ME = `Himanshu Jain is a Chemistry faculty member (Aakash, FIITJEE, Amazon Academy — 11 years teaching JEE/CBSE to 1,500+ students, 13,000+ classroom hours) transitioning into AI Product Management via HelloPM. He has shipped 15+ live products on a Next.js + Supabase + Vercel + Groq + FastAPI stack.
 
-Socho (chalosocho.in) is his flagship build and the one to lead with: a bilingual, voice-first Socratic tutor for Class 6-8 students in Hindi, Hinglish, and English — it responds to how a student is reasoning, not just whether their final answer is right, and it's live now with real students, not a demo. Socho was picked Top 6 and won 3rd place at the HelloPM AI Buildathon, judged against 47 submissions from 59 builders. Always mention the live link chalosocho.in when discussing it.
+Socho (chalosocho.in) is his flagship build and the one to lead with: a voice-first Socratic tutor for students aged 11-14, in six languages (Hindi, Hinglish, English, Spanish, French, Portuguese) — it responds to how a student is reasoning, not just whether their final answer is right, and it's live now with real students, not a demo. Socho was picked Top 6 and won 3rd place at the HelloPM AI Buildathon, judged against 47 submissions from 59 builders. Always mention the live link chalosocho.in when discussing it.
 
 Other strong builds: ChemIQ, a RAG-based JEE Chemistry assistant with hybrid BM25+vector retrieval, Groq vision for handwritten slides, and a multi-stage grading pipeline; plus PM Quest, Tailor, Funded Agent, VoiceSkill, and Discovery Funnel.
 
@@ -880,7 +882,7 @@ document.querySelectorAll('[data-edit="email"]').forEach(a=>a.href='mailto:'+CON
 const askInput=document.getElementById('askInput'),askBtn=document.getElementById('askBtn'),askOut=document.getElementById('askOut'),askNote=document.getElementById('askNote');
 function demoAnswer(q){
   const s=q.toLowerCase();
-  if(s.includes('socho'))return "Socho (chalosocho.in) is my flagship build — a bilingual, voice-first Socratic tutor for Class 6-8 students in Hindi, Hinglish, and English. It responds to how a student is reasoning, not just whether the final answer is right, and it's live now with real students. It was picked Top 6 and won 3rd place at the HelloPM AI Buildathon against 47 submissions from 59 builders. Try it yourself at chalosocho.in.";
+  if(s.includes('socho'))return "Socho (chalosocho.in) is my flagship build — a voice-first Socratic tutor for students aged 11-14, in six languages — Hindi, Hinglish, English, Spanish, French and Portuguese. It responds to how a student is reasoning, not just whether the final answer is right, and it's live now with real students. It was picked Top 6 and won 3rd place at the HelloPM AI Buildathon against 47 submissions from 59 builders. Try it yourself at chalosocho.in.";
   if(s.includes('cert')||s.includes('achieve')||s.includes('award')||s.includes('buildathon'))return "A few I'm proud of: 3rd place at the HelloPM AI Buildathon for Socho, the HelloPM AI Product Management program (a 4-month live program), the AI Builder Sprint and AI Builder Series (Hall of Fame), and Anthropic Education's AI Fluency and Claude 101 certifications. All verifiable — the links are in the Coursework section below.";
   if(s.includes('strongest')||s.includes('best')||s.includes('chemiq'))return "ChemIQ is the deepest technical build — a RAG-based JEE Chemistry assistant with hybrid BM25 + vector retrieval, a Groq vision model that reads handwritten slides, and a multi-stage grading pipeline. But Socho (chalosocho.in) is the one I'd point you to first — it's live with real students now, and it won 3rd place at the HelloPM AI Buildathon.";
   if(s.includes('teach')||s.includes('pm')||s.includes('better'))return "Teaching is product work in disguise. For 11 years I found exactly where a learner got stuck and designed the smallest thing to unblock them — that's discovery, scoping, and iteration. Explaining a reaction mechanism and writing a PRD are the same move: break a hard thing into ordered, testable steps.";
